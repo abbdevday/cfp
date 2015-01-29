@@ -40,11 +40,9 @@ namespace DevDayCFP.Services
             {
                 Id = Guid.NewGuid(),
                 Email = newUser.Email,
-                UserName = newUser.Name,
+                UserName = newUser.UserName,
                 Password = Helpers.EncodePassword(newUser.Password)
             };
-
-
 
             var existingUser = _dataStore.GetUserByLoginOrEmail(newUser.UserName, newUser.Email);
             if (existingUser != null)

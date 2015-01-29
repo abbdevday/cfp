@@ -22,7 +22,7 @@ namespace DevDayCFP.Services
 
         public User GetUserByLoginOrEmail(string userName, string email)
         {
-            return _usersStore.Single(u => u.UserName == userName || u.Email == email);
+            return _usersStore.SingleOrDefault(u => u.UserName == userName || u.Email == email);
         }
 
         public void SaveUser(User userRecord)

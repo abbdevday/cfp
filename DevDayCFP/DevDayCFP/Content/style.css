@@ -176,3 +176,9 @@
     -ms-transition: all 0.3s;
     transition: all 0.3s;
 }
+
+
+/* --------------------- */
+.margin-top-30 {
+    margin-top: 30px;
+}

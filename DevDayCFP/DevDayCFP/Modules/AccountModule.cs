@@ -4,6 +4,7 @@ using DevDayCFP.ViewModels;
 using Nancy;
 using Nancy.Authentication.Forms;
 using Nancy.ModelBinding;
+using Nancy.Responses;
 using Nancy.Validation;
 
 namespace DevDayCFP.Modules
@@ -14,6 +15,11 @@ namespace DevDayCFP.Modules
         {
             Get["/login"] = parameters =>
             {
+                if (Context.CurrentUser != null)
+                {
+                    return new RedirectResponse("/");
+                }
+
                 var loginModel = new LoginViewModel();
 
                 return View["Login", loginModel];
