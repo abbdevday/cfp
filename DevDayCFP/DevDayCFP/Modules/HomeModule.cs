@@ -7,7 +7,6 @@ namespace DevDayCFP.Modules
         public HomeModule()
         {
             Get["/"] = _ => View["Index"];
-            Get["/papers"] = _ => View["Papers"];
         }
     }
 }

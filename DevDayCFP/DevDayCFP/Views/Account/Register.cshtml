@@ -1,0 +1,41 @@
+﻿@inherits Nancy.ViewEngines.Razor.NancyRazorViewBase<DevDayCFP.ViewModels.RegisterViewModel>
+@using Nancy.Validation;
+
+<h2>Register</h2>
+<p>
+    Use the form below to create a new account.
+</p>
+<p>
+    Passwords are required to be a minimum of 8 characters in length.
+</p>
+
+<form method="post">
+    <div>
+        <fieldset>
+            <legend>Account Information</legend>
+            <p>
+                <label for="UserName">UserName</label>
+                <input type="text" name="UserName" value="@Model.UserName" />
+            </p>
+            <p>
+                <label for="Name">Name</label>
+                <input type="text" name="Name" value="@Model.Name" />
+            </p>
+            <p>
+                <label for="Email">Email</label>
+                <input type="text" name="Email" value="@Model.Email" />
+            </p>
+            <p>
+                <label for="Password">Password</label>
+                <input type="password" name="Password" value="@Model.Password" />
+            </p>
+            <p>
+                <label for="ConfirmPassword">Confirm Password</label>
+                <input type="password" name="ConfirmPassword" value="@Model.ConfirmPassword" />
+            </p>
+            <p>
+                <input type="submit" value="Register" />
+            </p>
+        </fieldset>
+    </div>
+</form>
