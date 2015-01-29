@@ -87,6 +87,7 @@
     <Content Include="Content\fonts\ext\fontawesome-ext-webfont.svg" />
     <Content Include="Content\fonts\fontawesome-webfont.svg" />
     <Content Include="Content\fonts\social\fontawesome-social-webfont.svg" />
+    <Content Include="Content\parsley.css" />
     <Content Include="Content\style.css" />
     <Content Include="Fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Images\abb.jpg" />
@@ -121,6 +122,8 @@
     <Content Include="Scripts\jquery-2.1.3.js" />
     <Content Include="Scripts\jquery-2.1.3.min.js" />
     <Content Include="Scripts\npm.js" />
+    <Content Include="Scripts\parsley.js" />
+    <Content Include="Scripts\parsley.min.js" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />

@@ -17,7 +17,7 @@ namespace DevDayCFP.Services
 
         public User GetUserByLoginData(string userName, string password)
         {
-            return _usersStore.Single(u => u.UserName == userName && u.Password == password);
+            return _usersStore.SingleOrDefault(u => u.UserName == userName && u.Password == password);
         }
 
         public User GetUserByLoginOrEmail(string userName, string email)
