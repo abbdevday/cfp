@@ -36,10 +36,10 @@ namespace DevDayCFP.Extensions
                 return new NonEncodedHtmlString("");
             }
 
-            string div = errors.Aggregate("<div class=\"validation-summary-errors\"><span>Below form is not valid. Please correct the errors and try again.</span><ul>",
+            string div = errors.Aggregate("<div class=\"bs-callout bs-callout-warning\"><div class=\"validation-summary-errors\"><span>Below form is not valid. Please correct the errors and try again.</span><ul>",
                                             (current, item) => current + ("<li>" + item.ErrorMessage + "</li>"));
 
-            div += "</ul></div>";
+            div += "</ul></div></div>";
 
             return new NonEncodedHtmlString(div);
         }

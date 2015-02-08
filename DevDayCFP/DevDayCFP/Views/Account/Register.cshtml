@@ -21,9 +21,7 @@
         <form method="post" data-parsley-validate>
             <h3>Account Information</h3>
             
-            <div class="bs-callout bs-callout-warning">
-                @Html.ValidationSummary((List<ErrorViewModel>)ViewBag.Page.Value.Errors)
-            </div>
+            @Html.ValidationSummary((List<ErrorViewModel>)ViewBag.Page.Value.Errors)
 
             <div class="form-group">
                 <label for="UserName">UserName</label>

@@ -1,5 +1,5 @@
 ﻿using System;
-using System.Linq;
+using DevDayCFP.Extensions;
 using DevDayCFP.Services;
 using DevDayCFP.ViewModels;
 using Nancy.Authentication.Forms;
@@ -33,13 +33,8 @@ namespace DevDayCFP.Modules
 
                 if (!result.IsValid)
                 {
-                    foreach (var item in result.Errors.SelectMany(e => e.Value))
-                    {
-                        foreach (var member in item.MemberNames)
-                        {
-                            ViewBag.Page.Errors.Add(new ErrorViewModel() { Name = member, ErrorMessage = item.ErrorMessage });
-                        }
-                    }
+                    var errorViewModels = result.AsErrorViewModels();
+                    ViewBag.Page.Value.Errors.AddRange(errorViewModels);
 
                     return View["Login", model];
                 }
@@ -47,9 +42,13 @@ namespace DevDayCFP.Modules
                 var userMapper = new UserMapper(dataStore);
                 var userGuid = userMapper.ValidateUser(model.UserName, model.Password);
 
-                if (userGuid == null || !result.IsValid)
+                if (userGuid == null)
                 {
-                    // TODO: Add error indication
+                    ViewBag.Page.Value.Errors.Add(new ErrorViewModel
+                    {
+                        Name = "UserName",
+                        ErrorMessage = "Sorry! Either username or password is wrong!"
+                    });
                     return View["Login", model];
                 }
 
@@ -79,28 +78,23 @@ namespace DevDayCFP.Modules
 
                 if (!result.IsValid)
                 {
-                    foreach (var item in result.Errors.SelectMany(e => e.Value))
-                    {
-                        foreach (var member in item.MemberNames)
-                        {
-                            ViewBag.Page.Value.Errors.Add(new ErrorViewModel() { Name = member, ErrorMessage = item.ErrorMessage });
-                        }
-                    }
+                    var errorViewModels = result.AsErrorViewModels();
+                    ViewBag.Page.Value.Errors.AddRange(errorViewModels);
 
                     return View["Register", model];
                 }
 
                 var userMapper = new UserMapper(dataStore);
-                var userGUID = userMapper.ValidateRegisterNewUser(model);
+                var userGuid = userMapper.ValidateRegisterNewUser(model);
 
-                if (userGUID == null)
+                if (userGuid == null)
                 {
                     return View["Register", model];
                 }
 
                 DateTime? expiry = DateTime.Now.AddDays(7);
 
-                return this.LoginAndRedirect(userGUID.Value, expiry);
+                return this.LoginAndRedirect(userGuid.Value, expiry);
             };
         }
     }
