@@ -1,7 +1,7 @@
 ﻿using System;
+using System.Linq;
 using DevDayCFP.Services;
 using DevDayCFP.ViewModels;
-using Nancy;
 using Nancy.Authentication.Forms;
 using Nancy.ModelBinding;
 using Nancy.Responses;
@@ -11,7 +11,8 @@ namespace DevDayCFP.Modules
 {
     public class AccountModule : BaseModule
     {
-        public AccountModule(IDataStore dataStore) : base("account")
+        public AccountModule(IDataStore dataStore)
+            : base("account")
         {
             Get["/login"] = parameters =>
             {
@@ -30,13 +31,26 @@ namespace DevDayCFP.Modules
                 var model = this.Bind<LoginViewModel>();
                 var result = this.Validate(model);
 
+                if (!result.IsValid)
+                {
+                    foreach (var item in result.Errors.SelectMany(e => e.Value))
+                    {
+                        foreach (var member in item.MemberNames)
+                        {
+                            ViewBag.Page.Errors.Add(new ErrorViewModel() { Name = member, ErrorMessage = item.ErrorMessage });
+                        }
+                    }
+
+                    return View["Login", model];
+                }
+
                 var userMapper = new UserMapper(dataStore);
                 var userGuid = userMapper.ValidateUser(model.UserName, model.Password);
 
                 if (userGuid == null || !result.IsValid)
                 {
                     // TODO: Add error indication
-                    return View["LogOn", model];
+                    return View["Login", model];
                 }
 
                 DateTime? expiry = null;
@@ -65,6 +79,14 @@ namespace DevDayCFP.Modules
 
                 if (!result.IsValid)
                 {
+                    foreach (var item in result.Errors.SelectMany(e => e.Value))
+                    {
+                        foreach (var member in item.MemberNames)
+                        {
+                            ViewBag.Page.Value.Errors.Add(new ErrorViewModel() { Name = member, ErrorMessage = item.ErrorMessage });
+                        }
+                    }
+
                     return View["Register", model];
                 }
 

@@ -24,8 +24,7 @@ namespace DevDayCFP.Modules
                 var pageViewModel = new PageViewModel
                 {
                     IsAuthenticated = ctx.CurrentUser != null,
-                    CurrentUser = ctx.CurrentUser != null ? ctx.CurrentUser.UserName : "",
-                    Errors = new List<ErrorViewModel>()
+                    CurrentUser = ctx.CurrentUser != null ? ctx.CurrentUser.UserName : ""
                 };
 
                 ViewBag.Page = pageViewModel;

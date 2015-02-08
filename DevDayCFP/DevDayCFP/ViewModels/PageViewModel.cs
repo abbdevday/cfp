@@ -6,11 +6,11 @@ namespace DevDayCFP.ViewModels
     {
         public bool IsAuthenticated { get; set; }
         public string CurrentUser { get; set; }
-        public List<ErrorViewModel> Errors { get; set; }
+        public List<ErrorViewModel> Errors { get; private set; }
 
-        public override string ToString()
+        public PageViewModel()
         {
-            return "ToString" + IsAuthenticated.ToString();
+            Errors = new List<ErrorViewModel>();
         }
     }
 }
