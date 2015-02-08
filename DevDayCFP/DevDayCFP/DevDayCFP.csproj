@@ -132,6 +132,7 @@
     <Content Include="Views\Account\Login.cshtml" />
     <Content Include="Views\Account\Register.cshtml" />
     <Content Include="Views\Shared\_LoginPanel.cshtml" />
+    <Content Include="Views\Papers\Edit.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -144,9 +145,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Bootstrapper.cs" />
+    <Compile Include="Common\Consts.cs" />
     <Compile Include="Common\Helpers.cs" />
     <Compile Include="Extensions\HtmlExtensions.cs" />
     <Compile Include="Extensions\ValidationExtensions.cs" />
+    <Compile Include="Models\Paper.cs" />
+    <Compile Include="Models\PaperStatus.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Modules\AccountModule.cs" />
     <Compile Include="Modules\BaseModule.cs" />

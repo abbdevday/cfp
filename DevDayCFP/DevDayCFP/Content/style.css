@@ -177,6 +177,10 @@
     transition: all 0.3s;
 }
 
+button span.glyphicon {
+    margin-right: 5px;
+}
+
 
 /* --------------------- */
 .margin-top-30 {
