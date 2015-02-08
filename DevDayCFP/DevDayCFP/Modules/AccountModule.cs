@@ -9,7 +9,7 @@ using Nancy.Validation;
 
 namespace DevDayCFP.Modules
 {
-    public class AccountModule : NancyModule
+    public class AccountModule : BaseModule
     {
         public AccountModule(IDataStore dataStore) : base("account")
         {

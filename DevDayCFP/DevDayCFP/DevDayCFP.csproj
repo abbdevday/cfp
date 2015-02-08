@@ -131,6 +131,7 @@
     <Content Include="Views\Papers\Index.cshtml" />
     <Content Include="Views\Account\Login.cshtml" />
     <Content Include="Views\Account\Register.cshtml" />
+    <Content Include="Views\Shared\_LoginPanel.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -147,6 +148,7 @@
     <Compile Include="Extensions\HtmlExtensions.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Modules\AccountModule.cs" />
+    <Compile Include="Modules\BaseModule.cs" />
     <Compile Include="Modules\HomeModule.cs" />
     <Compile Include="Modules\PapersModule.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -154,7 +156,9 @@
     <Compile Include="Services\IDataStore.cs" />
     <Compile Include="Services\UserMapper.cs" />
     <Compile Include="ViewModels\Annotations\MatchAttribute.cs" />
+    <Compile Include="ViewModels\ErrorViewModel.cs" />
     <Compile Include="ViewModels\LoginViewModel.cs" />
+    <Compile Include="ViewModels\PageViewModel.cs" />
     <Compile Include="ViewModels\RegisterViewModel.cs" />
   </ItemGroup>
   <ItemGroup />

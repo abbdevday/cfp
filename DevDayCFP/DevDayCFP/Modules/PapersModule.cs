@@ -3,7 +3,7 @@ using Nancy.Security;
 
 namespace DevDayCFP.Modules
 {
-    public class PapersModule : NancyModule
+    public class PapersModule : BaseModule
     {
         public PapersModule() : base("papers")
         {
