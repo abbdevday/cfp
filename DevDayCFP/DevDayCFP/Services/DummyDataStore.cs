@@ -8,7 +8,8 @@ namespace DevDayCFP.Services
 {
     public class DummyDataStore : IDataStore
     {
-        private readonly List<User> _usersStore = new List<User>(); 
+        private readonly List<User> _usersStore = new List<User>();
+        private readonly List<Paper> _papersStore = new List<Paper>(); 
 
         public IUserIdentity GetUserById(Guid identifier)
         {
@@ -28,6 +29,16 @@ namespace DevDayCFP.Services
         public void SaveUser(User userRecord)
         {
             _usersStore.Add(userRecord);
+        }
+
+        public IEnumerable<Paper> GetPapersByUser(string userName)
+        {
+            return _papersStore;
+        }
+
+        public Paper GetPaperById(Guid id)
+        {
+            return _papersStore.FirstOrDefault(p => p.Id == id);
         }
     }
 }

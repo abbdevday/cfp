@@ -18,5 +18,7 @@ namespace DevDayCFP.Models
         public int Level { get; set; }
 
         public PaperStatus Status { get; set; }
+
+        public DateTime LastModificationDate { get; set; }
     }
 }
