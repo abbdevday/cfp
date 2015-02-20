@@ -18,30 +18,31 @@
             @Html.ValidationSummary((List<ErrorViewModel>)ViewBag.Page.Value.Errors)
                         
             <div class="row">
-                <div class="col-md-8">
+                <div class="col-md-12">
                     <div class="form-group">
                         <label for="Title">Title</label>
                         <input type="text" class="form-control" name="Title" value="@Model.Title" required
-                               data-parsley-trigger="change focusout" />
+                               data-parsley-trigger="change focusout" placeholder="Let it shine"/>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="row">
+                <div class="col-md-8">
+                    <div class="form-group">
+                        <label for="Level">Level</label>
+                        <input type="text" class="form-control" name="Level" value="@Model.Level" required
+                               data-parsley-trigger="change focusout" placeholder="Beginner? Advanced?"/>
                     </div>
                 </div>
                 <div class="col-md-4">
                     <div class="form-group">
-                        <label for="Level">Level</label>
-                        <select class="form-control" name="Level" id="Level" required data-parsley-trigger="change focusout">
-                            <option value="">...</option>
-                            @foreach (var level in DevDayCFP.Common.Consts.PaperLevels)
-                            {
-                                if (level == Model.Level)
-                                {
-                                    <option selected="selected" value="@level">@level</option>
-                                }
-                                else
-                                {
-                                    <option value="@level">@level</option>
-                                }
-                            }
-                        </select>
+                        <label></label>
+                        <div class="checkbox">
+                            <label>
+                                <input type="checkbox" name="LiveCoding" value="@Model.IsThereLiveCoding"> Contains Live Coding ?
+                            </label>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -49,20 +50,19 @@
             <div class="form-group">
                 <label for="Abstract">Abstract</label>
                 <textarea rows="6" type="text" class="form-control" name="Abstract" value="@Model.Abstract"
-                          data-parsley-trigger="change focusout" required></textarea>
+                          data-parsley-trigger="change focusout" required placeholder="What's the subject ?"></textarea>
             </div>
 
 
             <div class="form-group">
                 <label for="Justification">Tell us why this subject may be inspirational</label>
                 <textarea rows="6" type="text" class="form-control" name="Justification" value="@Model.Justification"
-                          data-parsley-trigger="change focusout" required></textarea>
+                          data-parsley-trigger="change focusout" required placeholder="Rock our world!"></textarea>
             </div>
 
 
             <p>
-                <button type="submit" name="action" value="draft" class="btn btn-primary"><span class="glyphicon glyphicon-save" aria-hidden="true"></span>Save as draft</button>
-                <button type="submit" name="action" value="send" class="btn btn-success"><span class="glyphicon glyphicon-ok-sign" aria-hidden="true"></span>Send for review</button>
+                <button type="submit" name="action" value="draft" class="btn btn-primary"><span class="glyphicon glyphicon-save" aria-hidden="true"></span>Save</button>
             </p>
         </form>
     </div>
