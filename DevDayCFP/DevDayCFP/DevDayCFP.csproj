@@ -167,9 +167,9 @@
     <Compile Include="Extensions\HtmlExtensions.cs" />
     <Compile Include="Extensions\ValidationExtensions.cs" />
     <Compile Include="DbMigrationRunner.cs" />
-    <Compile Include="Migrations\AddUsersTable.cs" />
+    <Compile Include="Migrations\DB02_AddPapersTable.cs" />
+    <Compile Include="Migrations\DB01_AddUsersTable.cs" />
     <Compile Include="Models\Paper.cs" />
-    <Compile Include="Models\PaperStatus.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Modules\AccountModule.cs" />
     <Compile Include="Modules\BaseModule.cs" />

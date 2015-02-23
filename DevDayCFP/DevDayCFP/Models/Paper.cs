@@ -7,18 +7,19 @@ namespace DevDayCFP.Models
     {
         public Guid Id { get; set; }
 
+        public Guid UserId { get; set; }
+
         [Required]
         public string Title { get; set; }
-        
-        [Required]
-        public string Abstract { get; set; }
-        
-        [Required]
-        public string Justification { get; set; }
-        
+
         [Required]
         public string Level { get; set; }
 
+        [Required]
+        public string Abstract { get; set; }
+        
+        public string Justification { get; set; }
+        
         public bool IsThereLiveCoding { get; set; }
 
         public string EventName { get; set; }
