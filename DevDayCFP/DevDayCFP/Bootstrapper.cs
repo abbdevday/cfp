@@ -19,6 +19,10 @@ namespace DevDayCFP
 
         protected override void ApplicationStartup(TinyIoCContainer container, IPipelines pipelines)
         {
+            var connectionString = System.Configuration.ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
+
+            DbMigrationRunner.MigrateToLatest(connectionString);
+
             base.ApplicationStartup(container, pipelines);
 
             var formsAuthConfiguration = new FormsAuthenticationConfiguration()
