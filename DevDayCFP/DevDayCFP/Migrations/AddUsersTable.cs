@@ -1,4 +1,5 @@
-﻿using FluentMigrator;
+﻿using System;
+using FluentMigrator;
 
 namespace DevDayCFP.Migrations
 {
@@ -8,7 +9,15 @@ namespace DevDayCFP.Migrations
         public override void Up()
         {
             Create.Table("Users")
-                .WithColumn("Id").AsInt32().NotNullable().PrimaryKey().Identity();
+                .WithColumn("Id").AsInt32().NotNullable().PrimaryKey().Identity()
+                .WithColumn("AccountStatus").AsInt16().NotNullable()
+                .WithColumn("Email").AsString(255).NotNullable()
+                .WithColumn("Name").AsString(255).NotNullable()
+                .WithColumn("Location").AsString(255)
+                .WithColumn("Bio").AsString(Int32.MaxValue)
+                .WithColumn("AvatarPath").AsString(255)
+                .WithColumn("TwitterHandle").AsString(128)
+                .WithColumn("Website").AsString(255);
         }
 
         public override void Down()
