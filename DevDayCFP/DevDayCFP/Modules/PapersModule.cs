@@ -14,7 +14,7 @@ namespace DevDayCFP.Modules
     {
         public PapersModule(IDataStore dataStore) : base("papers")
         {
-            //this.RequiresAuthentication();
+            this.RequiresAuthentication();
 
             Get["/"] = _ =>
             {
@@ -26,20 +26,19 @@ namespace DevDayCFP.Modules
             Get["/add"] = _ => View["Edit", new Paper()];
             Post["/add"] = parameters =>
             {
-                var model = this.Bind<Paper>();
-                var result = this.Validate(model);
+                var paper = this.Bind<Paper>();
+                var result = this.Validate(paper);
 
                 if (!result.IsValid)
                 {
                     var errorViewModels = result.AsErrorViewModels();
                     ViewBag.Page.Value.Errors.AddRange(errorViewModels);
 
-                    return View["Edit", model];
+                    return View["Edit", paper];
                 }
 
-                string action = Request.Form["action"];
-
-                //TODO Save etc.
+                paper.UserId = Context.CurrentUser.GetId();
+                dataStore.SavePaper(paper);
 
                 return Response.AsRedirect("/papers");
             };
@@ -63,20 +62,19 @@ namespace DevDayCFP.Modules
 
             Post["/edit"] = parameters =>
             {
-                var model = this.Bind<Paper>();
-                var result = this.Validate(model);
+                var paper = this.Bind<Paper>();
+                var result = this.Validate(paper);
 
                 if (!result.IsValid)
                 {
                     var errorViewModels = result.AsErrorViewModels();
                     ViewBag.Page.Value.Errors.AddRange(errorViewModels);
 
-                    return View["Edit", model];
+                    return View["Edit", paper];
                 }
 
-                string action = Request.Form["action"];
-
-                //TODO Save etc.
+                paper.UserId = Context.CurrentUser.GetId();
+                dataStore.SavePaper(paper);
 
                 return Response.AsRedirect("/papers");
             };

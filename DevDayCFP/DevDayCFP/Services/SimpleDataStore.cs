@@ -33,6 +33,13 @@ namespace DevDayCFP.Services
             _db.Users.Upsert(userRecord);
         }
 
+        public void SavePaper(Paper paperRecord)
+        {
+            paperRecord.LastModificationDate = DateTime.UtcNow;
+            paperRecord.EventName = "DevDay 2015"; // TODO: Extract to settings
+            _db.Papers.Upsert(paperRecord);
+        }
+
         public IList<Paper> GetPapersByUser(Guid userId)
         {
             IList<Paper> papers = _db.Papers.FindAllByUserId(userId).ToList<Paper>();

@@ -12,6 +12,7 @@ namespace DevDayCFP.Services
         User GetUserByUsernameOrEmail(string username, string email);
 
         void SaveUser(User userRecord);
+        void SavePaper(Paper paperRecord);
 
         IList<Paper> GetPapersByUser(Guid userId);
         Paper GetPaperById(Guid id);
