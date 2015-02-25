@@ -104,6 +104,7 @@
     <Content Include="Content\fonts\ext\fontawesome-ext-webfont.svg" />
     <Content Include="Content\fonts\fontawesome-webfont.svg" />
     <Content Include="Content\fonts\social\fontawesome-social-webfont.svg" />
+    <Content Include="Content\margins.css" />
     <Content Include="Content\parsley.css" />
     <Content Include="Content\style.css" />
     <Content Include="Fonts\glyphicons-halflings-regular.svg" />

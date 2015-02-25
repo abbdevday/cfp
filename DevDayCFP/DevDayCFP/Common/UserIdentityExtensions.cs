@@ -8,6 +8,10 @@ namespace DevDayCFP.Common
     {
         public static Guid GetId(this IUserIdentity userIdentity)
         {
+            if (userIdentity == null)
+            {
+                return Guid.Empty;
+            }
             return ((User) userIdentity).Id;
         }
     }

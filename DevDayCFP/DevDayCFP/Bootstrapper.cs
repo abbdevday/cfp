@@ -1,7 +1,12 @@
-﻿using Nancy;
+﻿using System;
+using System.Configuration;
+using System.Text;
+using DevDayCFP.Common;
+using Nancy;
 using Nancy.Authentication.Forms;
 using Nancy.Bootstrapper;
 using Nancy.Conventions;
+using Nancy.Cryptography;
 using Nancy.TinyIoc;
 
 namespace DevDayCFP
@@ -25,13 +30,29 @@ namespace DevDayCFP
 
             base.ApplicationStartup(container, pipelines);
 
+            var cryptographyConfiguration = GetCryptographyConfiguration();
+
             var formsAuthConfiguration = new FormsAuthenticationConfiguration()
                 {
+                    CryptographyConfiguration = cryptographyConfiguration,
                     RedirectUrl = "~/account/login",
                     UserMapper = container.Resolve<IUserMapper>(),
                 };
 
             FormsAuthentication.Enable(pipelines, formsAuthConfiguration);
+        }
+
+        private static CryptographyConfiguration GetCryptographyConfiguration()
+        {
+            string salt = ConfigurationManager.AppSettings[Consts.SettingKeys.PassKeyGeneratorSalt];
+            string encryptionKey = ConfigurationManager.AppSettings[Consts.SettingKeys.EncryptionKeyGeneratorPass];
+            string hmacKey = ConfigurationManager.AppSettings[Consts.SettingKeys.HmacKeyGeneratorPass];
+
+            var saltAsBytes = Encoding.ASCII.GetBytes(salt);
+
+            return new CryptographyConfiguration(
+                new RijndaelEncryptionProvider(new PassphraseKeyGenerator(encryptionKey, saltAsBytes)),
+                new DefaultHmacProvider(new PassphraseKeyGenerator(hmacKey, saltAsBytes)));
         }
     }
 }

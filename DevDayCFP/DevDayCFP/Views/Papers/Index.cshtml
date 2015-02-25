@@ -1,26 +1,31 @@
-﻿@inherits Nancy.ViewEngines.Razor.NancyRazorViewBase<System.Collections.Generic.IEnumerable<DevDayCFP.Models.Paper>>
+﻿@using System.Linq
+@inherits Nancy.ViewEngines.Razor.NancyRazorViewBase<System.Collections.Generic.IList<DevDayCFP.Models.Paper>>
 
 <div class="section-header">
     <h1>Papers List</h1>
 </div>
 <div class="row">
     <div class="col-md-offset-1 col-md-10">
+        <a class="btn btn-sm btn-primary pull-right" href="/papers/add"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Add new</a>
+    </div>
+</div>
+<div class="row margin-top-30">
+    <div class="col-md-offset-1 col-md-10">
         <table class="table">
             <thead>
                 <tr>
                     <th class="col-md-1">Lp.</th>
-                    <th class="col-md-5">Title</th>
-                    <th class="col-md-2">Status</th>
+                    <th class="col-md-7">Title</th>
                     <th class="col-md-2">Last modification</th>
                     <th class="col-md-2">Actions</th>
                 </tr>
             </thead>
-            @foreach (var paper in Model)
+            @for (int i = 0; i < Model.Count(); i++)
             {
                 <tr>
-                    <td>1.</td>
-                    <td>@paper.Title</td>
-                    <td>@paper.LastModificationDate</td>
+                    <td>@(i + 1).</td>
+                    <td>@Model[i].Title</td>
+                    <td>@Model[i].LastModificationDate</td>
                     <td><a href="#">Edit</a></td>
                 </tr>
             }

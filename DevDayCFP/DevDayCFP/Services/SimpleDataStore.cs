@@ -33,9 +33,9 @@ namespace DevDayCFP.Services
             _db.Users.Upsert(userRecord);
         }
 
-        public IEnumerable<Paper> GetPapersByUser(Guid userId)
+        public IList<Paper> GetPapersByUser(Guid userId)
         {
-            IEnumerable<Paper> papers = _db.Papers.FindAllByUserId(userId);
+            IList<Paper> papers = _db.Papers.FindAllByUserId(userId).ToList<Paper>();
             return papers;
         }
 

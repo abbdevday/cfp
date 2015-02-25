@@ -13,7 +13,7 @@ namespace DevDayCFP.Services
 
         void SaveUser(User userRecord);
 
-        IEnumerable<Paper> GetPapersByUser(Guid userId);
+        IList<Paper> GetPapersByUser(Guid userId);
         Paper GetPaperById(Guid id);
     }
 }
