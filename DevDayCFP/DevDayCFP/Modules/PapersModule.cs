@@ -1,4 +1,5 @@
 ﻿using System;
+using DevDayCFP.Common;
 using DevDayCFP.Extensions;
 using DevDayCFP.Models;
 using DevDayCFP.Services;
@@ -17,7 +18,7 @@ namespace DevDayCFP.Modules
 
             Get["/"] = _ =>
             {
-                var papersList = dataStore.GetPapersByUser(Context.CurrentUser.UserName);
+                var papersList = dataStore.GetPapersByUser(Context.CurrentUser.GetId());
 
                 return View["Index", papersList];
             };

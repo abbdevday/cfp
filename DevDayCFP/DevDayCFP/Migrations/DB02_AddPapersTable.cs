@@ -14,7 +14,7 @@ namespace DevDayCFP.Migrations
                 .WithColumn("Title").AsString(255).NotNullable()
                 .WithColumn("Level").AsString(255).NotNullable()
                 .WithColumn("Abstract").AsString(Int32.MaxValue).NotNullable()
-                .WithColumn("Justification").AsString(Int32.MaxValue)
+                .WithColumn("Justification").AsString(Int32.MaxValue).Nullable()
                 .WithColumn("IsThereLiveCoding").AsBinary()
                 .WithColumn("EventName").AsString(255).NotNullable()
                 .WithColumn("LastModificationDate").AsDateTime().NotNullable();

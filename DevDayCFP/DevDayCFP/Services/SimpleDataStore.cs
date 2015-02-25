@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using DevDayCFP.Models;
 using Nancy.Security;
 using Simple.Data;
@@ -10,38 +8,41 @@ namespace DevDayCFP.Services
 {
     public class SimpleDataStore : IDataStore
     {
+        private readonly dynamic _db = Database.OpenNamedConnection("DefaultConnection");
+
         public IUserIdentity GetUserById(Guid identifier)
         {
-            var db = Database.OpenNamedConnection("DefaultConnection");
-            var user = db.Users.Get(identifier);
-            return user as IUserIdentity;
+            User user = _db.Users.Get(identifier);
+            return user;
         }
 
         public User GetUserByLoginData(string userName, string password)
         {
-            var db = Database.OpenNamedConnection("DefaultConnection");
-            var user = db.Users.FindByUserName(userName).FirstOrDefault();
+            User user = _db.Users.FindAllByUsername(userName).FirstOrDefault();
             return user;
         }
 
-        public User GetUserByLoginOrEmail(string userName, string email)
+        public User GetUserByUsernameOrEmail(string username, string email)
         {
-            throw new NotImplementedException();
+            User user = _db.Users.FindAll(_db.Users.Username == username || _db.Users.Email == email).FirstOrDefault();
+            return user;
         }
 
         public void SaveUser(User userRecord)
         {
-            throw new NotImplementedException();
+            _db.Users.Upsert(userRecord);
         }
 
-        public IEnumerable<Paper> GetPapersByUser(string userName)
+        public IEnumerable<Paper> GetPapersByUser(Guid userId)
         {
-            throw new NotImplementedException();
+            IEnumerable<Paper> papers = _db.Papers.FindAllByUserId(userId);
+            return papers;
         }
 
         public Paper GetPaperById(Guid id)
         {
-            throw new NotImplementedException();
+            Paper paper = _db.Papers.Get(id);
+            return paper;
         }
     }
 }

@@ -164,6 +164,7 @@
     <Compile Include="Bootstrapper.cs" />
     <Compile Include="Common\Consts.cs" />
     <Compile Include="Common\Helpers.cs" />
+    <Compile Include="Common\UserIdentityExtensions.cs" />
     <Compile Include="Extensions\HtmlExtensions.cs" />
     <Compile Include="Extensions\ValidationExtensions.cs" />
     <Compile Include="DbMigrationRunner.cs" />

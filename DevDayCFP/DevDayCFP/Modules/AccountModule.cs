@@ -55,10 +55,10 @@ namespace DevDayCFP.Modules
                 DateTime? expiry = null;
                 if (model.RememberMe)
                 {
-                    expiry = DateTime.Now.AddDays(7);
+                    expiry = DateTime.Now.AddDays(30);
                 }
 
-                return this.LoginAndRedirect(userGuid.Value, expiry);
+                return this.LoginAndRedirect(userGuid.Value, expiry, "/papers");
             };
 
             Get["/logout"] = parameters => this.LogoutAndRedirect("/");
@@ -89,12 +89,18 @@ namespace DevDayCFP.Modules
 
                 if (userGuid == null)
                 {
+                    ViewBag.Page.Value.Errors.Add(new ErrorViewModel
+                    {
+                        ErrorMessage = "Username or email already in use. Please choose different one.",
+                        Name = "Username"
+                    });
+                   
                     return View["Register", model];
                 }
 
                 DateTime? expiry = DateTime.Now.AddDays(7);
 
-                return this.LoginAndRedirect(userGuid.Value, expiry);
+                return this.LoginAndRedirect(userGuid.Value, expiry, "/papers");
             };
         }
     }

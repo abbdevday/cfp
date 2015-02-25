@@ -44,7 +44,7 @@ namespace DevDayCFP.Services
                 Password = Helpers.EncodePassword(newUser.Password)
             };
 
-            var existingUser = _dataStore.GetUserByLoginOrEmail(newUser.UserName, newUser.Email);
+            var existingUser = _dataStore.GetUserByUsernameOrEmail(newUser.UserName, newUser.Email);
             if (existingUser != null)
                 return null;
 
