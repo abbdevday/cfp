@@ -41,7 +41,8 @@ namespace DevDayCFP.Services
                 Id = Guid.NewGuid(),
                 Email = newUser.Email,
                 UserName = newUser.UserName,
-                Password = Helpers.EncodePassword(newUser.Password)
+                Password = Helpers.EncodePassword(newUser.Password),
+                ClaimsList = "User"
             };
 
             var existingUser = _dataStore.GetUserByUsernameOrEmail(newUser.UserName, newUser.Email);

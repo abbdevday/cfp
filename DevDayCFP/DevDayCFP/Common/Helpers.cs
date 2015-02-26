@@ -17,5 +17,17 @@ namespace DevDayCFP.Common
 
             return BitConverter.ToString(encodedBytes);
         }
+
+        public static string CalculateMd5(string hashSource)
+        {
+            if (hashSource == null)
+                return String.Empty;
+
+            MD5 md5 = new MD5CryptoServiceProvider();
+            Byte[] originalBytes = ASCIIEncoding.Default.GetBytes(hashSource);
+            byte[] encodedBytes = md5.ComputeHash(originalBytes);
+
+            return BitConverter.ToString(encodedBytes).Replace("-", "").ToLower();
+        }
     }
 }

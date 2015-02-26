@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using Nancy.Security;
 
 namespace DevDayCFP.Models
@@ -14,6 +15,8 @@ namespace DevDayCFP.Models
         public string Password { get; set; }
 
         public string Email { get; set; }
+        public string EmailHash { get; set; }
+
         public string Name { get; set; }
         public string Location { get; set; }
         public string Bio { get; set; }
@@ -21,7 +24,12 @@ namespace DevDayCFP.Models
         public string TwitterHandle { get; set; }
         public string Website { get; set; }
 
-        public IEnumerable<string> Claims { get; set; }
+        public string ClaimsList { get; set; }
+
+        public IEnumerable<string> Claims
+        {
+            get { return ClaimsList == null ? new List<string>() : ClaimsList.Split(',').ToList(); }
+        }
 
         public User()
         {

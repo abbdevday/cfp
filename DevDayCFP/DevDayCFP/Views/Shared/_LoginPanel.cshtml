@@ -1,6 +1,7 @@
 ﻿@if (ViewBag.Page.Value.IsAuthenticated)
 {
     <li><a href="/Account/Logout">Logout</a></li>
+    <li><img class="img-circle profile-image" src="http://www.gravatar.com/avatar/@ViewBag.Page.Value.EmailHash.ToLower()?s=40&d=mm" /></li>
 }
 else
 {

@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using DevDayCFP.Models;
 using DevDayCFP.ViewModels;
 using Nancy;
 
@@ -24,7 +26,8 @@ namespace DevDayCFP.Modules
                 var pageViewModel = new PageViewModel
                 {
                     IsAuthenticated = ctx.CurrentUser != null,
-                    CurrentUser = ctx.CurrentUser != null ? ctx.CurrentUser.UserName : ""
+                    CurrentUser = ctx.CurrentUser != null ? ctx.CurrentUser.UserName : "",
+                    EmailHash = ctx.CurrentUser != null ? ((User)ctx.CurrentUser).EmailHash : String.Empty
                 };
 
                 ViewBag.Page = pageViewModel;

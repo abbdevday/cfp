@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using DevDayCFP.Common;
 using DevDayCFP.Models;
-using Nancy.Security;
 using Simple.Data;
 
 namespace DevDayCFP.Services
@@ -10,7 +10,7 @@ namespace DevDayCFP.Services
     {
         private readonly dynamic _db = Database.OpenNamedConnection("DefaultConnection");
 
-        public IUserIdentity GetUserById(Guid identifier)
+        public User GetUserById(Guid identifier)
         {
             User user = _db.Users.Get(identifier);
             return user;
@@ -30,6 +30,7 @@ namespace DevDayCFP.Services
 
         public void SaveUser(User userRecord)
         {
+            userRecord.EmailHash = Helpers.CalculateMd5(userRecord.Email);
             _db.Users.Upsert(userRecord);
         }
 

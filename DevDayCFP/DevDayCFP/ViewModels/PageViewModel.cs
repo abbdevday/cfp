@@ -6,6 +6,7 @@ namespace DevDayCFP.ViewModels
     {
         public bool IsAuthenticated { get; set; }
         public string CurrentUser { get; set; }
+        public string EmailHash { get; set; }
         public List<ErrorViewModel> Errors { get; private set; }
 
         public PageViewModel()

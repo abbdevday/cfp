@@ -43,6 +43,10 @@
     font-weight: bold;
 }
 
+.navbar-default .navbar-nav > li > img.profile-image {
+    padding-top: 5px
+}
+
 /* ----------- */
 
 .footer .container {

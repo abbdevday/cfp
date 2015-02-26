@@ -7,7 +7,7 @@ namespace DevDayCFP.Services
 {
     public interface IDataStore
     {
-        IUserIdentity GetUserById(Guid identifier);
+        User GetUserById(Guid identifier);
         User GetUserByLoginData(string userName, string password);
         User GetUserByUsernameOrEmail(string username, string email);
 
