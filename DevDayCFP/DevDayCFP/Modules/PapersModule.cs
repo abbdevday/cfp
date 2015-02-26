@@ -38,6 +38,7 @@ namespace DevDayCFP.Modules
                 }
 
                 paper.UserId = Context.CurrentUser.GetId();
+                paper.Id = Guid.NewGuid();
                 dataStore.SavePaper(paper);
 
                 return Response.AsRedirect("/papers");
@@ -60,7 +61,7 @@ namespace DevDayCFP.Modules
                 return View["Edit", paper];
             };
 
-            Post["/edit"] = parameters =>
+            Post["/edit/{id}"] = parameters =>
             {
                 var paper = this.Bind<Paper>();
                 var result = this.Validate(paper);
@@ -73,7 +74,6 @@ namespace DevDayCFP.Modules
                     return View["Edit", paper];
                 }
 
-                paper.UserId = Context.CurrentUser.GetId();
                 dataStore.SavePaper(paper);
 
                 return Response.AsRedirect("/papers");
