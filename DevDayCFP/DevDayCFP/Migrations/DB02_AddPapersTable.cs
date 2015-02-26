@@ -17,7 +17,8 @@ namespace DevDayCFP.Migrations
                 .WithColumn("Justification").AsString(Int32.MaxValue).Nullable()
                 .WithColumn("IsThereLiveCoding").AsBoolean()
                 .WithColumn("EventName").AsString(255).NotNullable()
-                .WithColumn("LastModificationDate").AsDateTime().NotNullable();
+                .WithColumn("LastModificationDate").AsDateTime().NotNullable()
+                .WithColumn("IsActive").AsBoolean().NotNullable();
         }
 
         public override void Down()

@@ -26,9 +26,59 @@
                     <td>@(i + 1).</td>
                     <td>@Model[i].Title</td>
                     <td>@Model[i].LastModificationDate</td>
-                    <td><a href="/papers/edit/@Model[i].Id">Edit</a></td>
+                    <td>
+                        <a href="/papers/edit/@Model[i].Id">Edit</a>
+                        <a data-toggle="modal" data-target="#deleteModal" data-paperid="@Model[i].Id" data-papertitle="@Model[i].Title">Delete</a>
+                    </td>
                 </tr>
             }
         </table>
     </div>
 </div>
+
+<div class="row">
+    <!-- Modal -->
+    <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="DeleteConfirmation" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">Are you sure ?</h4>
+                </div>
+                <div class="modal-body">
+                    Are you sure you want to remove '<span id="paperTitleInModal"></span>' ?
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Hell noo!</button>
+                    <button id="confirmDeletionButton" type="button" class="btn btn-primary" data-idtodelete="0">Yes, do it!</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts{
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#deleteModal').on('show.bs.modal', function(event) {
+                var button = $(event.relatedTarget);
+                var id = button.data('paperid');
+                var title = button.data('papertitle');
+
+                var modal = $(this);
+                modal.find('#paperTitleInModal').text(title);
+                modal.find('#confirmDeletionButton').data('idtodelete', id);
+            });
+
+            $('#confirmDeletionButton').click(function() {
+                var id = $(this).data('idtodelete');
+
+                $.post("papers/delete/" + id, function () {
+                    $('#deleteModal').modal('hide');
+                    location.reload();
+                });
+            });
+        });
+    </script>
+
+}

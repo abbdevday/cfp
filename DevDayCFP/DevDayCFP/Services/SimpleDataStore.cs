@@ -42,7 +42,7 @@ namespace DevDayCFP.Services
 
         public IList<Paper> GetPapersByUser(Guid userId)
         {
-            IList<Paper> papers = _db.Papers.FindAllByUserId(userId).ToList<Paper>();
+            IList<Paper> papers = _db.Papers.FindAllByUserIdAndIsActive(userId, true).ToList<Paper>();
             return papers;
         }
 

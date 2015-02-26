@@ -25,5 +25,12 @@ namespace DevDayCFP.Models
         public string EventName { get; set; }
 
         public DateTime LastModificationDate { get; set; }
+
+        public bool IsActive { get; set; }
+
+        public Paper()
+        {
+            IsActive = true;
+        }
     }
 }

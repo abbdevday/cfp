@@ -74,9 +74,26 @@ namespace DevDayCFP.Modules
                     return View["Edit", paper];
                 }
 
+                paper.LastModificationDate = DateTime.UtcNow;
                 dataStore.SavePaper(paper);
 
                 return Response.AsRedirect("/papers");
+            };
+
+            Post["/delete/{id}"] = parameters =>
+            {
+                Paper paper = dataStore.GetPaperById(parameters.id);
+
+                if (paper == null)
+                {
+                    return 404;
+                }
+
+                paper.IsActive = false;
+                paper.LastModificationDate = DateTime.UtcNow;
+                dataStore.SavePaper(paper);
+
+                return HttpStatusCode.OK;
             };
         }
     }
