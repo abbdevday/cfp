@@ -25,7 +25,7 @@
                 <tr>
                     <td>@(i + 1).</td>
                     <td>@Model[i].Title</td>
-                    <td>@Model[i].LastModificationDate</td>
+                    <td>@Model[i].LastModificationDate.ToLocalTime()</td>
                     <td>
                         <a href="/papers/edit/@Model[i].Id">Edit</a>
                         <a data-toggle="modal" data-target="#deleteModal" data-paperid="@Model[i].Id" data-papertitle="@Model[i].Title">Delete</a>
