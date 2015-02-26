@@ -1,8 +1,10 @@
 ﻿using System;
 using DevDayCFP.Common;
 using DevDayCFP.Extensions;
+using DevDayCFP.Models;
 using DevDayCFP.Services;
 using DevDayCFP.ViewModels;
+using Nancy;
 using Nancy.Authentication.Forms;
 using Nancy.ModelBinding;
 using Nancy.Responses;
@@ -114,6 +116,35 @@ namespace DevDayCFP.Modules
 
 
                 return View["Profile", userEntity];
+            };
+
+            Post["/profile"] = parameters =>
+            {
+                var userModel = this.Bind<User>();
+                var result = this.Validate(userModel);
+
+                if (!result.IsValid)
+                {
+                    var errorViewModels = result.AsErrorViewModels();
+                    ViewBag.Page.Value.Errors.AddRange(errorViewModels);
+
+                    return View["Profile", userModel];
+                }
+
+                var userId = Context.CurrentUser.GetId();
+                var userFromDb = dataStore.GetUserById(userId);
+                userFromDb.AvatarPath = userModel.AvatarPath;
+                userFromDb.Bio = userModel.Bio;
+                userFromDb.Email = userModel.Email;
+                userFromDb.Location = userModel.Location;
+                userFromDb.Location = userModel.Location;
+                userFromDb.Name = userModel.Name;
+                userFromDb.TwitterHandle = userModel.TwitterHandle;
+                userFromDb.Website = userModel.Website;
+
+                dataStore.SaveUser(userFromDb);
+
+                return Response.AsRedirect("/papers");
             };
         }
     }
