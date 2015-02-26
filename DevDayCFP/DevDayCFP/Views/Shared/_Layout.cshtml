@@ -38,8 +38,8 @@
                         <li><a href="/">Home</a></li>
                         @if (ViewBag.Page.Value.IsAuthenticated)
                         {
-                            <li><a href="/papers">Papers List</a></li>
-                            <li><a href="/">Profile</a></li>
+                            <li><a href="/papers">Papers</a></li>
+                            <li><a href="/account/profile">Profile</a></li>
                         }
                         @Html.Partial("Shared/_LoginPanel")
                     </ul>

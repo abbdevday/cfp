@@ -1,0 +1,70 @@
+﻿@inherits Nancy.ViewEngines.Razor.NancyRazorViewBase<DevDayCFP.Models.User>
+@using System.Collections.Generic
+@using DevDayCFP.Extensions
+@using DevDayCFP.ViewModels
+
+
+<div class="row">
+    <div class="col-md-6 col-md-offset-3">
+        <h2>Edit your profile</h2>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-6 col-md-offset-3">
+        <form method="post" data-parsley-validate>
+            <h3>Account Information</h3>
+
+            @Html.ValidationSummary((List<ErrorViewModel>)ViewBag.Page.Value.Errors)
+
+            <div class="form-group">
+                <label for="UserName">Username</label>
+                <input type="text" class="form-control" name="UserName" value="@Model.UserName" required
+                       data-parsley-trigger="change focusout" />
+            </div>
+            <div class="form-group">
+                <label for="Email">Email</label>
+                <input type="email" class="form-control" name="Email" value="@Model.Email"
+                       data-parsley-type="email" data-parsley-trigger="change focusout" required />
+            </div>
+
+            <h3>Personal Information</h3>
+
+            <div class="form-group">
+                <label for="Name">Name</label>
+                <input type="text" class="form-control" name="Name" value="@Model.Name" required
+                       data-parsley-trigger="change focusout" placeholder="John Doe"/>
+            </div>
+
+            <div class="form-group">
+                <label for="Location">Location</label>
+                <input type="text" class="form-control" name="Location" value="@Model.Location"
+                       data-parsley-trigger="change focusout" placeholder="Please add airport if relevant too"/>
+            </div>
+
+            <div class="form-group">
+                <label for="Twitter">Twitter Handle</label>
+                <input type="text" class="form-control" name="Twitter" value="@Model.TwitterHandle"
+                       data-parsley-trigger="change focusout" placeholder="&#64;twitter" />
+            </div>
+
+            <div class="form-group">
+                <label for="WebSite">Website</label>
+                <input type="text" class="form-control" name="WebSite" value="@Model.Website"
+                       data-parsley-trigger="change focusout" placeholder="It can be blog, about.me site, facebook page etc." />
+            </div>
+
+            <div class="form-group">
+                <label for="Bio">Bio</label>
+                <textarea rows="6" type="text" class="form-control" name="Bio" value="@Model.Bio"
+                          data-parsley-trigger="change focusout" required>
+                    @Model.Bio
+                </textarea>
+            </div>
+
+            <p>
+                <button type="submit" class="btn btn-success">Save</button>
+            </p>
+        </form>
+    </div>
+</div>

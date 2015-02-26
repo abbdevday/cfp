@@ -1,10 +1,12 @@
 ﻿using System;
+using DevDayCFP.Common;
 using DevDayCFP.Extensions;
 using DevDayCFP.Services;
 using DevDayCFP.ViewModels;
 using Nancy.Authentication.Forms;
 using Nancy.ModelBinding;
 using Nancy.Responses;
+using Nancy.Security;
 using Nancy.Validation;
 
 namespace DevDayCFP.Modules
@@ -101,6 +103,17 @@ namespace DevDayCFP.Modules
                 DateTime? expiry = DateTime.Now.AddDays(7);
 
                 return this.LoginAndRedirect(userGuid.Value, expiry, "/papers");
+            };
+
+            Get["/profile"] = parameters =>
+            {
+                this.RequiresAuthentication();
+
+                var userId = Context.CurrentUser.GetId();
+                var userEntity = dataStore.GetUserById(userId);
+
+
+                return View["Profile", userEntity];
             };
         }
     }
