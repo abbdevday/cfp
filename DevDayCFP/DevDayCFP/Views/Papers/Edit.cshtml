@@ -3,6 +3,9 @@
 @using DevDayCFP.Extensions
 @using DevDayCFP.ViewModels
 
+@{
+    ViewBag.CheckboxString = Model.IsThereLiveCoding ? "checked" : ""; 
+}
 
 <div class="row">
     <div class="col-md-6 col-md-offset-3">
@@ -41,7 +44,7 @@
                         <label></label>
                         <div class="checkbox">
                             <label>
-                                <input type="checkbox" name="LiveCoding" value="@Model.IsThereLiveCoding"> Contains Live Coding ?
+                                <input type="checkbox" name="IsThereLiveCoding" value="true" @ViewBag.CheckboxString> Contains Live Coding ?
                             </label>
                         </div>
                     </div>
