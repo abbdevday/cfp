@@ -37,7 +37,7 @@ namespace DevDayCFP.Modules
                     return View["Edit", paper];
                 }
 
-                paper.UserId = Context.CurrentUser.GetId();
+                paper.User = (User)Context.CurrentUser;
                 paper.Id = Guid.NewGuid();
                 dataStore.SavePaper(paper);
 

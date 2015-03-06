@@ -15,6 +15,7 @@ namespace DevDayCFP.Services
         void SavePaper(Paper paperRecord);
 
         IList<Paper> GetPapersByUser(Guid userId);
+        IList<Paper> GetAllPapers();
         Paper GetPaperById(Guid id);
     }
 }

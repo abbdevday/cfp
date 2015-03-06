@@ -1,0 +1,34 @@
+﻿@using System.Linq
+@inherits Nancy.ViewEngines.Razor.NancyRazorViewBase<System.Collections.Generic.IList<DevDayCFP.Models.Paper>>
+
+<div class="section-header">
+    <h1>Submitted Papers</h1>
+</div>
+
+<div class="row margin-top-30">
+    <div class="col-md-offset-1 col-md-10">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th class="col-md-1">Lp.</th>
+                    <th class="col-md-2">User</th>
+                    <th class="col-md-5">Title</th>
+                    <th class="col-md-2">Last modification</th>
+                    <th class="col-md-2">Actions</th>
+                </tr>
+            </thead>
+            @for (int i = 0; i < Model.Count(); i++)
+            {
+                <tr>
+                    <td>@(i + 1).</td>
+                    <td>@Model[i].User.UserName</td>
+                    <td>@Model[i].Title</td>
+                    <td>@Model[i].LastModificationDate.ToLocalTime()</td>
+                    <td>
+                        <a class="btn btn-xs btn-info" href="/allpapers/details/@Model[i].Id"><span class="glyphicon glyphicon-search" aria-hidden="true"></span>&nbsp;Details</a>
+                    </td>
+                </tr>
+            }
+        </table>
+    </div>
+</div>

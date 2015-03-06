@@ -12,5 +12,11 @@ namespace DevDayCFP.Common
             public const string EncryptionKeyGeneratorPass = "EncryptionKeyGeneratorPass";
             public const string HmacKeyGeneratorPass = "HmacKeyGeneratorPass";
         }
+
+        public static class Claims
+        {
+            public const string User = "User";
+            public const string Admin = "Admin";
+        }
     }
 }

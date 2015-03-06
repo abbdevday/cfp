@@ -52,5 +52,11 @@ namespace DevDayCFP.Services
             Paper paper = _db.Papers.Get(id);
             return paper;
         }
+
+        public IList<Paper> GetAllPapers()
+        {
+            IList<Paper> papers = _db.Papers.All().WithUser().ToList<Paper>();
+            return papers;
+        }
     }
 }
