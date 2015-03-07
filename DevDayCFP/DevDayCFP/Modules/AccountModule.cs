@@ -15,7 +15,7 @@ namespace DevDayCFP.Modules
 {
     public class AccountModule : BaseModule
     {
-        public AccountModule(IDataStore dataStore)
+        public AccountModule(IDataStore dataStore, IEmailService emailService)
             : base("account", dataStore)
         {
             Get["/login"] = parameters =>
@@ -89,9 +89,12 @@ namespace DevDayCFP.Modules
                 }
 
                 var userMapper = new UserMapper(dataStore);
-                var userGuid = userMapper.ValidateRegisterNewUser(model);
+                var userData = userMapper.ValidateRegisterNewUser(model);
 
-                if (userGuid == null)
+                string hostName = Context.Request.Url.HostName;
+                emailService.SendRegistrationEmail(userData, hostName);
+
+                if (userData == null)
                 {
                     ViewBag.Page.Value.Errors.Add(new ErrorViewModel
                     {
@@ -104,7 +107,7 @@ namespace DevDayCFP.Modules
 
                 DateTime? expiry = DateTime.Now.AddDays(7);
 
-                return this.LoginAndRedirect(userGuid.Value, expiry, "/papers");
+                return this.LoginAndRedirect(userData.Id, expiry, "/papers");
             };
 
             Get["/profile"] = parameters =>
@@ -145,6 +148,26 @@ namespace DevDayCFP.Modules
                 dataStore.SaveUser(userFromDb);
 
                 return Response.AsRedirect("/papers");
+            };
+
+            Get["/activate/{token}"] = parameters =>
+            {
+                this.RequiresAuthentication();
+
+                var loggedUser = (User) Context.CurrentUser;
+
+                if (loggedUser.RegistrationToken == parameters.token)
+                {
+                    var user = dataStore.GetUserById(loggedUser.Id);
+                    user.AccountStatus = AccountStatus.Active;
+                    dataStore.SaveUser(user);
+
+                    return Response.AsRedirect("/activated");
+                }
+                else
+                {
+                    return Response.AsRedirect("/keyfailed");                    
+                }
             };
         }
     }

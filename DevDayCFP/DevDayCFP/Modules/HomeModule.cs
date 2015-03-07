@@ -8,6 +8,9 @@ namespace DevDayCFP.Modules
         public HomeModule(IDataStore dataStore) : base(dataStore)
         {
             Get["/"] = _ => View["Index"];
+            Get["/activated"] = _ => View["Activated"];
+            Get["/keyfailed"] = _ => View["KeyFailed"];
+            Get["/inactive"] = _ => View["Inactive"];
         }
     }
 }

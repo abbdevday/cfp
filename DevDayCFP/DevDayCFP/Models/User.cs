@@ -26,6 +26,8 @@ namespace DevDayCFP.Models
 
         public string ClaimsList { get; set; }
 
+        public Guid RegistrationToken { get; set; }
+
         public IEnumerable<string> Claims
         {
             get { return ClaimsList == null ? new List<string>() : ClaimsList.Split(',').ToList(); }

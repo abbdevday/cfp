@@ -42,6 +42,23 @@ namespace DevDayCFP.Modules
 
                 ViewBag.Page = pageViewModel;
 
+                if (ctx.CurrentUser != null)
+                {
+                    var user = (User) ctx.CurrentUser;
+
+                    if (user.AccountStatus == AccountStatus.PendingVerification)
+                    {
+                        if (ctx.Request.Path != "/"
+                            && !ctx.Request.Path.Contains("/account/activate")
+                            && ctx.Request.Path != "/keyfailed"
+                            && ctx.Request.Path != "/activated"
+                            && ctx.Request.Path != "/inactive")
+                        {
+                            return Response.AsRedirect("/inactive");
+                        }
+                    }
+                }
+
                 return null;
             };
         }

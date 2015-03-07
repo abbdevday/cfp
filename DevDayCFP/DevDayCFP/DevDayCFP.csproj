@@ -156,6 +156,9 @@
     <Content Include="Views\Account\Profile.cshtml" />
     <Content Include="Views\AllPapers\Index.cshtml" />
     <Content Include="Views\AllPapers\Details.cshtml" />
+    <Content Include="Views\Home\Activated.cshtml" />
+    <Content Include="Views\Home\KeyFailed.cshtml" />
+    <Content Include="Views\Home\Inactive.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -175,6 +178,7 @@
     <Compile Include="Extensions\HtmlExtensions.cs" />
     <Compile Include="Extensions\ValidationExtensions.cs" />
     <Compile Include="DbMigrationRunner.cs" />
+    <Compile Include="Migrations\DB03_AddRegistrationTokenToUser.cs" />
     <Compile Include="Migrations\DB02_AddPapersTable.cs" />
     <Compile Include="Migrations\DB01_AddUsersTable.cs" />
     <Compile Include="Models\Paper.cs" />
@@ -185,7 +189,9 @@
     <Compile Include="Modules\AllPapers.cs" />
     <Compile Include="Modules\PapersModule.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\EmailService.cs" />
     <Compile Include="Services\IDataStore.cs" />
+    <Compile Include="Services\IEmailService.cs" />
     <Compile Include="Services\SimpleDataStore.cs" />
     <Compile Include="Services\UserMapper.cs" />
     <Compile Include="ViewModels\Annotations\MatchAttribute.cs" />

@@ -34,7 +34,7 @@ namespace DevDayCFP.Services
             return user.Id;
         }
 
-        public Guid? ValidateRegisterNewUser(RegisterViewModel newUser)
+        public User ValidateRegisterNewUser(RegisterViewModel newUser)
         {
             var userRecord = new User()
             {
@@ -42,7 +42,9 @@ namespace DevDayCFP.Services
                 Email = newUser.Email,
                 UserName = newUser.UserName,
                 Password = Helpers.EncodePassword(newUser.Password),
-                ClaimsList = "User"
+                ClaimsList = Consts.Claims.User,
+                AccountStatus = AccountStatus.PendingVerification,
+                RegistrationToken = Guid.NewGuid()
             };
 
             var existingUser = _dataStore.GetUserByUsernameOrEmail(newUser.UserName, newUser.Email);
@@ -51,7 +53,7 @@ namespace DevDayCFP.Services
 
             _dataStore.SaveUser(userRecord);
 
-            return userRecord.Id;           
+            return userRecord;           
         }
     }
 }
