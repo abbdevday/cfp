@@ -154,6 +154,7 @@
     <Content Include="Views\Papers\Edit.cshtml" />
     <Content Include="Views\Account\Profile.cshtml" />
     <Content Include="Views\AllPapers\Index.cshtml" />
+    <Content Include="Views\AllPapers\Details.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

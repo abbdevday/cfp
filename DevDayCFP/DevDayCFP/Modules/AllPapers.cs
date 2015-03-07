@@ -1,13 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using DevDayCFP.Common;
-using DevDayCFP.Extensions;
-using DevDayCFP.Models;
 using DevDayCFP.Services;
-using Nancy;
-using Nancy.ModelBinding;
 using Nancy.Security;
-using Nancy.Validation;
 
 namespace DevDayCFP.Modules
 {
@@ -23,6 +17,23 @@ namespace DevDayCFP.Modules
                 var papersList = dataStore.GetAllPapers();
 
                 return View["Index", papersList];
+            };
+
+            Get["/details/{id}"] = parameters =>
+            {
+                if (!parameters.id.HasValue && String.IsNullOrWhiteSpace(parameters.id))
+                {
+                    return 404;
+                }
+
+                var paper = dataStore.GetPaperById((Guid)parameters.id);
+
+                if (paper == null)
+                {
+                    return 404;
+                }
+
+                return View["Details", paper];
             };
         }
     }
