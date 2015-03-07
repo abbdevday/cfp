@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
+using System.Net;
 using System.Net.Mail;
 using System.Text;
 using System.Web;
@@ -10,11 +12,27 @@ namespace DevDayCFP.Services
 {
     public class EmailService : IEmailService
     {
+        public string SmtpPass { get; set; }
+        public string SmtpUser { get; set; }
+        public string SmtpPort { get; set; }
+        public string SmtpHost { get; set; }
+
+        public EmailService()
+        {
+            SmtpHost = ConfigurationManager.AppSettings["SMTP_Host"];
+            SmtpPort = ConfigurationManager.AppSettings["SMTP_Port"];
+            SmtpUser = ConfigurationManager.AppSettings["SMTP_Login"];
+            SmtpPass = ConfigurationManager.AppSettings["SMTP_Pass"];
+        }
+
         public void SendRegistrationEmail(User user, string hostname)
         {
             var url = String.Format("{0}/account/activate/{1}", hostname, user.RegistrationToken);
 
-            var smtpClient = new SmtpClient();
+            var smtpClient = new SmtpClient(SmtpHost, Int32.Parse(SmtpPort));
+            smtpClient.DeliveryMethod = SmtpDeliveryMethod.Network;
+            smtpClient.UseDefaultCredentials = false;
+            smtpClient.Credentials = new NetworkCredential(SmtpUser, SmtpPass);
 
             var message = new MailMessage
             {

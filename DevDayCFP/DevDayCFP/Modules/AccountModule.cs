@@ -91,8 +91,6 @@ namespace DevDayCFP.Modules
                 var userMapper = new UserMapper(dataStore);
                 var userData = userMapper.ValidateRegisterNewUser(model);
 
-                string hostName = Context.Request.Url.HostName;
-                emailService.SendRegistrationEmail(userData, hostName);
 
                 if (userData == null)
                 {
@@ -104,6 +102,9 @@ namespace DevDayCFP.Modules
                    
                     return View["Register", model];
                 }
+
+                string hostName = Context.Request.Url.SiteBase;
+                emailService.SendRegistrationEmail(userData, hostName);
 
                 DateTime? expiry = DateTime.Now.AddDays(7);
 

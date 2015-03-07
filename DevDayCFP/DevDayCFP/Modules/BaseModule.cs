@@ -50,9 +50,10 @@ namespace DevDayCFP.Modules
                     {
                         if (ctx.Request.Path != "/"
                             && !ctx.Request.Path.Contains("/account/activate")
-                            && ctx.Request.Path != "/keyfailed"
-                            && ctx.Request.Path != "/activated"
-                            && ctx.Request.Path != "/inactive")
+                            && String.Compare(ctx.Request.Path, "/account/logout", StringComparison.InvariantCultureIgnoreCase) != 0
+                            && String.Compare(ctx.Request.Path, "/keyfailed", StringComparison.InvariantCultureIgnoreCase) != 0
+                            && String.Compare(ctx.Request.Path, "/activated", StringComparison.InvariantCultureIgnoreCase) != 0
+                            && String.Compare(ctx.Request.Path, "/inactive", StringComparison.InvariantCultureIgnoreCase) != 0)
                         {
                             return Response.AsRedirect("/inactive");
                         }
