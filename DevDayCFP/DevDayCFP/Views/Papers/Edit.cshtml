@@ -17,7 +17,7 @@
     <div class="col-md-6 col-md-offset-3">
         <form method="post" action="" data-parsley-validate>
             <input type="hidden" value="@Model.Id" name="Id" id="Id" />
-            <input type="hidden" value="@Model.UserId" name="UserId" id="UserId" />
+            <input type="hidden" value="@Model.User.Id" name="UserId" id="UserId" />
 
             @Html.ValidationSummary((List<ErrorViewModel>)ViewBag.Page.Value.Errors)
                         

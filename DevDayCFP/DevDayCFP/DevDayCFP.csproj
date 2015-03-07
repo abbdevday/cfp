@@ -139,6 +139,7 @@
     <None Include="Scripts\jquery-2.1.3.intellisense.js" />
     <Content Include="Scripts\jquery-2.1.3.js" />
     <Content Include="Scripts\jquery-2.1.3.min.js" />
+    <Content Include="Scripts\list.min.js" />
     <Content Include="Scripts\npm.js" />
     <Content Include="Scripts\parsley.js" />
     <Content Include="Scripts\parsley.min.js" />
@@ -168,6 +169,7 @@
     <Compile Include="Common\Consts.cs" />
     <Compile Include="Common\Helpers.cs" />
     <Compile Include="Common\UserIdentityExtensions.cs" />
+    <Compile Include="Extensions\DynamicExtensions.cs" />
     <Compile Include="Extensions\HtmlExtensions.cs" />
     <Compile Include="Extensions\ValidationExtensions.cs" />
     <Compile Include="DbMigrationRunner.cs" />

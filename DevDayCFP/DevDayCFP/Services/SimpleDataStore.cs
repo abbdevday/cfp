@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Web.Query.Dynamic;
 using DevDayCFP.Common;
+using DevDayCFP.Extensions;
 using DevDayCFP.Models;
 using Simple.Data;
 
@@ -38,18 +40,20 @@ namespace DevDayCFP.Services
         {
             paperRecord.LastModificationDate = DateTime.UtcNow;
             paperRecord.EventName = "DevDay 2015"; // TODO: Extract to settings
-            _db.Papers.Upsert(paperRecord);
+            dynamic paper = paperRecord.ToDynamic();
+            paper.UserId = paper.User.Id;
+            _db.Papers.Upsert(paper);
         }
 
         public IList<Paper> GetPapersByUser(Guid userId)
         {
-            IList<Paper> papers = _db.Papers.FindAllByUserIdAndIsActive(userId, true).ToList<Paper>();
+            IList<Paper> papers = _db.Papers.FindAllByUserIdAndIsActive(userId, true).WithUser().ToList<Paper>();
             return papers;
         }
 
         public Paper GetPaperById(Guid id)
         {
-            Paper paper = _db.Papers.Get(id);
+            Paper paper = _db.Papers.WithUser().Get(id);
             return paper;
         }
 

@@ -23,7 +23,7 @@ namespace DevDayCFP.Modules
                 return View["Index", papersList];
             };
 
-            Get["/add"] = _ => View["Edit", new Paper()];
+            Get["/add"] = _ => View["Edit", new Paper { User = (User)Context.CurrentUser }];
             Post["/add"] = parameters =>
             {
                 var paper = this.Bind<Paper>();
