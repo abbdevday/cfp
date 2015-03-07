@@ -17,5 +17,8 @@ namespace DevDayCFP.Services
         IList<Paper> GetPapersByUser(Guid userId);
         IList<Paper> GetAllPapers();
         Paper GetPaperById(Guid id);
+
+        int GetUsersCount();
+        int GetPapersCount();
     }
 }

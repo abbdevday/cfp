@@ -185,7 +185,6 @@
     <Compile Include="Modules\AllPapers.cs" />
     <Compile Include="Modules\PapersModule.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Services\DummyDataStore.cs" />
     <Compile Include="Services\IDataStore.cs" />
     <Compile Include="Services\SimpleDataStore.cs" />
     <Compile Include="Services\UserMapper.cs" />

@@ -8,7 +8,7 @@ namespace DevDayCFP.Modules
     public class AllPapersModule : BaseModule
     {
         public AllPapersModule(IDataStore dataStore)
-            : base("allpapers")
+            : base("allpapers", dataStore)
         {
             this.RequiresClaims(new List<string> { DevDayCFP.Common.Consts.Claims.Admin });
 

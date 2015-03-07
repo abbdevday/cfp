@@ -57,6 +57,16 @@ namespace DevDayCFP.Services
             return paper;
         }
 
+        public int GetUsersCount()
+        {
+            return _db.Users.GetCount();
+        }
+
+        public int GetPapersCount()
+        {
+            return _db.Papers.GetCount(_db.Papers.IsActive == true);
+        }
+
         public IList<Paper> GetAllPapers()
         {
             IList<Paper> papers = _db.Papers.All().WithUser().ToList<Paper>();

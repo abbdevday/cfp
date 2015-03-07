@@ -12,7 +12,7 @@ namespace DevDayCFP.Modules
 {
     public class PapersModule : BaseModule
     {
-        public PapersModule(IDataStore dataStore) : base("papers")
+        public PapersModule(IDataStore dataStore) : base("papers", dataStore)
         {
             this.RequiresAuthentication();
 

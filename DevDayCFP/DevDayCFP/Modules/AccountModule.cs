@@ -16,7 +16,7 @@ namespace DevDayCFP.Modules
     public class AccountModule : BaseModule
     {
         public AccountModule(IDataStore dataStore)
-            : base("account")
+            : base("account", dataStore)
         {
             Get["/login"] = parameters =>
             {
