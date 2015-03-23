@@ -75,6 +75,7 @@ namespace DevDayCFP.Modules
                 }
 
                 paper.LastModificationDate = DateTime.UtcNow;
+                paper.User = (User)Context.CurrentUser;
                 dataStore.SavePaper(paper);
 
                 return Response.AsRedirect("/papers");
@@ -91,6 +92,7 @@ namespace DevDayCFP.Modules
 
                 paper.IsActive = false;
                 paper.LastModificationDate = DateTime.UtcNow;
+                paper.User = (User)Context.CurrentUser;
                 dataStore.SavePaper(paper);
 
                 return HttpStatusCode.OK;

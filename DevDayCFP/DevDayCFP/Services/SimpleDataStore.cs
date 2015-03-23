@@ -41,7 +41,7 @@ namespace DevDayCFP.Services
             paperRecord.LastModificationDate = DateTime.UtcNow;
             paperRecord.EventName = "DevDay 2015"; // TODO: Extract to settings
             dynamic paper = paperRecord.ToDynamic();
-            paper.UserId = paper.User.Id;
+            paper.UserId = paperRecord.User.Id;
             _db.Papers.Upsert(paper);
         }
 
