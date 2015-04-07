@@ -128,6 +128,8 @@ namespace DevDayCFP.Modules
                 var userModel = this.Bind<User>();
                 var result = this.Validate(userModel);
 
+                bool shouldResetAvatar = Request.Form["resetAvatar"];
+
                 if (!result.IsValid)
                 {
                     var errorViewModels = result.AsErrorViewModels();
@@ -138,8 +140,7 @@ namespace DevDayCFP.Modules
 
                 var userId = Context.CurrentUser.GetId();
                 var userFromDb = dataStore.GetUserById(userId);
-                userFromDb.AvatarPath = userModel.AvatarPath;
-                userFromDb.Bio = userModel.Bio;
+                userFromDb.Bio = (userModel.Bio ?? String.Empty).Trim();
                 userFromDb.Email = userModel.Email;
                 userFromDb.Location = userModel.Location;
                 userFromDb.Location = userModel.Location;
@@ -162,6 +163,11 @@ namespace DevDayCFP.Modules
                     }
 
                     userFromDb.AvatarPath = avatarFile.Name;
+                }
+
+                if (shouldResetAvatar)
+                {
+                    userFromDb.AvatarPath = String.Empty;
                 }
 
                 dataStore.SaveUser(userFromDb);

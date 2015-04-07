@@ -43,7 +43,7 @@
     font-weight: bold;
 }
 
-.navbar-default .navbar-nav > li > img.profile-image {
+.navbar-default .navbar-nav > li.avatarItem {
     padding-top: 5px
 }
 
@@ -190,8 +190,18 @@ button span.glyphicon {
     width: 40px;       
 }
 
+.profile-image-big {
+    height: 80px;       
+    width: 80px;   
+    display: block;   
+}
+
 
 /* --------------------- */
+.margin-top-10 {
+    margin-top: 10px;
+}
+
 .margin-top-30 {
     margin-top: 30px;
 }

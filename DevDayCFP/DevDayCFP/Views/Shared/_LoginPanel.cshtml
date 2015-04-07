@@ -1,7 +1,7 @@
 ﻿@if (ViewBag.Page.Value.IsAuthenticated)
 {
     <li><a href="/Account/Logout">Logout</a></li>
-    <li><img class="img-circle profile-image" src="@ViewBag.Page.Value.AvatarPath" /></li>
+    <li class="avatarItem"><img class="img-circle profile-image" src="@ViewBag.Page.Value.AvatarPath" /></li>
 }
 else
 {
