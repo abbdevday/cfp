@@ -1,4 +1,6 @@
 ﻿using System;
+using System.IO;
+using System.Linq;
 using DevDayCFP.Common;
 using DevDayCFP.Extensions;
 using DevDayCFP.Models;
@@ -15,7 +17,7 @@ namespace DevDayCFP.Modules
 {
     public class AccountModule : BaseModule
     {
-        public AccountModule(IDataStore dataStore, IEmailService emailService)
+        public AccountModule(IDataStore dataStore, IEmailService emailService, IRootPathProvider pathProvider)
             : base("account", dataStore)
         {
             Get["/login"] = parameters =>
@@ -91,7 +93,6 @@ namespace DevDayCFP.Modules
                 var userMapper = new UserMapper(dataStore);
                 var userData = userMapper.ValidateRegisterNewUser(model);
 
-
                 if (userData == null)
                 {
                     ViewBag.Page.Value.Errors.Add(new ErrorViewModel
@@ -145,6 +146,23 @@ namespace DevDayCFP.Modules
                 userFromDb.Name = userModel.Name;
                 userFromDb.TwitterHandle = userModel.TwitterHandle;
                 userFromDb.Website = userModel.Website;
+
+                var avatarFile = Request.Files.FirstOrDefault();
+
+                if (avatarFile != null)
+                {
+                    var folderPath = Path.Combine(pathProvider.GetRootPath(), "Images/Avatars/" + userId);
+                    if (!Directory.Exists(folderPath))
+                    {
+                        Directory.CreateDirectory(folderPath);
+                    }
+                    using (var fileStream = new FileStream(Path.Combine(folderPath, avatarFile.Name), FileMode.Create))
+                    {
+                        avatarFile.Value.CopyTo(fileStream);
+                    }
+
+                    userFromDb.AvatarPath = avatarFile.Name;
+                }
 
                 dataStore.SaveUser(userFromDb);
 
