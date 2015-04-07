@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using DevDayCFP.Models;
 using DevDayCFP.Services;
 using DevDayCFP.ViewModels;
@@ -31,11 +30,22 @@ namespace DevDayCFP.Modules
                 int noOfUsers = _dataStore.GetUsersCount();
                 int noOfPapers = _dataStore.GetPapersCount();
 
+                string avatarPath = String.Empty;
+                if (ctx.CurrentUser != null)
+                {
+                    var user = ((User)ctx.CurrentUser);
+                    avatarPath = !String.IsNullOrEmpty(user.AvatarPath) 
+                                ? String.Format("/Images/Avatars/{0}/{1}", user.Id, user.AvatarPath )
+                                : String.Format("http://www.gravatar.com/avatar/{0}?s=40&d=mm", user.EmailHash.ToLower());
+
+                }
+
                 var pageViewModel = new PageViewModel
                 {
                     IsAuthenticated = ctx.CurrentUser != null,
                     CurrentUser = ctx.CurrentUser != null ? ctx.CurrentUser.UserName : "",
                     EmailHash = ctx.CurrentUser != null ? ((User)ctx.CurrentUser).EmailHash : String.Empty,
+                    AvatarPath = avatarPath,
                     NoOfPapers = noOfPapers,
                     NoOfUsers = noOfUsers
                 };

@@ -185,6 +185,11 @@ button span.glyphicon {
     margin-right: 5px;
 }
 
+.profile-image {
+    height: 40px;       
+    width: 40px;       
+}
+
 
 /* --------------------- */
 .margin-top-30 {
