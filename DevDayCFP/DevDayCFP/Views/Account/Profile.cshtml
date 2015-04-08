@@ -89,6 +89,12 @@
                 <textarea rows="6" type="text" class="form-control" name="Bio" value="@Model.Bio"
                           data-parsley-trigger="change focusout" required>@Model.Bio</textarea>
             </div>
+            
+            <div class="form-group">
+                <label for="ShowOff">Show off (this information won't be public)</label>
+                <textarea rows="6" type="text" class="form-control" name="ShowOff" value="@Model.ShowOff"
+                          data-parsley-trigger="change focusout">@Model.ShowOff</textarea>
+            </div>
 
             <p>
                 <button type="submit" class="btn btn-success">Save</button>

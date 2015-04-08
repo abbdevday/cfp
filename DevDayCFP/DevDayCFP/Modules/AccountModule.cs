@@ -148,6 +148,7 @@ namespace DevDayCFP.Modules
                 userFromDb.Name = userModel.Name;
                 userFromDb.TwitterHandle = userModel.TwitterHandle;
                 userFromDb.Website = userModel.Website;
+                userFromDb.ShowOff = userModel.ShowOff;
 
                 var avatarFile = Request.Files.FirstOrDefault();
 

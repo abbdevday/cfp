@@ -23,6 +23,7 @@ namespace DevDayCFP.Models
         public string AvatarPath { get; set; }
         public string TwitterHandle { get; set; }
         public string Website { get; set; }
+        public string ShowOff { get; set; }
 
         public string ClaimsList { get; set; }
 
