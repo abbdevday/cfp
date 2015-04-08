@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Configuration;
 using System.Security.Cryptography;
 using System.Text;
 
@@ -11,8 +12,9 @@ namespace DevDayCFP.Common
             if (originalPassword == null)
                 return String.Empty;
 
+            string salt = ConfigurationManager.AppSettings[Consts.SettingKeys.PasswordSalt];
             MD5 md5 = new MD5CryptoServiceProvider();
-            Byte[] originalBytes = ASCIIEncoding.Default.GetBytes(originalPassword + "devSaltyBeacon"); // TODO: Get this out of code
+            Byte[] originalBytes = ASCIIEncoding.Default.GetBytes(originalPassword + salt);
             byte[] encodedBytes = md5.ComputeHash(originalBytes);
 
             return BitConverter.ToString(encodedBytes);

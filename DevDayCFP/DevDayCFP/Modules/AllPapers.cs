@@ -10,7 +10,7 @@ namespace DevDayCFP.Modules
         public AllPapersModule(IDataStore dataStore)
             : base("allpapers", dataStore)
         {
-            this.RequiresClaims(new List<string> { DevDayCFP.Common.Consts.Claims.Admin });
+            this.RequiresClaims(new List<string> { Common.Consts.Claims.Admin });
 
             Get["/"] = _ =>
             {

@@ -1,5 +1,4 @@
-﻿using System;
-using System.Configuration;
+﻿using System.Configuration;
 using System.Text;
 using DevDayCFP.Common;
 using Nancy;
@@ -24,7 +23,7 @@ namespace DevDayCFP
 
         protected override void ApplicationStartup(TinyIoCContainer container, IPipelines pipelines)
         {
-            var connectionString = System.Configuration.ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
+            var connectionString = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
 
             DbMigrationRunner.MigrateToLatest(connectionString);
 
@@ -32,8 +31,8 @@ namespace DevDayCFP
 
             var cryptographyConfiguration = GetCryptographyConfiguration();
 
-            var formsAuthConfiguration = new FormsAuthenticationConfiguration()
-                {
+            var formsAuthConfiguration = new FormsAuthenticationConfiguration
+            {
                     CryptographyConfiguration = cryptographyConfiguration,
                     RedirectUrl = "~/account/login",
                     UserMapper = container.Resolve<IUserMapper>(),

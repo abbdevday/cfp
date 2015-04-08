@@ -11,6 +11,7 @@ namespace DevDayCFP.Common
             public const string PassKeyGeneratorSalt = "PassKeyGeneratorSalt";
             public const string EncryptionKeyGeneratorPass = "EncryptionKeyGeneratorPass";
             public const string HmacKeyGeneratorPass = "HmacKeyGeneratorPass";
+            public const string PasswordSalt = "PasswordSalt";
         }
 
         public static class Claims
