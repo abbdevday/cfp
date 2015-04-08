@@ -14,12 +14,11 @@
     <div class="col-md-6 col-md-offset-3">
         <form method="post" action="" enctype="multipart/form-data" data-parsley-validate>
             <input type="hidden" value="@Model.Id" name="Id" id="Id" />
-            <input class="hidden-image-data" type="hidden" name="AvatarPath" id="AvatarPath" />
+            <input type="hidden" name="AvatarData" id="AvatarData" />
 
             <h3>Account Information</h3>
 
             @Html.ValidationSummary((List<ErrorViewModel>)ViewBag.Page.Value.Errors)
-
 
             <div class="form-group">
                 <label for="UserName">Username</label>
@@ -31,28 +30,32 @@
                        data-parsley-type="email" data-parsley-trigger="change focusout" required />
             </div>
 
+            <div class="row">
+                <div class="col-md-4">
+                    <label>Current Avatar</label>
+                    <img class="img-circle profile-image-big" src="@ViewBag.Page.Value.AvatarPath" />
+                    <label for="resetAvatar">
+                        <input type="checkbox" name="resetAvatar" value="true" />
+                        Revert to gravatar ?
+                    </label>
+                </div>
+                <div class="col-md-2"></div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="Avatar">Upload new Avatar</label>
 
-            <div class="form-group">
-                <label for="Avatar">Avatar</label>
-                <img class="img-circle profile-image-big" src="@ViewBag.Page.Value.AvatarPath" />
-                <input class="margin-top-10" name="Avatar" type="file" size="40" accept="image/*" />
-                <label for="resetAvatar">
-                    <input type="checkbox" name="resetAvatar" value="true" />
-                    Revert to gravatar ?
-                </label>
-            </div>
-            
-            <div class="form-group">
-                <label for="Avatar">Avatar with corpping</label>
-                
-                <div id="image-cropper">
-                    <div class="cropit-image-preview-container">
-                        <div class="cropit-image-preview"></div>
+                        <div id="image-cropper">
+                            <div class="cropit-image-preview-container">
+                                <div class="cropit-image-preview"></div>
+                            </div>
+                            <input type="range" class="cropit-image-zoom-input" />
+                            <input type="file" class="cropit-image-input" name="Avatar" id="Avatar" accept="image/*" />
+                        </div>
+
                     </div>
-                    <input type="range" class="cropit-image-zoom-input" />
-                    <input type="file" class="cropit-image-input" name="file" id="file" accept="image/*" />
                 </div>
             </div>
+
 
 
             <h3>Personal Information</h3>
@@ -96,23 +99,20 @@
 
 @section scripts {
     <script src="~/Scripts/cropit/jquery.cropit.js" type="text/javascript"></script>
-    
-<script type="text/javascript">
-    $(document).ready(function () {
-        $('form').submit(function () {
-            var imageData = $('#image-cropper').cropit('export', {
-                type: 'image/jpeg',
-                quality: .9
-            });
-            $('.hidden-image-data').val(imageData);
-        });
 
-        $('#image-cropper').cropit({
-            imageBackground: false, onFileChange: function () {
-                var input = $('#image-cropper').find('input.cropit-image-input');
-            }
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('form').submit(function () {
+                var imageData = $('#image-cropper').cropit('export', {
+                    type: 'image/png'
+                });
+                $('#AvatarData').val(imageData);
+            });
+
+            $('#image-cropper').cropit({
+                imageBackground: false,
+                onFileChange: function () { }
+            });
         });
-        $('#image-cropper').cropit('imageSrc', '/Images/Avatars/@Model.Id/@Model.AvatarPath');
-    });
-</script>
+    </script>
 }

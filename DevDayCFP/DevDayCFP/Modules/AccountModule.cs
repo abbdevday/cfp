@@ -129,6 +129,7 @@ namespace DevDayCFP.Modules
                 var result = this.Validate(userModel);
 
                 bool shouldResetAvatar = Request.Form["resetAvatar"];
+                string avatarData = Request.Form["AvatarData"];
 
                 if (!result.IsValid)
                 {
@@ -150,19 +151,18 @@ namespace DevDayCFP.Modules
 
                 var avatarFile = Request.Files.FirstOrDefault();
 
-                if (avatarFile != null)
+                if (avatarFile != null && avatarFile.Name != null && !String.IsNullOrEmpty(avatarData))
                 {
                     var folderPath = Path.Combine(pathProvider.GetRootPath(), "Images/Avatars/" + userId);
                     if (!Directory.Exists(folderPath))
                     {
                         Directory.CreateDirectory(folderPath);
                     }
-                    using (var fileStream = new FileStream(Path.Combine(folderPath, avatarFile.Name), FileMode.Create))
-                    {
-                        avatarFile.Value.CopyTo(fileStream);
-                    }
+                    string filePath = Path.Combine(folderPath, Path.GetFileNameWithoutExtension(avatarFile.Name)) + ".png";
 
-                    userFromDb.AvatarPath = avatarFile.Name;
+                    SaveImageFromBase64Data(avatarData, filePath);
+
+                    userFromDb.AvatarPath = Path.GetFileName(filePath);
                 }
 
                 if (shouldResetAvatar)
@@ -189,11 +189,26 @@ namespace DevDayCFP.Modules
 
                     return Response.AsRedirect("/activated");
                 }
-                else
-                {
-                    return Response.AsRedirect("/keyfailed");                    
-                }
+                return Response.AsRedirect("/keyfailed");
             };
+        }
+
+        private static void SaveImageFromBase64Data(string avatarData, string filePath)
+        {
+            int indexOfBase64Mark = avatarData.IndexOf(";base64,", StringComparison.Ordinal);
+            if (indexOfBase64Mark == -1)
+            {
+                throw new ArgumentException("Given string is not valid Base64 encoded image from form");
+            }
+
+            avatarData = avatarData.Substring(indexOfBase64Mark + ";base64,".Length);
+
+            var bytes = Convert.FromBase64String(avatarData);
+            using (var imageFile = new FileStream(filePath, FileMode.Create))
+            {
+                imageFile.Write(bytes, 0, bytes.Length);
+                imageFile.Flush();
+            }
         }
     }
 }
