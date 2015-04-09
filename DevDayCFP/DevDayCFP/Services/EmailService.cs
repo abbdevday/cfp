@@ -30,6 +30,7 @@ namespace DevDayCFP.Services
             smtpClient.DeliveryMethod = SmtpDeliveryMethod.Network;
             smtpClient.UseDefaultCredentials = false;
             smtpClient.Credentials = new NetworkCredential(SmtpUser, SmtpPass);
+            smtpClient.EnableSsl = true;
 
             var message = new MailMessage
             {
