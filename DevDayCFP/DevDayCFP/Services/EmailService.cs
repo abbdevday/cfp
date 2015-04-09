@@ -34,7 +34,7 @@ namespace DevDayCFP.Services
 
             var message = new MailMessage
             {
-                From = new MailAddress("contact@devday.pl"),
+                From = new MailAddress("cfp@devday.pl", "DevDay CFP"),
                 Subject = "DevDay 2015 CFP - Account Activation",
                 Body = string.Format(@"<h1>Hey</h1>
                         <a href='{0}'>Click to activate account</a>", url),
