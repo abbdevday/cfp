@@ -1,4 +1,5 @@
-﻿using System.Configuration;
+﻿using System;
+using System.Configuration;
 using System.Text;
 using DevDayCFP.Common;
 using Nancy;
@@ -7,11 +8,14 @@ using Nancy.Bootstrapper;
 using Nancy.Conventions;
 using Nancy.Cryptography;
 using Nancy.TinyIoc;
+using NLog;
 
 namespace DevDayCFP
 {
     public class Bootstrapper : DefaultNancyBootstrapper
     {
+        private readonly Logger _logger = LogManager.GetCurrentClassLogger();
+
         protected override void ConfigureConventions(NancyConventions conventions)
         {
             base.ConfigureConventions(conventions);
@@ -23,9 +27,17 @@ namespace DevDayCFP
 
         protected override void ApplicationStartup(TinyIoCContainer container, IPipelines pipelines)
         {
+            _logger.Info("Application starting");
+            try
+            {
+
+            
             var connectionString = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
 
             DbMigrationRunner.MigrateToLatest(connectionString);
+
+            _logger.Info("Migrations applied if needed");
+
 
             base.ApplicationStartup(container, pipelines);
 
@@ -39,6 +51,12 @@ namespace DevDayCFP
                 };
 
             FormsAuthentication.Enable(pipelines, formsAuthConfiguration);
+            }
+            catch (Exception exp)
+            {
+                _logger.Error(exp);
+                throw;
+            }
         }
 
         private static CryptographyConfiguration GetCryptographyConfiguration()
