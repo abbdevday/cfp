@@ -109,6 +109,10 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\favicon.ico" />
     <Content Include="Content\font-awesome-all.css" />
+    <Content Include="Content\font-awesome-corp.css" />
+    <Content Include="Content\font-awesome-ext.css" />
+    <Content Include="Content\font-awesome-social.css" />
+    <Content Include="Content\font-awesome.css" />
     <Content Include="Content\fonts.css" />
     <Content Include="Content\fonts\corp\fontawesome-corp-webfont.svg" />
     <Content Include="Content\fonts\ext\fontawesome-ext-webfont.svg" />
@@ -116,10 +120,13 @@
     <Content Include="Content\fonts\social\fontawesome-social-webfont.svg" />
     <Content Include="Content\margins.css" />
     <Content Include="Content\parsley.css" />
+    <Content Include="Content\responsive.css" />
     <Content Include="Content\style.css" />
+    <Content Include="Content\theme.css" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Icon.png" />
     <Content Include="Images\abb.jpg" />
+    <Content Include="Images\backgrounds\bedge_grunge.png" />
     <Content Include="Images\background_grid.png" />
     <Content Include="Images\bottom-shadow.png" />
     <Content Include="Images\dd_logo.jpg" />

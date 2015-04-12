@@ -4,66 +4,68 @@
 @using DevDayCFP.ViewModels
 
 @{
-    ViewBag.CheckboxString = Model.IsThereLiveCoding ? "checked" : ""; 
+    ViewBag.CheckboxString = Model.IsThereLiveCoding ? "checked" : "";
 }
 
 <div class="row">
-    <div class="col-md-6 col-md-offset-3">
+    <div class="span6 offset3">
         <h2>Submit New Paper</h2>
     </div>
 </div>
 
 <div class="row">
-    <div class="col-md-6 col-md-offset-3">
-        <form method="post" action="" data-parsley-validate>
+    <div class="span6 offset3">
+        <form method="post" action="" data-parsley-validate class="form-horizontal">
             <input type="hidden" value="@Model.Id" name="Id" id="Id" />
             <input type="hidden" value="@Model.User.Id" name="UserId" id="UserId" />
 
             @Html.ValidationSummary((List<ErrorViewModel>)ViewBag.Page.Value.Errors)
-                        
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="form-group">
-                        <label for="Title">Title *</label>
-                        <input type="text" class="form-control" name="Title" value="@Model.Title" required
-                               data-parsley-trigger="change focusout" placeholder="Let it shine"/>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="row">
-                <div class="col-md-8">
-                    <div class="form-group">
-                        <label for="Level">Level *</label>
-                        <input type="text" class="form-control" name="Level" value="@Model.Level" required
-                               data-parsley-trigger="change focusout" placeholder="Beginner? Advanced?"/>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="form-group">
-                        <label></label>
-                        <div class="checkbox">
-                            <label>
-                                <input type="checkbox" name="IsThereLiveCoding" value="true" @ViewBag.CheckboxString> Contains Live Coding ?
-                            </label>
-                        </div>
-                    </div>
+
+            <div class="control-group">
+                <label class="control-label" for="Title">Title *</label>
+                <div class="controls">
+                    <input type="text" class="form-control" name="Title" value="@Model.Title" required
+                           data-parsley-trigger="change focusout" placeholder="Let it shine" />
                 </div>
             </div>
 
-            <div class="form-group">
-                <label for="Abstract">Abstract *</label>
-                <textarea rows="6" type="text" class="form-control" name="Abstract" value="@Model.Abstract"
-                          data-parsley-trigger="change focusout" required placeholder="What's the subject ?">@Model.Abstract</textarea>
+            <div class="control-group">
+                <label class="control-label" for="Level">Level *</label>
+                <div class="controls">
+                    <input type="text" class="form-control" name="Level" value="@Model.Level" required
+                           data-parsley-trigger="change focusout" placeholder="Beginner? Advanced?" />
+                </div>
+            </div>
+
+            <div class="control-group">
+                <label class="control-label"></label>
+                <div class="checkbox">
+                    <label>
+                        <input type="checkbox" name="IsThereLiveCoding" value="true" @ViewBag.CheckboxString> Contains Live Coding ?
+                    </label>
+                </div>
             </div>
 
 
-            <div class="form-group">
-                <label for="Justification">Tell us why this subject may be inspirational</label>
-                <textarea rows="6" type="text" class="form-control" name="Justification" value="@Model.Justification"
-                          placeholder="Rock our world!"></textarea>
+            <div class="control-group">
+                <label class="control-label" for="Abstract">Abstract *</label>
+                <div class="controls">
+                    <textarea rows="6" type="text" class="form-control" name="Abstract" value="@Model.Abstract"
+                              data-parsley-trigger="change focusout" required placeholder="What's the subject ?">
+                        @Model.Abstract
+                    </textarea>
+                </div>
             </div>
 
+
+            <div class="control-group">
+                <label class="control-label" for="Justification">Tell us why this subject may be inspirational</label>
+                <div class="controls">
+
+                    <textarea rows="6" type="text" class="form-control" name="Justification" value="@Model.Justification"
+                              placeholder="Rock our world!"></textarea>
+                </div>
+            </div>
 
             <p>
                 <button type="submit" name="action" value="draft" class="btn btn-primary"><span class="glyphicon glyphicon-save" aria-hidden="true"></span>Save</button>
