@@ -12,11 +12,15 @@ namespace DevDayCFP.Modules
         public HomeModule(IDataStore dataStore)
             : base(dataStore)
         {
-            Get["/"] = _ =>
-                {
-                    var user = dataStore.GetUserById(Context.CurrentUser.GetId());
-                    return View["Index", new HomeViewModel()];
-                };
+			Get["/"] = _ =>
+			{
+				var user = dataStore.GetUserById(Context.CurrentUser.GetId());
+				var papers = dataStore.GetPapersByUser(Context.CurrentUser.GetId()).Count;
+				return View["Index", new HomeViewModel() {
+					ProfileComplete = user.ProfileComplete,
+					PapersSubmitted = papers
+				}];
+			};
             Get["/activated"] = _ => View["Activated"];
             Get["/keyfailed"] = _ => View["KeyFailed"];
             Get["/inactive"] = _ => View["Inactive"];

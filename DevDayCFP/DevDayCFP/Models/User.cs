@@ -34,6 +34,15 @@ namespace DevDayCFP.Models
             get { return ClaimsList == null ? new List<string>() : ClaimsList.Split(',').ToList(); }
         }
 
+        public bool ProfileComplete {
+            get {
+                if (string.IsNullOrEmpty(Name)) return false;
+                if (string.IsNullOrEmpty(Bio)) return false;
+
+                return true;
+            }
+        }
+
         public User()
         {
             AccountStatus = AccountStatus.PendingVerification;
