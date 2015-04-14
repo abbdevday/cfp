@@ -1,4 +1,9 @@
-﻿using DevDayCFP.Services;
+﻿using DevDayCFP.Common;
+using DevDayCFP.Services;
+using DevDayCFP.ViewModels;
+using DevDayCFP.Extensions;
+using Nancy;
+using Nancy.Security;
 
 namespace DevDayCFP.Modules
 {
@@ -7,7 +12,11 @@ namespace DevDayCFP.Modules
         public HomeModule(IDataStore dataStore)
             : base(dataStore)
         {
-            Get["/"] = _ => View["Index"];
+            Get["/"] = _ =>
+                {
+                    var user = dataStore.GetUserById(Context.CurrentUser.GetId());
+                    return View["Index", new HomeViewModel()];
+                };
             Get["/activated"] = _ => View["Activated"];
             Get["/keyfailed"] = _ => View["KeyFailed"];
             Get["/inactive"] = _ => View["Inactive"];

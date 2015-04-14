@@ -1,7 +1,13 @@
 ﻿@using System
+@inherits Nancy.ViewEngines.Razor.NancyRazorViewBase<DevDayCFP.ViewModels.HomeViewModel>
+
 <div class="section-header">
     <h1>Call For Papers</h1>
 </div>
 <div class="row">
-
+    <div class="col-lg-offset-1 col-md-10 center">
+        @if(!Model.ProfileComplete) {
+            <h4>Hey, complete your profile please!</h4>
+        }
+    </div>
 </div>
