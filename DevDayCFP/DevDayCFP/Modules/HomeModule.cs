@@ -17,7 +17,7 @@ namespace DevDayCFP.Modules
 				var user = dataStore.GetUserById(Context.CurrentUser.GetId());
 				var papers = dataStore.GetPapersByUser(Context.CurrentUser.GetId()).Count;
 				return View["Index", new HomeViewModel() {
-					ProfileComplete = user.ProfileComplete,
+					ProfileComplete = user != null ? user.ProfileComplete : false,
 					PapersSubmitted = papers
 				}];
 			};
