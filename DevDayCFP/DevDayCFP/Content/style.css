@@ -20,13 +20,23 @@
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
     box-sizing: border-box;
+    padding: 0;
+}
+
+.container-fluid {
+    padding: 0 40px;
 }
 
 /* NavBar Overrides */
 
+.navbar {
+    margin-bottom: 0px;
+}
+
 .navbar-default {
     background-color: transparent;
     border-color: transparent;
+    min-height: 85px;
 }
 
 .navbar-default .navbar-nav {
@@ -43,8 +53,26 @@
     font-weight: bold;
 }
 
+.navbar-default .navbar-nav > li > a {
+    padding-top: 30px;
+}
+
 .navbar-default .navbar-nav > li.avatarItem {
-    padding-top: 5px
+    padding-top: 5px;
+    margin-top: 15px;
+}
+
+.navbar-header {
+    padding-top: 4px;
+}
+
+.navbar-brand {
+    height: auto;
+}
+
+.navbar-brand img {
+    height: 47px;
+    width: 210px;
 }
 
 /* ----------- */
@@ -120,7 +148,7 @@
         background-color: white;
         position: relative;
         z-index: 1;
-        margin-bottom: 0;
+        margin: 0;
     }
 
         .section-header h1 small {
