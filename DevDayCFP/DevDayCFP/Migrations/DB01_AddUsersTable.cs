@@ -12,6 +12,7 @@ namespace DevDayCFP.Migrations
                 .WithColumn("Id").AsGuid().NotNullable().PrimaryKey()
                 .WithColumn("AccountStatus").AsInt16().NotNullable()
                 .WithColumn("UserName").AsString(64).NotNullable()
+                .WithColumn("Password").AsString(Int32.MaxValue).NotNullable()
                 .WithColumn("Email").AsString(255).NotNullable()
                 .WithColumn("EmailHash").AsString(255).NotNullable()
                 .WithColumn("Name").AsString(255).Nullable()
