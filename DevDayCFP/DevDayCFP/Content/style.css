@@ -1,6 +1,8 @@
 ﻿body {
     padding-top: 20px;
-    padding-bottom: 20px;
+    font-size: 16px;
+    line-height: 24px;
+    color: #5e5e5e;
     background: #f2f2f4 url(../images/background_grid.png);
 }
 
@@ -39,28 +41,32 @@
     min-height: 85px;
 }
 
-.navbar-default .navbar-nav {
-    font-size: 16px;
-}
+    .navbar-default .navbar-nav {
+        font-size: 16px;
+    }
 
-.navbar-default .navbar-nav > .active > a {
-    background-color: transparent;
-    text-decoration: underline;
-}
+        .navbar-default .navbar-nav > .active > a {
+            background-color: transparent;
+            text-decoration: underline;
+        }
 
-.navbar-default .navbar-nav > .active > a:hover {
-    background-color: transparent;
-    font-weight: bold;
-}
+            .navbar-default .navbar-nav > .active > a:hover {
+                background-color: transparent;
+                font-weight: bold;
+            }
 
-.navbar-default .navbar-nav > li > a {
-    padding-top: 30px;
-}
+        .navbar-default .navbar-nav > li > a {
+            padding-top: 30px;
+        }
 
-.navbar-default .navbar-nav > li.avatarItem {
-    padding-top: 5px;
-    margin-top: 15px;
-}
+        .navbar-default .navbar-nav > li.avatarItem {
+            padding-top: 5px;
+            margin-top: 15px;
+        }
+
+        .navbar-default .navbar-nav .navbar-btn {
+            margin-top: 23px;
+        }
 
 .navbar-header {
     padding-top: 4px;
@@ -70,29 +76,54 @@
     height: auto;
 }
 
-.navbar-brand img {
-    height: 47px;
-    width: 210px;
-}
+    .navbar-brand img {
+        height: 47px;
+        width: 210px;
+    }
 
 /* ----------- */
 
-.footer .container {
-    background: transparent;
-    border-color: transparent;
-    margin: 0 auto;
-    border: 0;
-    border-color: #ffffff;
-    border-color: rgba(255, 255, 255, 0.5);
-    -webkit-box-shadow: 0 0 0 #000000, 0 0 0 #000000 inset;
-    -moz-box-shadow: 0 0 0 #000000, 0 0 0 #000000 inset;
-    -moz-box-shadow: 0 0 0 rgba(0, 0, 0, 0.3), 0 0 0 rgba(0, 0, 0, 0) inset;
-    box-shadow: 0 0 0 #000000, 0 0 0 #000000 inset;
-    box-shadow: 0 0 0 rgba(0, 0, 0, 0.3), 0 0 0 rgba(0, 0, 0, 0) inset;
-    -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    box-sizing: border-box;
+.footer {
+    margin-top: 40px;
+    margin-bottom: 40px;
+    -ms-text-shadow: 1px 1px 0 white;
+    text-shadow: 1px 1px 0 white;
 }
+
+    .footer .container {
+        background: transparent;
+        border-color: transparent;
+        margin: 0 auto;
+        border: 0;
+        border-color: #ffffff;
+        border-color: rgba(255, 255, 255, 0.5);
+        -webkit-box-shadow: 0 0 0 #000000, 0 0 0 #000000 inset;
+        -moz-box-shadow: 0 0 0 #000000, 0 0 0 #000000 inset;
+        -moz-box-shadow: 0 0 0 rgba(0, 0, 0, 0.3), 0 0 0 rgba(0, 0, 0, 0) inset;
+        box-shadow: 0 0 0 #000000, 0 0 0 #000000 inset;
+        box-shadow: 0 0 0 rgba(0, 0, 0, 0.3), 0 0 0 rgba(0, 0, 0, 0) inset;
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        box-sizing: border-box;
+        padding: 0 40px;
+    }
+
+    .footer h3 {
+        font-size: 18px;
+        font-weight: bold;
+        line-height: 24px;
+        margin: 0 0 12px 0;
+        text-rendering: optimizelegibility;
+        color: #222222;
+    }
+
+    .footer p {
+        margin: 0 0 12px 0;
+    }
+
+    .footer a {
+        color: #222222;
+    }
 
 .section {
     position: relative;
@@ -194,14 +225,8 @@
     font-weight: 300;
 }
 
-
-.social-icons {
-    margin-top: 20px;
-}
-
 .social-icons a {
     color: #000;
-
     -webkit-transition: all 0.3s;
     -moz-transition: all 0.3s;
     -o-transition: all 0.3s;
@@ -214,14 +239,14 @@ button span.glyphicon {
 }
 
 .profile-image {
-    height: 40px;       
-    width: 40px;       
+    height: 40px;
+    width: 40px;
 }
 
 .profile-image-big {
-    height: 80px;       
-    width: 80px;   
-    display: block;   
+    height: 80px;
+    width: 80px;
+    display: block;
 }
 
 
@@ -246,68 +271,84 @@ button span.glyphicon {
     border-left-width: 5px;
     border-radius: 3px;
 }
-.bs-callout h4 {
-    margin-top: 0;
-    margin-bottom: 5px;
-}
-.bs-callout p:last-child {
-    margin-bottom: 0;
-}
-.bs-callout code {
-    border-radius: 3px;
-}
-.bs-callout+.bs-callout {
-    margin-top: -5px;
-}
+
+    .bs-callout h4 {
+        margin-top: 0;
+        margin-bottom: 5px;
+    }
+
+    .bs-callout p:last-child {
+        margin-bottom: 0;
+    }
+
+    .bs-callout code {
+        border-radius: 3px;
+    }
+
+    .bs-callout + .bs-callout {
+        margin-top: -5px;
+    }
+
 .bs-callout-default {
     border-left-color: #777;
 }
-.bs-callout-default h4 {
-    color: #777;
-}
+
+    .bs-callout-default h4 {
+        color: #777;
+    }
+
 .bs-callout-primary {
     border-left-color: #428bca;
 }
-.bs-callout-primary h4 {
-    color: #428bca;
-}
+
+    .bs-callout-primary h4 {
+        color: #428bca;
+    }
+
 .bs-callout-success {
     border-left-color: #5cb85c;
 }
-.bs-callout-success h4 {
-    color: #5cb85c;
-}
+
+    .bs-callout-success h4 {
+        color: #5cb85c;
+    }
+
 .bs-callout-danger {
     border-left-color: #d9534f;
 }
-.bs-callout-danger h4 {
-    color: #d9534f;
-}
+
+    .bs-callout-danger h4 {
+        color: #d9534f;
+    }
+
 .bs-callout-warning {
     border-left-color: #f0ad4e;
 }
-.bs-callout-warning h4 {
-    color: #f0ad4e;
-}
+
+    .bs-callout-warning h4 {
+        color: #f0ad4e;
+    }
+
 .bs-callout-info {
     border-left-color: #5bc0de;
 }
-.bs-callout-info h4 {
-    color: #5bc0de;
-}
+
+    .bs-callout-info h4 {
+        color: #5bc0de;
+    }
 
 
 /* Cropit
 -------------------------------------------------- */
 .cropit-image-preview {
-  /* You can specify preview size in CSS */
-  width: 80px;
-  height: 80px;
+    /* You can specify preview size in CSS */
+    width: 80px;
+    height: 80px;
 }
 
 /* Translucent background image */
 .cropit-image-background {
-  opacity: .4;
+    opacity: .4;
 }
 
 /*
@@ -315,11 +356,11 @@ button span.glyphicon {
  * use relative or absolute position on it
  */
 .cropit-image-zoom-input {
-  position: relative;
+    position: relative;
 }
 
 /* Limit the background image by adding overflow: hidden */
 #image-cropper {
-  overflow: hidden;
-  width: 220px;
+    overflow: hidden;
+    width: 220px;
 }

@@ -19,7 +19,7 @@ namespace DevDayCFP.Services
 
         public User GetUserByLoginData(string userName, string password)
         {
-            User user = _db.Users.FindAllByUsername(userName).FirstOrDefault();
+            User user = _db.Users.FindAllByUsernameAndPassword(userName, Helpers.EncodePassword(password)).FirstOrDefault();
             return user;
         }
 
