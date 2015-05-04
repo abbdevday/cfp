@@ -150,7 +150,6 @@ namespace DevDayCFP.Modules
                 userFromDb.Bio = (userModel.Bio ?? String.Empty).Trim();
                 userFromDb.Email = userModel.Email;
                 userFromDb.Location = userModel.Location;
-                userFromDb.Location = userModel.Location;
                 userFromDb.Name = userModel.Name;
                 userFromDb.TwitterHandle = userModel.TwitterHandle;
                 userFromDb.Website = userModel.Website;

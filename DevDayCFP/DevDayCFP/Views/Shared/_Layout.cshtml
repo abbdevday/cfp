@@ -8,61 +8,74 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <title>DevDay 2015 CFP</title>
-    
+    <link type="text/css" rel="stylesheet" href="/Content/bootstrap.css">
+    <link type="text/css" rel="stylesheet" href="/Content/font-awesome-all.css">
+    <link type="text/css" rel="stylesheet" href="/Content/fonts.css">
+    <link type="text/css" rel="stylesheet" href="/Content/style.css">
+    <link type="text/css" rel="stylesheet" href="/Content/margins.css">
+    <link type="text/css" rel="stylesheet" href="/Content/parsley.css">
+
     <link href="~/Content/favicon.ico" rel="shortcut icon">
 
     <link href="~/Content/bootstrap.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/responsive.css" rel="stylesheet" type="text/css" />
     <link href="~/Content/font-awesome-all.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/fancybox.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/theme.css?v=2" rel="stylesheet" type="text/css" />
+
     <link href="~/Content/fonts.css" rel="stylesheet" type="text/css" />
+
     <link href="~/Content/style.css" rel="stylesheet" type="text/css" />
     <link href="~/Content/margins.css" rel="stylesheet" type="text/css" />
     <link href="~/Content/parsley.css" rel="stylesheet" type="text/css" />
+
+
 </head>
 <body>
-    <div class="container">
-        <nav class="navbar navbar-default">
-            <div class="container-fluid">
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-                        <span class="sr-only">Toggle navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                    <a href="/" class="navbar-brand">
-                        <img src="/images/logo_2015.svg" />
-                    </a>
-                </div>
+    <div class="wrapper">
+        <header id="masthead">
+            <nav class="navbar navbar-default">
+                <div class="container-fluid">
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <a href="/" class="navbar-brand">
+                            <img src="/images/logo_2015.svg" />
+                        </a>
+                    </div>
 
-                <div id="navbar" class="navbar-collapse collapse">
-                    <ul class="nav navbar-nav navbar-right">
-                        <li><a href="/">Home</a></li>
-                        @if (ViewBag.Page.Value.IsAuthenticated)
-                        {
-                            <li><a href="/papers">Papers</a></li>
-                            <li><a href="/account/profile">Profile</a></li>
-
-                            if (Context.CurrentUser.Claims.Contains(DevDayCFP.Common.Consts.Claims.Admin))
+                    <div id="navbar" class="navbar-collapse collapse">
+                        <ul class="nav navbar-nav navbar-right">
+                            <li><a href="/">Home</a></li>
+                            @if (ViewBag.Page.Value.IsAuthenticated)
                             {
-                                <li><a href="/allpapers">All Papers</a></li>
+                                <li><a href="/papers">Papers</a></li>
+                                <li><a href="/account/profile">Profile</a></li>
+
+                                if (Context.CurrentUser.Claims.Contains(DevDayCFP.Common.Consts.Claims.Admin))
+                                {
+                                    <li><a href="/allpapers">All Papers</a></li>
+                                }
                             }
-                        }
 
-                        @Html.Partial("Shared/_LoginPanel")
-                    </ul>
+                            @Html.Partial("Shared/_LoginPanel")
+                        </ul>
+                    </div>
                 </div>
-            </div>
-        </nav>
+            </nav>
+        </header>
 
-        <div class="row">
+        <div id="content" role="main">
             <section class="section section-alt section-padded">
-                <div class="container-fluid" style="min-height: 300px">
+                <div class="container-fluid">
                     @RenderBody()
                 </div>
             </section>
-        </div>
 
-        <div class="row">
             <section class="section section-padded">
                 <div class="container-fluid">
                     <div class="section-header">
@@ -72,47 +85,49 @@
         </div>
     </div>
 
-    <footer class="footer">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-6">
-                    <h3>
-                        DEVDAY
-                    </h3>
-                    <p>
-                        created with passion and ❤
-                        <br>
-                        <a href="mailto:contact@devday.pl">contact@devday.pl</a>
-                    </p>
-                </div>
-                <div class="col-md-6">
-                    <ul class="list-unstyled list-inline text-right big social-icons">
-                        <li>
-                            <a href="http://twitter.com/abbdevday">
-                                <i class="icon-twitter"></i>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="http://facebook.com/abbdevday">
-                                <i class="icon-facebook"></i>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="https://plus.google.com/b/113103877740934428492/113103877740934428492/posts">
-                                <i class="icon-google-plus"></i>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="http://youtube.com/abbdevday">
-                                <i class="icon-youtube"></i>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="https://www.flickr.com/photos/96896358@N04/">
-                                <i class="icon-flickr"></i>
-                            </a>
-                        </li>
-                    </ul>
+    <footer id="footer" role="contextinfo">
+        <div class="wrapper wrapper-transparent">
+            <div class="container-fluid">
+                <div class="row-fluid">
+                    <div class="span6 small-screen-center">
+                        <h3>
+                            DEVDAY
+                        </h3>
+                        <p>
+                            created with passion and ❤
+                            <br>
+                            <a href="mailto:contact@devday.pl">contact@devday.pl</a>
+                        </p>
+                    </div>
+                    <div class="span6">
+                        <ul class="list-unstyled list-inline text-right big social-icons">
+                            <li>
+                                <a href="http://twitter.com/abbdevday">
+                                    <i class="icon-twitter"></i>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="http://facebook.com/abbdevday">
+                                    <i class="icon-facebook"></i>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://plus.google.com/b/113103877740934428492/113103877740934428492/posts">
+                                    <i class="icon-google-plus"></i>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="http://youtube.com/abbdevday">
+                                    <i class="icon-youtube"></i>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://www.flickr.com/photos/96896358@N04/">
+                                    <i class="icon-flickr"></i>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
             </div>
         </div>

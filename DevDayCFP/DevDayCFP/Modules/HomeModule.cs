@@ -21,9 +21,25 @@ namespace DevDayCFP.Modules
 					PapersSubmitted = papers
 				}];
 			};
-            Get["/activated"] = _ => View["Activated"];
-            Get["/keyfailed"] = _ => View["KeyFailed"];
-            Get["/inactive"] = _ => View["Inactive"];
+            Get["/activated"] = _ =>
+            {
+                this.RequiresAuthentication();
+
+                return View["Activated"];
+            };
+            Get["/keyfailed"] = _ =>
+            {
+                this.RequiresAuthentication();
+
+                return View["KeyFailed"];
+            };
+
+            Get["/inactive"] = _ =>
+            {
+                this.RequiresAuthentication();
+
+                return View["Inactive"];
+            };
         }
     }
 }
