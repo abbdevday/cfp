@@ -1,10 +1,10 @@
 ﻿@if (ViewBag.Page.Value.IsAuthenticated)
 {
-    <li><a href="/Account/Logout">Logout</a></li>
+    <li class=""><a href="/Account/Logout">Logout</a></li>
     <li class="avatarItem"><img class="img-circle profile-image" src="@ViewBag.Page.Value.AvatarPath" /></li>
 }
 else
 {
-    <li><a href="/Account/Login">Login</a></li>
-    <li><div><a href="/Account/Register" class="btn btn-primary navbar-btn">Register</a></div></li>
+    <li class=""><a href="/Account/Login">Login</a></li>
+    <li class=""><div><a href="/Account/Register" class="btn btn-primary navbar-btn">Register</a></div></li>
 }

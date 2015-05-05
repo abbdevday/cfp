@@ -1,60 +1,7 @@
 ﻿body {
-    line-height: 24px;
     color: #5e5e5e;
     background: #f2f2f4 url(../images/background_grid.png);
 }
-
-
-/* NavBar Overrides */
-
-.navbar {
-    margin-bottom: 0px;
-}
-
-.navbar-default {
-    background-color: transparent;
-    border-color: transparent;
-    min-height: 85px;
-}
-
-    .navbar-default .navbar-nav {
-    }
-
-        .navbar-default .navbar-nav > .active > a {
-            background-color: transparent;
-            text-decoration: underline;
-        }
-
-            .navbar-default .navbar-nav > .active > a:hover {
-                background-color: transparent;
-                font-weight: bold;
-            }
-
-        .navbar-default .navbar-nav > li > a {
-            padding-top: 30px;
-        }
-
-        .navbar-default .navbar-nav > li.avatarItem {
-            padding-top: 5px;
-            margin-top: 15px;
-        }
-
-        .navbar-default .navbar-nav .navbar-btn {
-            margin-top: 23px;
-        }
-
-.navbar-header {
-    padding-top: 4px;
-}
-
-.navbar-brand {
-    height: auto;
-}
-
-    .navbar-brand img {
-        height: 47px;
-        width: 210px;
-    }
 
 /* --------------------- */
 
@@ -75,18 +22,6 @@ footer a {
     color: #222222;
 }
 
-.social-icons a {
-    color: #000;
-    -webkit-transition: all 0.3s;
-    -moz-transition: all 0.3s;
-    -o-transition: all 0.3s;
-    -ms-transition: all 0.3s;
-    transition: all 0.3s;
-}
-
-button span.glyphicon {
-    margin-right: 5px;
-}
 
 .profile-image {
     height: 40px;
@@ -98,17 +33,6 @@ button span.glyphicon {
     width: 80px;
     display: block;
 }
-
-
-/* --------------------- */
-.margin-top-10 {
-    margin-top: 10px;
-}
-
-.margin-top-30 {
-    margin-top: 30px;
-}
-
 
 
 /* Side notes for calling out things
