@@ -5,24 +5,6 @@
 
 /* --------------------- */
 
-footer h3 {
-    font-size: 18px;
-    font-weight: bold;
-    line-height: 24px;
-    margin: 0 0 12px 0;
-    text-rendering: optimizelegibility;
-    color: #222222;
-}
-
-footer p {
-    margin: 0 0 12px 0;
-}
-
-footer a {
-    color: #222222;
-}
-
-
 .profile-image {
     height: 40px;
     width: 40px;

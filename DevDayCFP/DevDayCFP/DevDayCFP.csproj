@@ -162,7 +162,6 @@
     <Content Include="Scripts\jquery.fancybox.pack.js" />
     <Content Include="Scripts\jquery.flexslider-min.js" />
     <Content Include="Scripts\jquery.form.js" />
-    <Content Include="Scripts\jquery.min.js" />
     <Content Include="Scripts\jquery.tweet.js" />
     <Content Include="Scripts\list.min.js" />
     <Content Include="Scripts\npm.js" />
