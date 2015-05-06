@@ -4,43 +4,33 @@
 @using DevDayCFP.ViewModels
 
 
-<div class="row">
-    <div class="col-md-6 col-md-offset-3">
-        <h2>Register</h2>
-        <p>
-            Use the form below to create a new account.
-        </p>
-        <p>
-            Passwords are required to be a minimum of 8 characters in length.
-        </p>
+<div class="container-fluid">
+    <div class="section-header">
+        <h1>Register</h1>
     </div>
-</div>
 
-<div class="row">
-    <div class="col-md-6 col-md-offset-3">
+    <div class="span6 offset3">
         <form method="post" data-parsley-validate>
-            <h3>Account Information</h3>
-            
             @Html.ValidationSummary((List<ErrorViewModel>)ViewBag.Page.Value.Errors)
 
-            <div class="form-group">
+            <div class="control-group">
                 <label for="UserName">Username *</label>
-                <input type="text" class="form-control" name="UserName" value="@Model.UserName" required
+                <input type="text" class="span4" name="UserName" value="@Model.UserName" required
                        data-parsley-trigger="change focusout" />
             </div>
-            <div class="form-group">
+            <div class="control-group">
                 <label for="Email">Email *</label>
-                <input type="email" class="form-control" name="Email" value="@Model.Email"
+                <input type="email" class="span4" name="Email" value="@Model.Email"
                        data-parsley-type="email" data-parsley-trigger="change focusout" required />
             </div>
-            <div class="form-group">
+            <div class="control-group">
                 <label for="Password">Password *</label>
-                <input type="password" class="form-control" name="Password" id="Password" value="@Model.Password"
-                       required data-parsley-trigger="change focusout" data-parsley-length="[6, 128]" maxlength="128" />
+                <input type="password" class="span4" name="Password" id="Password" value="@Model.Password"
+                       required data-parsley-trigger="change focusout" data-parsley-length="[8, 128]" maxlength="128" />
             </div>
-            <div class="form-group">
+            <div class="control-group">
                 <label for="ConfirmPassword">Confirm Password *</label>
-                <input type="password" class="form-control" name="ConfirmPassword" value="@Model.ConfirmPassword"
+                <input type="password" class="span4" name="ConfirmPassword" value="@Model.ConfirmPassword"
                        data-parsley-equalto="#Password" data-parsley-trigger="change focusout" required />
             </div>
             <p>
