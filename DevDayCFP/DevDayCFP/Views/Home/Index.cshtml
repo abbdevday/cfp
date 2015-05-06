@@ -5,11 +5,11 @@
     <div class="section-header">
         <h1>Call <small class="light">for Papers</small></h1>
     </div>
-    <p class="lead">
-        You can submit your session proposal(s) to DevDay 2015 on this site.
-        We will review all submissions and get back to you no later than on 31st of May.
-        For all accepted speakers we offer travel and accomodation if needed. We can't offer refunds for lightning talks speakers though.
-        We are waiting for all your inspiring and informational talks!
-        Please note that we want to give opportunity to speakers who had never been to DevDay therefore we sadly won't accept submissions from last years' speakers.
+        @if (!@Model.ProfileComplete) {
+            <p class="lead">Your profile is incomplete. Please complete it on your <strong><a href="/account/profile">profile</a></strong> page to help us get you know better.</p>
+        }
+        <p class="lead">You have @Model.PapersSubmitted paper(s) submitted. You can add, edit and delete your suggestions on <strong><a href="/papers">papers</a></strong> page. We will review all of them at once at the end of CFP which will be on <strong>15th of June</strong>. You'll get an answer by the end of June.</p>
+
+        <p class="lead">Fingers crossed for inspirational and informational sessions you have prepared!</p>
     </p>
 </div>

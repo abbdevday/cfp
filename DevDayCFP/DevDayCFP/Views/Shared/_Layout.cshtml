@@ -74,6 +74,16 @@
             <section class="section section-padded">
                 <div class="container-fluid">
                     <div class="section-header">
+                        @if (ViewBag.Page.Value.IsAuthenticated && Context.CurrentUser.Claims.Contains(DevDayCFP.Common.Consts.Claims.Admin))
+                        {
+                            <h1>
+                                <small class="light">Users</small>
+                                <strong>@ViewBag.Page.Value.NoOfUsers</strong>
+                                <small class="light">&</small>
+                                <strong>@ViewBag.Page.Value.NoOfPapers</strong>
+                                <small class="light">Papers</small>
+                            </h1>
+                        }
                     </div>
                 </div>
             </section>

@@ -15,11 +15,16 @@ namespace DevDayCFP.Modules
 			Get["/"] = _ =>
 			{
 				var user = dataStore.GetUserById(Context.CurrentUser.GetId());
-				var papers = dataStore.GetPapersByUser(Context.CurrentUser.GetId()).Count;
-				return View["Index", new HomeViewModel() {
-					ProfileComplete = user != null ? user.ProfileComplete : false,
-					PapersSubmitted = papers
-				}];
+			    if (user != null && user.IsAuthenticated())
+			    {
+                    var papers = dataStore.GetPapersByUser(user.Id).Count;
+                    return View["Index", new HomeViewModel()
+                    {
+                        ProfileComplete = user.ProfileComplete,
+                        PapersSubmitted = papers
+                    }];
+			    }
+			    return View["Welcome"];
 			};
             Get["/activated"] = _ =>
             {

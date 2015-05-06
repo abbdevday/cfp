@@ -184,6 +184,7 @@
     <Content Include="Views\Home\Activated.cshtml" />
     <Content Include="Views\Home\KeyFailed.cshtml" />
     <Content Include="Views\Home\Inactive.cshtml" />
+    <Content Include="Views\Home\Welcome.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
