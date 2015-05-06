@@ -1,23 +1,15 @@
 ﻿@using System
 @inherits Nancy.ViewEngines.Razor.NancyRazorViewBase<DevDayCFP.ViewModels.HomeViewModel>
 
-<div class="row-fluid">
+<div class="container-fluid">
     <div class="section-header">
-        <h1>Call For Papers</h1>
+        <h1>Call <small class="light">for Papers</small></h1>
     </div>
-</div>
-<div class="row-fluid">
-    <div class="col-lg-offset-1 col-md-10 center">
-        <p class="lead">
-            You can submit your session proposal(s) to DevDay 2015 on this site.
-        </p>
-        <h3>You can submit your session proposal to DevDay 2015 here. We will review all submissions and get back to you no later than on 31st of May.</h3>
-        <h3>For all accepted speakers we offer travel and accomodation if needed. We can't offer refunds for lightning talks speakers though.</h3>
-        <h3>We are waiting for all your inspiring and informational talks!</h3>
-        @if(!Model.ProfileComplete) {
-            <h3>Hey, complete your profile please!</h3>
-        }
-        <h3>You submitted @Model.PapersSubmitted paper(s) so far!</h3>
-        <h4>Please note that we want to give opportunity to speakers who had never been to DevDay therefore we sadly won't accept submissions from last years' speakers.</h4>
-    </div>
+    <p class="lead">
+        You can submit your session proposal(s) to DevDay 2015 on this site.
+        We will review all submissions and get back to you no later than on 31st of May.
+        For all accepted speakers we offer travel and accomodation if needed. We can't offer refunds for lightning talks speakers though.
+        We are waiting for all your inspiring and informational talks!
+        Please note that we want to give opportunity to speakers who had never been to DevDay therefore we sadly won't accept submissions from last years' speakers.
+    </p>
 </div>
