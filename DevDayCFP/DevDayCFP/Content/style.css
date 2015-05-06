@@ -74,6 +74,7 @@
 
 .navbar-brand {
     height: auto;
+    margin-left: -16px !important;
 }
 
     .navbar-brand img {
@@ -337,6 +338,130 @@ button span.glyphicon {
         color: #5bc0de;
     }
 
+/* Media Queries
+-------------------------------------------------- */
+/* Small desktop */
+@media (max-width: 979px) {
+    body {
+        padding-top: 0;
+    }
+
+    .container {
+        width: 100%;
+        margin: 0;
+    }
+
+    .small-screen-center {
+        margin-left: auto;
+        margin-right: auto;
+        text-align: center !important;
+    }
+
+    .navbar > .container .navbar-brand, .navbar > .container-fluid .navbar-brand {
+        margin-left: -1px;
+    }
+}
+
+/* Landscape phone to small desktop & porttrait tablet - */
+@media (max-width: 767px) {
+  h1 {
+    font-size: 24px;
+    line-height: 36px;
+  }
+
+  h1 small {
+    font-size: 16px;
+  }
+
+  h2 {
+    font-size: 21px;
+    line-height: 36px;
+  }
+
+  h2 small {
+    font-size: 14px;
+  }
+
+  h3 {
+    font-size: 18px;
+    line-height: 36px;
+  }
+
+  h3 small {
+    font-size: 14px;
+  }
+
+  .super {
+    font-size: 48px;
+  }
+
+  .hyper {
+    font-size: 70px;
+  }
+
+  /* -- 9.4.2 Layout -- */
+  body {
+    padding: 0;
+  }
+
+  .container-fluid {
+    padding: 0 20px;
+  }
+
+  .nav > li > a {
+    font-size: 16px;
+  }
+
+  .sidebar {
+    margin-top: 24px;
+    padding-top: 24px;
+    border-top: 1px solid #f2f2f4;
+  }
+
+}
+
+/* - Up to portrait phone  - */
+@media (max-width: 320px) {
+  body {
+    font-size: 14px;
+  }
+
+  h1 {
+    font-size: 21px;
+    line-height: 24px;
+  }
+
+  h1 small {
+    font-size: 14px;
+  }
+
+  h2 {
+    font-size: 18px;
+    line-height: 24px;
+  }
+
+  h2 small {
+    font-size: 12px;
+  }
+
+  h3 {
+    font-size: 16px;
+    line-height: 24px;
+  }
+
+  h3 small {
+    font-size: 11px;
+  }
+
+  .super {
+    font-size: 24px;
+    line-height: 1;
+  }
+
+  .hyper {
+    font-size: 36px;
+  }
+}
 
 /* Cropit
 -------------------------------------------------- */
