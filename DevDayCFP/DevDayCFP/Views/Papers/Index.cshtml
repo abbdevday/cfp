@@ -60,17 +60,16 @@
 @section scripts{
     <script type="text/javascript">
         $(document).ready(function () {
-            $('#deleteModal').on('show.bs.modal', function(event) {
-                var button = $(event.relatedTarget);
-                var id = button.data('paperid');
-                var title = button.data('papertitle');
+            $('[data-toggle="modal"]').click(function () {
+                var id = $(this).data('paperid');
+                var title = $(this).data('papertitle');
 
-                var modal = $(this);
+                var modal = $('#deleteModal');
                 modal.find('#paperTitleInModal').text(title);
                 modal.find('#confirmDeletionButton').data('idtodelete', id);
             });
 
-            $('#confirmDeletionButton').click(function() {
+            $('#confirmDeletionButton').click(function () {
                 var id = $(this).data('idtodelete');
 
                 $.post("papers/delete/" + id, function () {
