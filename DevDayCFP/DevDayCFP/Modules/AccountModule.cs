@@ -104,6 +104,8 @@ namespace DevDayCFP.Modules
                     return View["Register", model];
                 }
 
+                var mailTemplate = this.RenderViewToString("MailTemplates/RegisterConfirmation");
+
                 string hostName = Context.Request.Url.SiteBase;
                 emailService.SendRegistrationEmail(userData, hostName);
 

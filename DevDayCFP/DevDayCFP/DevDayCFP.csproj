@@ -185,6 +185,9 @@
     <Content Include="Views\Home\KeyFailed.cshtml" />
     <Content Include="Views\Home\Inactive.cshtml" />
     <Content Include="Views\Home\Welcome.cshtml" />
+    <Content Include="Views\MailTemplates\RegisterConfirmation.cshtml" />
+    <Content Include="Views\MailTemplates\_ViewStart.cshtml" />
+    <Content Include="Views\Shared\_LayoutMail.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -204,6 +207,7 @@
     <Compile Include="Common\UserIdentityExtensions.cs" />
     <Compile Include="Extensions\DynamicExtensions.cs" />
     <Compile Include="Extensions\HtmlExtensions.cs" />
+    <Compile Include="Extensions\ModuleExtensions.cs" />
     <Compile Include="Extensions\ValidationExtensions.cs" />
     <Compile Include="DbMigrationRunner.cs" />
     <Compile Include="Migrations\DB04_AddShowOffFieldToUser.cs" />
