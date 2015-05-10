@@ -28,8 +28,8 @@
                         <td>@Model[i].Title</td>
                         <td>@Model[i].LastModificationDate.ToLocalTime()</td>
                         <td>
-                            <a class="btn btn-primary" href="/papers/edit/@Model[i].Id"><i class="icon-edit"></i>&nbsp;Edit</a>
-                            <a class="btn btn-danger" data-toggle="modal" data-target="#deleteModal" data-paperid="@Model[i].Id" data-papertitle="@Model[i].Title"><i class="icon-trash"></i>&nbsp;Delete</a>
+                            <a class="btn btn-mini btn-link" href="/papers/edit/@Model[i].Id"><i class="icon-edit flat-icon-primary"></i></a>
+                            <a class="btn btn-mini btn-link" data-toggle="modal" data-target="#deleteModal" data-paperid="@Model[i].Id" data-papertitle="@Model[i].Title"><i class="icon-trash flat-icon-danger"></i></a>
                         </td>
                     </tr>
                 }

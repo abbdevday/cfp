@@ -15,6 +15,14 @@
     display: block;
 }
 
+.flat-icon-danger {
+    color: #8d3a3a;
+}
+
+.flat-icon-primary {
+    color: #42516a;
+}
+
 
 /* Side notes for calling out things
 -------------------------------------------------- */
