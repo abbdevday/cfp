@@ -9,33 +9,35 @@
         <h1>Register</h1>
     </div>
 
-    <div class="span6 offset3">
-        <form method="post" data-parsley-validate>
-            @Html.ValidationSummary((List<ErrorViewModel>)ViewBag.Page.Value.Errors)
+    <div class="row-fluid">
+        <div class="span6 offset3">
+            <form method="post" data-parsley-validate>
+                @Html.ValidationSummary((List<ErrorViewModel>)ViewBag.Page.Value.Errors)
 
-            <div class="control-group">
-                <label for="UserName">Username *</label>
-                <input type="text" class="span4" name="UserName" value="@Model.UserName" required
-                       data-parsley-trigger="change focusout" />
-            </div>
-            <div class="control-group">
-                <label for="Email">Email *</label>
-                <input type="email" class="span4" name="Email" value="@Model.Email"
-                       data-parsley-type="email" data-parsley-trigger="change focusout" required />
-            </div>
-            <div class="control-group">
-                <label for="Password">Password *</label>
-                <input type="password" class="span4" name="Password" id="Password" value="@Model.Password"
-                       required data-parsley-trigger="change focusout" data-parsley-length="[8, 128]" maxlength="128" />
-            </div>
-            <div class="control-group">
-                <label for="ConfirmPassword">Confirm Password *</label>
-                <input type="password" class="span4" name="ConfirmPassword" value="@Model.ConfirmPassword"
-                       data-parsley-equalto="#Password" data-parsley-trigger="change focusout" required />
-            </div>
-            <p>
-                <button type="submit" class="btn btn-success">Register</button>
-            </p>
-        </form>
+                <div class="control-group">
+                    <label for="UserName">Username *</label>
+                    <input type="text" class="span12" name="UserName" value="@Model.UserName" required
+                           data-parsley-trigger="change focusout" />
+                </div>
+                <div class="control-group">
+                    <label for="Email">Email *</label>
+                    <input type="email" class="span12" name="Email" value="@Model.Email"
+                           data-parsley-type="email" data-parsley-trigger="change focusout" required />
+                </div>
+                <div class="control-group">
+                    <label for="Password">Password *</label>
+                    <input type="password" class="span12" name="Password" id="Password" value="@Model.Password"
+                           required data-parsley-trigger="change focusout" data-parsley-length="[8, 128]" maxlength="128" />
+                </div>
+                <div class="control-group">
+                    <label for="ConfirmPassword">Confirm Password *</label>
+                    <input type="password" class="span12" name="ConfirmPassword" value="@Model.ConfirmPassword"
+                           data-parsley-equalto="#Password" data-parsley-trigger="change focusout" required />
+                </div>
+                <p>
+                    <button type="submit" class="btn btn-success">Register</button>
+                </p>
+            </form>
+        </div>
     </div>
 </div>

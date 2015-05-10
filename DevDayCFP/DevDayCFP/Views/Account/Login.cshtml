@@ -7,30 +7,32 @@
     <div class="section-header">
         <h1>Login</h1>
     </div>
-    <div class="span6 offset3">
-        <form method="post" action="" data-parsley-validate>
+    <div class="row-fluid">
+        <div class="span6 offset3">
+            <form method="post" action="" data-parsley-validate>
 
-            @Html.ValidationSummary((List<ErrorViewModel>)ViewBag.Page.Value.Errors)
+                @Html.ValidationSummary((List<ErrorViewModel>)ViewBag.Page.Value.Errors)
 
 
-            <div class="control-group">
-                <label for="Username">Username *</label>
-                <input type="text" class="span4" name="Username" placeholder="Username" value="@Model.UserName" required>
-            </div>
-            <div class="control-group">
-                <label for="Password">Password *</label>
-                <input type="password" class="span4" name="Password" value="@Model.Password" placeholder="Password" required>
-            </div>
+                <div class="control-group">
+                    <label for="Username">Username *</label>
+                    <input type="text" class="span12" name="Username" placeholder="Username" value="@Model.UserName" required>
+                </div>
+                <div class="control-group">
+                    <label for="Password">Password *</label>
+                    <input type="password" class="span12" name="Password" value="@Model.Password" placeholder="Password" required>
+                </div>
 
-            <div class="checkbox">
-                <label>
-                    @Html.CheckBox("RememberMe", (bool)Model.RememberMe) Remember Me
-                </label>
-            </div>
-            <button type="submit" class="btn btn-success">Submit</button>
-            <p class="margin-top-30">
-                Please enter your username and password or <strong><a href="/account/register">register</a></strong> if you don't have an account.
-            </p>
-        </form>
+                <div class="checkbox">
+                    <label>
+                        @Html.CheckBox("RememberMe", (bool)Model.RememberMe) Remember Me
+                    </label>
+                </div>
+                <button type="submit" class="btn btn-success">Submit</button>
+                <p class="margin-top-30">
+                    Please enter your username and password or <strong><a href="/account/register">register</a></strong> if you don't have an account.
+                </p>
+            </form>
+        </div>
     </div>
 </div>
