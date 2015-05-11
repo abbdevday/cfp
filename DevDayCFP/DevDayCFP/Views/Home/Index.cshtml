@@ -6,10 +6,10 @@
         <h1>Call <small class="light">for Papers</small></h1>
     </div>
         @if (!@Model.ProfileComplete) {
-            <p class="lead">Your profile is incomplete. Please complete it on your <strong><a href="/account/profile">profile</a></strong> page to help us get you know better.</p>
+            <p class="lead">Your details are incomplete. Please complete them on your <strong><a href="/account/profile">profile</a></strong> page to help us get to know you better.</p>
         }
-        <p class="lead">You have @Model.PapersSubmitted paper(s) submitted. You can add, edit and delete your suggestions on <strong><a href="/papers">papers</a></strong> page. We will review all of them at the end of CFP which will be on <strong>15th of June</strong>. You'll get an answer by the end of June.</p>
+        <p class="lead">You have @Model.PapersSubmitted @(Model.PapersSubmitted == 1 ? "paper" : "papers") submitted. You can add, edit and delete your submissions on <strong><a href="/papers">papers</a></strong> page. We will review all of them after the CFP is closed on the <strong>15th of June</strong>. You'll get an answer by the end of June.</p>
 
-        <p class="lead">We keep our fingers crossed for inspirational and informational sessions you have prepared!</p>
+        <p class="lead">We keep our fingers crossed for alle the inspirational and informative sessions you have prepared!</p>
     </p>
 </div>
