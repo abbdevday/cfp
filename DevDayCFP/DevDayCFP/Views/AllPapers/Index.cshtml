@@ -1,48 +1,50 @@
 ﻿@using System.Linq
 @inherits Nancy.ViewEngines.Razor.NancyRazorViewBase<System.Collections.Generic.IList<DevDayCFP.Models.Paper>>
 
-<div class="section-header">
-    <h1>Submitted Papers</h1>
-</div>
-
-<div class="row" id="papers">
-    <div class="row">
-        <div class="col-md-offset-1 col-md-10">
-            <form class="form-inline pull-right">
-                <input class="form-control search" placeholder="Search" />
-                <button type="button" class="btn btn-primary sort" data-sort="name">Sort by name</button>
-                <button type="button" class="btn btn-primary sort" data-sort="title">Sort by title</button>
-            </form>
-        </div>
+<div class="container-fluid">
+    <div class="section-header">
+        <h1>Submitted <small class="light">Papers</small></h1>
     </div>
 
-    <div class="row margin-top-30">
-        <div class="col-md-offset-1 col-md-10">
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th class="col-md-1">Lp.</th>
-                        <th class="col-md-2">User</th>
-                        <th class="col-md-5">Title</th>
-                        <th class="col-md-2">Last modification</th>
-                        <th class="col-md-2">Actions</th>
-                    </tr>
-                </thead>
-                <tbody class="list">
-                    @for (int i = 0; i < Model.Count(); i++)
-                    {
+    <div class="row-fluid" id="papers">
+        <div class="row-fluid">
+            <div class="span12">
+                <form class="form-inline pull-right">
+                    <input class="control-group search" placeholder="Search" />
+                    <button type="button" class="btn btn-primary sort" data-sort="name">Sort by name</button>
+                    <button type="button" class="btn btn-primary sort" data-sort="title">Sort by title</button>
+                </form>
+            </div>
+        </div>
+
+        <div class="row-fluid margin-top-30">
+            <div class="span12">
+                <table class="table">
+                    <thead>
                         <tr>
-                            <td>@(i + 1).</td>
-                            <td class="name">@Model[i].User.UserName</td>
-                            <td class="title text-capitalize">@Model[i].Title</td>
-                            <td>@Model[i].LastModificationDate.ToLocalTime()</td>
-                            <td>
-                                <a class="btn btn-xs btn-info" href="/allpapers/details/@Model[i].Id"><span class="glyphicon glyphicon-search" aria-hidden="true"></span>&nbsp;Details</a>
-                            </td>
+                            <th>#</th>
+                            <th>User</th>
+                            <th>Title</th>
+                            <th>Last modification</th>
+                            <th>Actions</th>
                         </tr>
-                    }
-                </tbody>
-            </table>
+                    </thead>
+                    <tbody class="list">
+                        @for (int i = 0; i < Model.Count(); i++)
+                        {
+                            <tr>
+                                <td>@(i + 1).</td>
+                                <td class="name">@Model[i].User.UserName</td>
+                                <td class="title text-capitalize">@Model[i].Title</td>
+                                <td>@Model[i].LastModificationDate.ToLocalTime()</td>
+                                <td>
+                                    <a class="" href="/allpapers/details/@Model[i].Id"><i class="icon-folder-open"></i></a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
 </div>
