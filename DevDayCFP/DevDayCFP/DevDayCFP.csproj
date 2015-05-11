@@ -113,7 +113,10 @@
     <Content Include="Content\fonts\social\fontawesome-social-webfont.svg" />
     <Content Include="Content\margins.css" />
     <Content Include="Content\parsley.css" />
+    <Content Include="Content\responsive.css" />
     <Content Include="Content\style.css" />
+    <Content Include="Content\theme-custom.css" />
+    <Content Include="Content\theme.css" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Icon.png" />
     <Content Include="Images\abb.jpg" />
