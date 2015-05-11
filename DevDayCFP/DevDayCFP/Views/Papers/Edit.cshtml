@@ -24,7 +24,7 @@
                     <div class="control-group">
                         <label for="Title">Title *</label>
                         <input type="text" name="Title" class="span12" value="@Model.Title" required
-                               data-parsley-trigger="change focusout" placeholder="Let it shine"/>
+                               data-parsley-trigger="change focusout" placeholder="Let it shine!"/>
                     </div>
                 </div>
 
@@ -32,7 +32,7 @@
                     <div class="control-group">
                         <label for="Level">Level *</label>
                         <input type="text" class="span12" name="Level" value="@Model.Level" required
-                               data-parsley-trigger="change focusout" placeholder="Beginner? Advanced?"/>
+                               data-parsley-trigger="change focusout" placeholder="Beginner? Advanced? Rockstar?"/>
                     </div>
                     <div class="control-group">
                         <label></label>
@@ -47,12 +47,12 @@
                 <div class="control-group">
                     <label for="Abstract">Abstract *</label>
                     <textarea rows="6" class="span12" type="text" name="Abstract" value="@Model.Abstract"
-                              data-parsley-trigger="change focusout" required placeholder="What's the subject ?">@Model.Abstract</textarea>
+                              data-parsley-trigger="change focusout" required placeholder="What's your talk about?">@Model.Abstract</textarea>
                 </div>
 
 
                 <div class="control-group">
-                    <label for="Justification">Tell us why this subject may be inspirational</label>
+                    <label for="Justification">Why this subject may be inspirational (this information won't be public)</label>
                     <textarea rows="6" class="span12" type="text" name="Justification" value="@Model.Justification"
                               placeholder="Rock our world!"></textarea>
                 </div>
