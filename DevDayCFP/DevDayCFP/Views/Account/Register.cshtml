@@ -27,7 +27,9 @@
                 <div class="control-group">
                     <label for="Password">Password *</label>
                     <input type="password" class="span12" name="Password" id="Password" value="@Model.Password"
-                           required data-parsley-trigger="change focusout" data-parsley-length="[8, 128]" maxlength="128" />
+                           required data-parsley-trigger="change focusout" data-parsley-length="[8, 128]" maxlength="128"
+                           pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,128}$"
+                           data-parsley-pattern-message="Password must contain at least: one lowercase and one uppercase letter, one digit and be minimum 8 characters long" />
                 </div>
                 <div class="control-group">
                     <label for="ConfirmPassword">Confirm Password *</label>
