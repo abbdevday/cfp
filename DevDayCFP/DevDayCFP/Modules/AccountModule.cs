@@ -69,6 +69,23 @@ namespace DevDayCFP.Modules
 
             Get["/logout"] = parameters => this.LogoutAndRedirect("/");
 
+            Get["/remindpassword"] = parameters =>
+            {
+                if (Context.CurrentUser != null)
+                {
+                    return new RedirectResponse("/");
+                }
+                return View["RemindPassword"];
+            };
+
+            Post["/remindpassword"] = parameters =>
+            {
+                string email = Request.Form["Email"];
+
+                // todo send email with reset token
+
+                return View["RemindPasswordMessageSent"];
+            };
 
             Get["/register"] = parameters =>
             {
