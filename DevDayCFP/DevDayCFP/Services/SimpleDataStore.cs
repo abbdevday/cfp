@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Collections.Generic;
 using DevDayCFP.Common;
 using DevDayCFP.Extensions;
@@ -64,6 +65,12 @@ namespace DevDayCFP.Services
         public int GetPapersCount()
         {
             return _db.Papers.GetCount(_db.Papers.IsActive == true);
+        }
+
+        public Token GetLastToken(User user, TokenType type)
+        {
+            IList<Token> matchingTokens = _db.Tokens.WithUser().FindAllByUserIdAndTokenTypeAndIsActive(user.Id, type, true).ToList<Token>();
+            return matchingTokens.OrderByDescending(x => x.CreateDate).FirstOrDefault();
         }
 
         public IList<Paper> GetAllPapers()

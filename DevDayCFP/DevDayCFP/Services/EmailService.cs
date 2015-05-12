@@ -45,5 +45,27 @@ namespace DevDayCFP.Services
 
             smtpClient.Send(message);
         }
+
+        public void SendEmail(string email, string subject, string content)
+        {
+            var smtpClient = new SmtpClient(SmtpHost, Int32.Parse(SmtpPort));
+            smtpClient.DeliveryMethod = SmtpDeliveryMethod.Network;
+            smtpClient.UseDefaultCredentials = false;
+            smtpClient.Credentials = new NetworkCredential(SmtpUser, SmtpPass);
+            smtpClient.EnableSsl = true;
+
+            var message = new MailMessage
+            {
+                From = new MailAddress("cfp@devday.pl", "DevDay CFP"),
+                Subject = subject,
+                Body = content,
+                BodyEncoding = Encoding.UTF8,
+                IsBodyHtml = true
+            };
+
+            message.To.Add(new MailAddress(email));
+
+            smtpClient.Send(message);
+        }
     }
 }

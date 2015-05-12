@@ -69,6 +69,35 @@ namespace DevDayCFP.Modules
 
             Get["/logout"] = parameters => this.LogoutAndRedirect("/");
 
+            Get["/remindpassword"] = parameters =>
+            {
+                if (Context.CurrentUser != null)
+                {
+                    return new RedirectResponse("/");
+                }
+                return View["RemindPassword"];
+            };
+
+            Post["/remindpassword"] = parameters =>
+            {
+                string email = Request.Form["Email"];
+
+                var userData = dataStore.GetUserByUsernameOrEmail(null, email);
+                if (userData == null)
+                {
+                    ViewBag.Page.Value.Errors.Add(new ErrorViewModel
+                    {
+                        ErrorMessage = "Sorry, but we don't have any account with this email address",
+                        Name = "Email"
+                    });
+
+                    return View["RemindPassword"];
+                }
+                
+                SendResetPasswordToken(userData);
+
+                return View["RemindPasswordMessageSent"];
+            };
 
             Get["/register"] = parameters =>
             {
@@ -199,6 +228,11 @@ namespace DevDayCFP.Modules
                 }
                 return Response.AsRedirect("/keyfailed");
             };
+        }
+
+        private void SendResetPasswordToken(User userData)
+        {
+            
         }
 
         private static void SaveImageFromBase64Data(string avatarData, string filePath)
