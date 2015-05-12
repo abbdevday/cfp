@@ -133,10 +133,10 @@ namespace DevDayCFP.Modules
                     return View["Register", model];
                 }
 
-                var mailTemplate = this.RenderViewToString("MailTemplates/RegisterConfirmation");
+                var registrationMail = this.RenderViewToString("MailTemplates/RegisterConfirmation");
 
                 string hostName = Context.Request.Url.SiteBase;
-                emailService.SendRegistrationEmail(userData, hostName, mailTemplate);
+                emailService.SendRegistrationEmail(userData, hostName, registrationMail);
 
                 DateTime? expiry = DateTime.Now.AddDays(7);
 

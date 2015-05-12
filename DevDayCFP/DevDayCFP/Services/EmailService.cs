@@ -22,7 +22,7 @@ namespace DevDayCFP.Services
             SmtpPass = ConfigurationManager.AppSettings["SMTP_Pass"];
         }
 
-        public void SendRegistrationEmail(User user, string hostname, string emailTemplate)
+        public void SendRegistrationEmail(User user, string hostname, string content)
         {
             var url = String.Format("{0}/account/activate/{1}", hostname, user.RegistrationToken);
 
@@ -36,7 +36,7 @@ namespace DevDayCFP.Services
             {
                 From = new MailAddress("cfp@devday.pl", "DevDay CFP"),
                 Subject = "DevDay 2015 CFP - Account Activation",
-                Body = emailTemplate,
+                Body = content,
                 BodyEncoding = Encoding.UTF8,
                 IsBodyHtml = true
             };
