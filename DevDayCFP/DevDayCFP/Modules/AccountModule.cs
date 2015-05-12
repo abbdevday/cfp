@@ -107,7 +107,7 @@ namespace DevDayCFP.Modules
                 var mailTemplate = this.RenderViewToString("MailTemplates/RegisterConfirmation");
 
                 string hostName = Context.Request.Url.SiteBase;
-                emailService.SendRegistrationEmail(userData, hostName);
+                emailService.SendRegistrationEmail(userData, hostName, mailTemplate);
 
                 DateTime? expiry = DateTime.Now.AddDays(7);
 
