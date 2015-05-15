@@ -1,5 +1,4 @@
 ﻿using System;
-using System.ComponentModel.DataAnnotations;
 
 namespace DevDayCFP.Models
 {
@@ -11,14 +10,18 @@ namespace DevDayCFP.Models
 
         public Guid TokenGuid { get; set; }
 
-        public TokenType TokenType { get; set; }
+        public TokenType Type { get; set; }
 
         public DateTime CreateDate { get; set; }
 
         public bool IsActive { get; set; }
 
-        public Token()
+        public Token(User user, TokenType tokenType)
         {
+            Id = Guid.NewGuid();
+            User = user;
+            Type = tokenType;
+            CreateDate = DateTime.UtcNow;
             IsActive = true;
         }
     }

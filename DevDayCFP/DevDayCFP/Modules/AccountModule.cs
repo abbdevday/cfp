@@ -17,9 +17,12 @@ namespace DevDayCFP.Modules
 {
     public class AccountModule : BaseModule
     {
+        private readonly IEmailService _emailService;
+
         public AccountModule(IDataStore dataStore, IEmailService emailService, IRootPathProvider pathProvider)
             : base("account", dataStore)
         {
+            _emailService = emailService;
             Get["/login"] = parameters =>
             {
                 if (Context.CurrentUser != null)
@@ -93,7 +96,7 @@ namespace DevDayCFP.Modules
 
                     return View["RemindPassword"];
                 }
-                
+
                 SendResetPasswordToken(userData);
 
                 return View["RemindPasswordMessageSent"];
@@ -129,7 +132,7 @@ namespace DevDayCFP.Modules
                         ErrorMessage = "Username or email already in use. Please choose different one.",
                         Name = "Username"
                     });
-                   
+
                     return View["Register", model];
                 }
 
@@ -216,7 +219,7 @@ namespace DevDayCFP.Modules
             {
                 this.RequiresAuthentication();
 
-                var loggedUser = (User) Context.CurrentUser;
+                var loggedUser = (User)Context.CurrentUser;
 
                 if (loggedUser.RegistrationToken == parameters.token)
                 {
@@ -232,7 +235,17 @@ namespace DevDayCFP.Modules
 
         private void SendResetPasswordToken(User userData)
         {
-            
+            var token = new Token(userData, TokenType.PasswordResetToken);
+            token.TokenGuid = Guid.NewGuid();
+
+            _dataStore.SaveToken(token);
+
+            var resetMailViewModel = new ResetPasswordMailViewModel();
+            resetMailViewModel.Token = token.TokenGuid;
+            resetMailViewModel.HostName = Context.Request.Url.SiteBase;
+
+            var mailBody = this.RenderViewToString("MailTemplates/ResetPassword", resetMailViewModel);
+            _emailService.SendEmail(userData.Email, "Reset password", mailBody);
         }
 
         private static void SaveImageFromBase64Data(string avatarData, string filePath)

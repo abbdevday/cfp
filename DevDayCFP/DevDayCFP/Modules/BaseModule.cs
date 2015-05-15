@@ -8,7 +8,7 @@ namespace DevDayCFP.Modules
 {
     public class BaseModule : NancyModule
     {
-        private readonly IDataStore _dataStore;
+        protected readonly IDataStore _dataStore;
 
         public BaseModule(IDataStore dataStore)
         {

@@ -1,4 +1,5 @@
 ﻿using System;
+using DevDayCFP.Models;
 using DevDayCFP.Modules;
 using DevDayCFP.Services;
 using FakeItEasy;
@@ -54,6 +55,36 @@ namespace DevDayCFP.Tests
             });
 
             Assert.Equal("RemindPassword", response.GetViewName());
+        }
+
+        [Fact]
+        public void Should_Save_New_Token_To_DB_With_Correct_User_On_ResetPassword()
+        {
+            var testUser = new User() { Id = Guid.NewGuid() };
+            A.CallTo(() => _dataStoreMock.GetUserByUsernameOrEmail(A<string>.Ignored, A<string>.Ignored)).Returns(testUser);
+
+            var response = _browser.Post("/account/remindpassword", (with) =>
+            {
+                with.HttpRequest();
+                with.FormValue("Email", "mail@test.pl");
+            });
+
+            A.CallTo(() => _dataStoreMock.SaveToken(A<Token>.That.Matches(t => ReferenceEquals(t.User, testUser)))).MustHaveHappened();
+        }
+
+        [Fact]
+        public void Should_Save_New_Token_To_DB_With_Correct_Type_On_ResetPassword()
+        {
+            var testUser = new User() { Id = Guid.NewGuid() };
+            A.CallTo(() => _dataStoreMock.GetUserByUsernameOrEmail(A<string>.Ignored, A<string>.Ignored)).Returns(testUser);
+
+            var response = _browser.Post("/account/remindpassword", (with) =>
+            {
+                with.HttpRequest();
+                with.FormValue("Email", "mail@test.pl");
+            });
+
+            A.CallTo(() => _dataStoreMock.SaveToken(A<Token>.That.Matches(t => t.Type == TokenType.PasswordResetToken))).MustHaveHappened();
         }
     }
 }

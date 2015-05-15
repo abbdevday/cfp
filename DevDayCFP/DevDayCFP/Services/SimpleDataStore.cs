@@ -73,6 +73,14 @@ namespace DevDayCFP.Services
             return matchingTokens.OrderByDescending(x => x.CreateDate).FirstOrDefault();
         }
 
+        public void SaveToken(Token token)
+        {
+            token.CreateDate = DateTime.UtcNow;
+            dynamic tokenRecord = token.ToDynamic();
+            tokenRecord.UserId = token.User.Id;
+            _db.Tokens.Upsert(tokenRecord);
+        }
+
         public IList<Paper> GetAllPapers()
         {
             IList<Paper> papers = _db.Papers.All().WithUser().ToList<Paper>();

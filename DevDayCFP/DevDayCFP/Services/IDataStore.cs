@@ -22,5 +22,6 @@ namespace DevDayCFP.Services
         int GetPapersCount();
 
         Token GetLastToken(User user, TokenType type);
+        void SaveToken(Token token);
     }
 }
