@@ -3,7 +3,6 @@ using System.Configuration;
 using System.Net;
 using System.Net.Mail;
 using System.Text;
-using DevDayCFP.Models;
 
 namespace DevDayCFP.Services
 {
@@ -22,50 +21,28 @@ namespace DevDayCFP.Services
             SmtpPass = ConfigurationManager.AppSettings["SMTP_Pass"];
         }
 
-        public void SendRegistrationEmail(User user, string hostname, string content)
-        {
-            var url = String.Format("{0}/account/activate/{1}", hostname, user.RegistrationToken);
-
-            var smtpClient = new SmtpClient(SmtpHost, Int32.Parse(SmtpPort));
-            smtpClient.DeliveryMethod = SmtpDeliveryMethod.Network;
-            smtpClient.UseDefaultCredentials = false;
-            smtpClient.Credentials = new NetworkCredential(SmtpUser, SmtpPass);
-            smtpClient.EnableSsl = true;
-
-            var message = new MailMessage
-            {
-                From = new MailAddress("cfp@devday.pl", "DevDay CFP"),
-                Subject = "DevDay 2015 CFP - Account Activation",
-                Body = content,
-                BodyEncoding = Encoding.UTF8,
-                IsBodyHtml = true
-            };
-
-            message.To.Add(new MailAddress(user.Email));
-
-            smtpClient.Send(message);
-        }
-
         public void SendEmail(string email, string subject, string content)
         {
-            var smtpClient = new SmtpClient(SmtpHost, Int32.Parse(SmtpPort));
-            smtpClient.DeliveryMethod = SmtpDeliveryMethod.Network;
-            smtpClient.UseDefaultCredentials = false;
-            smtpClient.Credentials = new NetworkCredential(SmtpUser, SmtpPass);
-            smtpClient.EnableSsl = true;
-
-            var message = new MailMessage
+            using (var smtpClient = new SmtpClient(SmtpHost, Int32.Parse(SmtpPort)))
             {
-                From = new MailAddress("cfp@devday.pl", "DevDay CFP"),
-                Subject = subject,
-                Body = content,
-                BodyEncoding = Encoding.UTF8,
-                IsBodyHtml = true
-            };
+                smtpClient.DeliveryMethod = SmtpDeliveryMethod.Network;
+                smtpClient.UseDefaultCredentials = false;
+                smtpClient.Credentials = new NetworkCredential(SmtpUser, SmtpPass);
+                smtpClient.EnableSsl = true;
 
-            message.To.Add(new MailAddress(email));
+                var message = new MailMessage
+                {
+                    From = new MailAddress("cfp@devday.pl", "DevDay CFP"),
+                    Subject = subject,
+                    Body = content,
+                    BodyEncoding = Encoding.UTF8,
+                    IsBodyHtml = true
+                };
 
-            smtpClient.Send(message);
+                message.To.Add(new MailAddress(email));
+
+                smtpClient.Send(message);
+            }
         }
     }
 }

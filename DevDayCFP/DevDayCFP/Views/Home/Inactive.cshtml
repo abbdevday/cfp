@@ -5,6 +5,11 @@
         <h1>Account <small class="light">Inactive</small></h1>
     </div>
     <p class="lead">
-        The account activation email should already be waiting in your inbox.
+        The account activation email should already be waiting in your inbox.<br/>
+        If that's not the case, click button below and we will try to send it to you again.
     </p>
+    
+    <form method="post" action="/account/inactive">
+        <button type="submit" class="btn btn-success">Send it again!</button>
+    </form>
 </div>

@@ -1,9 +1,14 @@
-﻿@{
+﻿@inherits Nancy.ViewEngines.Razor.NancyRazorViewBase<DevDayCFP.ViewModels.RegisterMailViewModel>
+@using System
+@{
     Layout = "Views/Shared/_LayoutMail.cshtml";
 }
 
-<html>
-    <body>
-        <h3>Test</h3>
-    </body>
-</html>
+@{
+    var url = String.Format("{0}/account/activate/{1}", Model.Hostname, Model.User.RegistrationToken);    
+}
+
+<h3>Follow the link to activate your account</h3>
+<p>
+    <a href="@url">@url</a>
+</p>

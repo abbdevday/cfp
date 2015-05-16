@@ -70,6 +70,25 @@ namespace DevDayCFP.Modules
                 return this.LoginAndRedirect(userGuid.Value, expiry, "/papers");
             };
 
+            Post["/inactive"] = parameters =>
+            {
+                if (Context.CurrentUser == null)
+                {
+                    return new RedirectResponse("/");
+                }
+
+                var user = (User)Context.CurrentUser;
+
+                var mailViewModel = new RegisterMailViewModel();
+                mailViewModel.User = user;
+                mailViewModel.Hostname = Context.Request.Url.SiteBase;
+                var registrationMailContent = this.RenderViewToString("MailTemplates/RegisterConfirmation", mailViewModel);
+
+                _emailService.SendEmail(user.Email, "DevDay 2015 CFP - Account Activation", registrationMailContent);
+
+                return new RedirectResponse("/");
+            };
+
             Get["/logout"] = parameters => this.LogoutAndRedirect("/");
 
             Get["/remindpassword"] = parameters =>
@@ -193,10 +212,12 @@ namespace DevDayCFP.Modules
                     return View["Register", model];
                 }
 
-                var registrationMail = this.RenderViewToString("MailTemplates/RegisterConfirmation");
+                var mailViewModel = new RegisterMailViewModel();
+                mailViewModel.User = userData;
+                mailViewModel.Hostname = Context.Request.Url.SiteBase;
+                var registrationMailContent = this.RenderViewToString("MailTemplates/RegisterConfirmation", mailViewModel);
 
-                string hostName = Context.Request.Url.SiteBase;
-                emailService.SendRegistrationEmail(userData, hostName, registrationMail);
+                _emailService.SendEmail(userData.Email, "DevDay 2015 CFP - Account Activation", registrationMailContent);
 
                 DateTime? expiry = DateTime.Now.AddDays(7);
 
