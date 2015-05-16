@@ -16,6 +16,11 @@ namespace DevDayCFP.Models
 
         public bool IsActive { get; set; }
 
+        public Token()
+        {
+            
+        }
+
         public Token(User user, TokenType tokenType)
         {
             Id = Guid.NewGuid();

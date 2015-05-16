@@ -86,5 +86,62 @@ namespace DevDayCFP.Tests
 
             A.CallTo(() => _dataStoreMock.SaveToken(A<Token>.That.Matches(t => t.Type == TokenType.PasswordResetToken))).MustHaveHappened();
         }
+
+        [Fact]
+        public void Should_Show_InvalidToken_Page_When_Token_NotFound()
+        {
+            var testGuid = Guid.NewGuid();
+
+            A.CallTo(() => _dataStoreMock.GetTokenById(testGuid)).Returns(null);
+
+            var response = _browser.Get("/account/resetpassword/" + testGuid, (with) =>
+            {
+                with.HttpRequest(); ;
+            });
+
+            Assert.Equal("RemindPasswordInvalidToken", response.GetViewName());
+        }
+
+        [Fact]
+        public void Should_Show_InvalidToken_Page_When_Token_NotActive()
+        {
+            var testGuid = Guid.NewGuid();
+            var testUser = new User() { Id = Guid.NewGuid() };
+            var testToken = new Token(testUser, TokenType.PasswordResetToken)
+            {
+                Id = testGuid,
+                IsActive = false
+            };
+
+            A.CallTo(() => _dataStoreMock.GetTokenById(testGuid)).Returns(testToken);
+
+            var response = _browser.Get("/account/resetpassword/" + testGuid, (with) =>
+            {
+                with.HttpRequest(); ;
+            });
+
+            Assert.Equal("RemindPasswordInvalidToken", response.GetViewName());
+        }
+
+        [Fact]
+        public void Should_Show_InvalidToken_Page_When_Token_Expired()
+        {
+            var testGuid = Guid.NewGuid();
+            var testUser = new User() { Id = Guid.NewGuid() };
+            var testToken = new Token(testUser, TokenType.PasswordResetToken)
+            {
+                Id = testGuid,
+                CreateDate = DateTime.UtcNow.AddDays(-1).AddMinutes(-1)
+            };
+
+            A.CallTo(() => _dataStoreMock.GetTokenById(testGuid)).Returns(testToken);
+
+            var response = _browser.Get("/account/resetpassword/" + testGuid, (with) =>
+            {
+                with.HttpRequest(); ;
+            });
+
+            Assert.Equal("RemindPasswordInvalidToken", response.GetViewName());
+        }
     }
 }

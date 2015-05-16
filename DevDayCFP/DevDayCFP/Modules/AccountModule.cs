@@ -102,6 +102,63 @@ namespace DevDayCFP.Modules
                 return View["RemindPasswordMessageSent"];
             };
 
+            Get["/resetpassword/{token}"] = parameters =>
+            {
+                if (Context.CurrentUser != null)
+                {
+                    return new RedirectResponse("/");
+                }
+
+                Guid tokenUID;
+                if (Guid.TryParse(parameters.token, out tokenUID))
+                {
+                    var token = _dataStore.FindTokenByContent(tokenUID);
+                    if (token != null && token.IsActive)
+                    {
+                        var timeDifference = DateTime.UtcNow - token.CreateDate;
+                        if (timeDifference < TimeSpan.FromDays(1))
+                        {
+                            var model = new ResetPasswordViewModel();
+                            model.UserId = token.User.Id;
+                            model.TokenId = token.Id;
+                            return View["RemindPasswordReset", model];
+                        }
+                    }
+                }
+
+                return View["RemindPasswordInvalidToken"];
+            };
+
+            Post["/resetpassword/{token}"] = parameters =>
+            {
+                var model = this.Bind<ResetPasswordViewModel>();
+                var result = this.Validate(model);
+
+                if (!result.IsValid)
+                {
+                    var errorViewModels = result.AsErrorViewModels();
+                    ViewBag.Page.Value.Errors.AddRange(errorViewModels);
+
+                    return View["RemindPasswordReset", model];
+                }
+
+                var user = _dataStore.GetUserById(model.UserId);
+                user.Password = Helpers.EncodePassword(model.Password);
+
+                var token = _dataStore.GetTokenById(model.TokenId);
+                token.IsActive = false;
+
+                using (var transaction = _dataStore.DatabaseObject.BeginTransaction())
+                {
+                    _dataStore.SaveUser(user);
+                    _dataStore.SaveToken(token);
+
+                    transaction.Commit();
+                }
+
+                return new RedirectResponse("/Account/Login");
+            };
+
             Get["/register"] = parameters =>
             {
                 var registerModel = new RegisterViewModel();

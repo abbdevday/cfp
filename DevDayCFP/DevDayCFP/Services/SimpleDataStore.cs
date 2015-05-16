@@ -12,6 +12,11 @@ namespace DevDayCFP.Services
     {
         private readonly dynamic _db = Database.OpenNamedConnection("DefaultConnection");
 
+        public dynamic DatabaseObject
+        {
+            get { return _db; }
+        }
+
         public User GetUserById(Guid identifier)
         {
             User user = _db.Users.Get(identifier);
@@ -71,6 +76,18 @@ namespace DevDayCFP.Services
         {
             IList<Token> matchingTokens = _db.Tokens.WithUser().FindAllByUserIdAndTokenTypeAndIsActive(user.Id, type, true).ToList<Token>();
             return matchingTokens.OrderByDescending(x => x.CreateDate).FirstOrDefault();
+        }
+
+        public Token FindTokenByContent(Guid id)
+        {
+            IList<Token> tokens = _db.Tokens.FindAllByTokenGuid(id).WithUser().ToList<Token>();
+            return tokens.FirstOrDefault();
+        }
+
+        public Token GetTokenById(Guid id)
+        {
+            Token tokens = _db.Tokens.WithUser().Get(id);
+            return tokens;
         }
 
         public void SaveToken(Token token)

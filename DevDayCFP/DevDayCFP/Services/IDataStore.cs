@@ -1,12 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using DevDayCFP.Models;
-using Nancy.Security;
 
 namespace DevDayCFP.Services
 {
     public interface IDataStore
     {
+        dynamic DatabaseObject { get; }
+
         User GetUserById(Guid identifier);
         User GetUserByLoginData(string userName, string password);
         User GetUserByUsernameOrEmail(string username, string email);
@@ -21,7 +22,8 @@ namespace DevDayCFP.Services
         int GetUsersCount();
         int GetPapersCount();
 
-        Token GetLastToken(User user, TokenType type);
+        Token GetTokenById(Guid id);
+        Token FindTokenByContent(Guid id);
         void SaveToken(Token token);
     }
 }
