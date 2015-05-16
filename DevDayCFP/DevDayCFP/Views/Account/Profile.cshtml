@@ -110,6 +110,8 @@
 
             $('#image-cropper').cropit({
                 imageBackground: false,
+                previewSize: { width: 100, height: 100 },
+                exportZoom: 2,
                 onFileChange: function () { }
             });
         });
