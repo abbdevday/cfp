@@ -3,6 +3,7 @@ using DevDayCFP.Models;
 using DevDayCFP.Services;
 using DevDayCFP.ViewModels;
 using Nancy;
+using Nancy.Security;
 
 namespace DevDayCFP.Modules
 {
@@ -25,6 +26,10 @@ namespace DevDayCFP.Modules
 
         private void SetupModelDefaults()
         {
+#if !DEBUG
+            // TODO: HI uncomment when SSL cert will be available
+            //this.RequiresHttps();
+#endif
             Before += ctx =>
             {
                 int noOfUsers = _dataStore.GetUsersCount();
