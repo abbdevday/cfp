@@ -30,27 +30,25 @@ namespace DevDayCFP
             _logger.Info("Application starting");
             try
             {
+                var connectionString = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
 
-            
-            var connectionString = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
+                DbMigrationRunner.MigrateToLatest(connectionString);
 
-            DbMigrationRunner.MigrateToLatest(connectionString);
-
-            _logger.Info("Migrations applied if needed");
+                _logger.Info("Migrations applied if needed");
 
 
-            base.ApplicationStartup(container, pipelines);
+                base.ApplicationStartup(container, pipelines);
 
-            var cryptographyConfiguration = GetCryptographyConfiguration();
+                var cryptographyConfiguration = GetCryptographyConfiguration();
 
-            var formsAuthConfiguration = new FormsAuthenticationConfiguration
-            {
+                var formsAuthConfiguration = new FormsAuthenticationConfiguration
+                {
                     CryptographyConfiguration = cryptographyConfiguration,
                     RedirectUrl = "~/account/login",
                     UserMapper = container.Resolve<IUserMapper>(),
                 };
 
-            FormsAuthentication.Enable(pipelines, formsAuthConfiguration);
+                FormsAuthentication.Enable(pipelines, formsAuthConfiguration);
             }
             catch (Exception exp)
             {
