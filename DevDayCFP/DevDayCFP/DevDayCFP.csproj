@@ -104,6 +104,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
+    <Content Include="Content\fancybox.css" />
     <Content Include="Content\favicon.ico" />
     <Content Include="Content\font-awesome-all.css" />
     <Content Include="Content\fonts.css" />
