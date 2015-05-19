@@ -27,8 +27,7 @@ namespace DevDayCFP.Modules
         private void SetupModelDefaults()
         {
 #if !DEBUG
-            // TODO: HI uncomment when SSL cert will be available
-            //this.RequiresHttps();
+            this.RequiresHttps();
 #endif
             Before += ctx =>
             {
