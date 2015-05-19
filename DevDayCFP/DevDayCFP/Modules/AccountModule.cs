@@ -233,7 +233,7 @@ namespace DevDayCFP.Modules
 
                 string avatarPath = !String.IsNullOrEmpty(userEntity.AvatarPath)
                                 ? String.Format("/Images/Avatars/{0}/{1}", userEntity.Id, userEntity.AvatarPath)
-                                : String.Format("http://www.gravatar.com/avatar/{0}?s=80&d=mm", userEntity.EmailHash.ToLower());
+                                : String.Format("https://www.gravatar.com/avatar/{0}?s=80&d=mm", userEntity.EmailHash.ToLower());
 
                 ViewBag.AvatarPath = avatarPath;
 
