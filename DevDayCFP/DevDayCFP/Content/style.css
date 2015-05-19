@@ -2,6 +2,16 @@
     background: #f2f2f4 url(../images/background_grid.png);
 }
 
+.navbar .nav > li > a.btn {
+    color: white;
+    padding: 4px 12px;
+    margin-top: 25.5px;
+}
+
+.navbar .nav > li > a.btn-primary:hover {
+    background-color: #424a6a;
+}
+
 /* --------------------- */
 
 .profile-image {

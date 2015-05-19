@@ -153,6 +153,24 @@
     <script type="text/javascript" src="/Scripts/script.js"></script>
 
     <script type="text/javascript" src="/Scripts/parsley.js"></script>
+    
+    <script type="text/javascript" src="/Scripts/enquire.min.js"></script>
+    
+    <script type="text/javascript">
+        $(function() {
+            enquire.register("screen and (max-width:979px)", {
+                setup: function() {
+                    console.log("SETUP");
+                },
+                match: function() {
+                    $("#masthead .nav .navbar-btn").removeClass("btn btn-primary");
+                },
+                unmatch: function() {
+                    $("#masthead .nav .navbar-btn").addClass("btn btn-primary");
+                }
+            });
+        });
+    </script>
 
     @RenderSection("scripts", false)
 </body>
