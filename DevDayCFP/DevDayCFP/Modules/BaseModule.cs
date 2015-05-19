@@ -40,7 +40,7 @@ namespace DevDayCFP.Modules
                     var user = ((User)ctx.CurrentUser);
                     avatarPath = !String.IsNullOrEmpty(user.AvatarPath) 
                                 ? String.Format("/Images/Avatars/{0}/{1}", user.Id, user.AvatarPath )
-                                : String.Format("http://www.gravatar.com/avatar/{0}?s=40&d=mm", user.EmailHash.ToLower());
+                                : String.Format("https://www.gravatar.com/avatar/{0}?s=40&d=mm", user.EmailHash.ToLower());
 
                 }
 
