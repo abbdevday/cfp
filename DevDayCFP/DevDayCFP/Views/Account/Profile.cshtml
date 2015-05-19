@@ -29,7 +29,7 @@
 
                 <div class="row-fluid">
                     <div class="span4 margin-top-10">
-                        <label>Current Avatar</label>
+                        <label>Current Picture</label>
                         <img class="img-circle profile-image-big" src="@ViewBag.AvatarPath" />
                         <label class="margin-top-10" for="resetAvatar">
                             <input type="checkbox" name="resetAvatar" value="true" />
@@ -39,7 +39,7 @@
                     <div class="span2"></div>
                     <div class="span6 margin-top-10">
                         <div class="form-group">
-                            <label for="Avatar">Upload new Avatar</label>
+                            <label for="Avatar">Upload new Picture</label>
 
                             <div id="image-cropper">
                                 <div class="cropit-image-preview-container">
@@ -78,7 +78,7 @@
                 </div>
 
                 <div class="control-group">
-                    <label for="Bio">Bio *</label>
+                    <label for="Bio">Bio (to put on a website) *</label>
                     <textarea rows="6" type="text" class="span12" name="Bio" value="@Model.Bio"
                               data-parsley-trigger="change focusout" required>@Model.Bio</textarea>
                 </div>

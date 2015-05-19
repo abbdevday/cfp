@@ -20,7 +20,7 @@ namespace DevDayCFP.Models
         
         public string Justification { get; set; }
         
-        public bool IsThereLiveCoding { get; set; }
+        public bool LightningTalk { get; set; }
 
         public string EventName { get; set; }
 

@@ -4,7 +4,7 @@
 @using DevDayCFP.ViewModels
 
 @{
-    ViewBag.CheckboxString = Model.IsThereLiveCoding ? "checked" : ""; 
+    ViewBag.CheckboxString = Model.LightningTalk ? "checked" : ""; 
 }
 
 <div class="container-fluid">
@@ -32,13 +32,13 @@
                     <div class="control-group">
                         <label for="Level">Level *</label>
                         <input type="text" class="span12" name="Level" value="@Model.Level" required
-                               data-parsley-trigger="change focusout" placeholder="Beginner? Advanced? Rockstar?"/>
+                               data-parsley-trigger="change focusout" placeholder="Beginner? Advanced? Visionary? Tell us what you think"/>
                     </div>
                     <div class="control-group">
                         <label></label>
                         <div class="checkbox">
                             <label>
-                                <input type="checkbox" name="IsThereLiveCoding" value="true" @ViewBag.CheckboxString> Contains Live Coding ?
+                                <input type="checkbox" name="LightningTalk" value="true" @ViewBag.CheckboxString> Lightning talk (up to 15 minutes)
                             </label>
                         </div>
                     </div>
@@ -54,7 +54,7 @@
                 <div class="control-group">
                     <label for="Justification">Why this subject may be inspirational (this information won't be public)</label>
                     <textarea rows="6" class="span12" type="text" name="Justification" value="@Model.Justification"
-                              placeholder="Rock our world!"></textarea>
+                              placeholder="Tell us why someone would like to attend your session."></textarea>
                 </div>
 
 
