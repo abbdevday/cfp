@@ -67,7 +67,7 @@ namespace DevDayCFP.Modules
                     expiry = DateTime.Now.AddDays(30);
                 }
 
-                return this.LoginAndRedirect(userGuid.Value, expiry, "/papers");
+                return this.LoginAndRedirect(userGuid.Value, expiry);
             };
 
             Post["/inactive"] = parameters =>
