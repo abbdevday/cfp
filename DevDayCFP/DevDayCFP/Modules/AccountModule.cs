@@ -81,7 +81,7 @@ namespace DevDayCFP.Modules
 
                 var mailViewModel = new RegisterMailViewModel();
                 mailViewModel.User = user;
-                mailViewModel.Hostname = Context.Request.Url.SiteBase;
+                mailViewModel.Hostname = BuildHostname(Context.Request.Url);
                 var registrationMailContent = this.RenderViewToString("MailTemplates/RegisterConfirmation", mailViewModel);
 
                 _emailService.SendEmail(user.Email, "DevDay 2015 CFP - Account Activation", registrationMailContent);
@@ -214,7 +214,7 @@ namespace DevDayCFP.Modules
 
                 var mailViewModel = new RegisterMailViewModel();
                 mailViewModel.User = userData;
-                mailViewModel.Hostname = Context.Request.Url.SiteBase;
+                mailViewModel.Hostname = BuildHostname(Context.Request.Url);
                 var registrationMailContent = this.RenderViewToString("MailTemplates/RegisterConfirmation", mailViewModel);
 
                 _emailService.SendEmail(userData.Email, "DevDay 2015 CFP - Account Activation", registrationMailContent);
@@ -311,6 +311,16 @@ namespace DevDayCFP.Modules
             };
         }
 
+        private string BuildHostname(Url url)
+        {
+            var hostname = url.Scheme + url.HostName;
+            if(url.Port.HasValue && (url.Port.Value != 80 && url.Port.Value != 443))
+            {
+                hostname += ":" + url.Port;
+            }
+            return hostname;
+        }
+
         private void SendResetPasswordToken(User userData)
         {
             var token = new Token(userData, TokenType.PasswordResetToken);
@@ -320,7 +330,7 @@ namespace DevDayCFP.Modules
 
             var resetMailViewModel = new ResetPasswordMailViewModel();
             resetMailViewModel.Token = token.TokenGuid;
-            resetMailViewModel.HostName = Context.Request.Url.SiteBase;
+            resetMailViewModel.HostName = BuildHostname(Context.Request.Url);
 
             var mailBody = this.RenderViewToString("MailTemplates/ResetPassword", resetMailViewModel);
             _emailService.SendEmail(userData.Email, "Reset password", mailBody);
