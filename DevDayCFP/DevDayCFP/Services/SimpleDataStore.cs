@@ -100,7 +100,7 @@ namespace DevDayCFP.Services
 
         public IList<Paper> GetAllPapers()
         {
-            IList<Paper> papers = _db.Papers.All().OrderByUserId().OrderByTitle().WithUser().ToList<Paper>();
+            IList<Paper> papers = _db.Papers.All().WithUser().ToList<Paper>();
             return papers;
         }
     }
