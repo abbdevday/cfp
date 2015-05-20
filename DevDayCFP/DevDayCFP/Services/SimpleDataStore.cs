@@ -52,7 +52,7 @@ namespace DevDayCFP.Services
 
         public IList<Paper> GetPapersByUser(Guid userId)
         {
-            IList<Paper> papers = _db.Papers.FindAllByUserIdAndIsActive(userId, true).WithUser().ToList<Paper>();
+            IList<Paper> papers = _db.Papers.FindAllByUserIdAndIsActive(userId, true).OrderByTitle().WithUser().ToList<Paper>();
             return papers;
         }
 
@@ -100,7 +100,7 @@ namespace DevDayCFP.Services
 
         public IList<Paper> GetAllPapers()
         {
-            IList<Paper> papers = _db.Papers.All().WithUser().ToList<Paper>();
+            IList<Paper> papers = _db.Papers.All().OrderByUserId().OrderByTitle().WithUser().ToList<Paper>();
             return papers;
         }
     }
