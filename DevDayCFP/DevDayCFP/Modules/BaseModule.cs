@@ -26,9 +26,6 @@ namespace DevDayCFP.Modules
 
         private void SetupModelDefaults()
         {
-#if !DEBUG
-            this.RequiresHttps();
-#endif
             Before += ctx =>
             {
                 int noOfUsers = _dataStore.GetUsersCount();
