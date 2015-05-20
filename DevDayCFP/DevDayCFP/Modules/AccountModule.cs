@@ -313,7 +313,7 @@ namespace DevDayCFP.Modules
 
         private string BuildHostname(Url url)
         {
-            var hostname = url.Scheme + url.HostName;
+            var hostname = url.Scheme + "://" + url.HostName;
             if(url.Port.HasValue && (url.Port.Value != 80 && url.Port.Value != 443))
             {
                 hostname += ":" + url.Port;
