@@ -128,6 +128,7 @@
     <Content Include="Images\logo_2015.png" />
     <Content Include="Images\logo_2015.svg" />
     <Content Include="Images\plus-icon.png" />
+    <Content Include="Images\social_header.png" />
     <Content Include="Images\top-shadow.png" />
     <Content Include="packages.config" />
     <Content Include="Content\fonts\corp\fontawesome-corp-webfont.eot" />
