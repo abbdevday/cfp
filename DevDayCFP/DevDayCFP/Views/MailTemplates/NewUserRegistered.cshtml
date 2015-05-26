@@ -1,0 +1,8 @@
+﻿@inherits Nancy.ViewEngines.Razor.NancyRazorViewBase<DevDayCFP.ViewModels.NewUserRegisteredViewModel>
+@using System
+@{
+    Layout = "Views/Shared/_LayoutMail.cshtml";
+}
+
+<p>There's new user registered for CFP</p>
+<p>@Model.User.UserName (@Model.User.Email)</p>

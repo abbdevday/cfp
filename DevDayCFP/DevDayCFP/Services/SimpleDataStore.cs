@@ -35,6 +35,11 @@ namespace DevDayCFP.Services
             return user;
         }
 
+        public IList<User> GetAdmins()
+        {
+            return _db.Users.FindAllByClaimsList("User,Admin").ToList<User>();
+        }
+
         public void SaveUser(User userRecord)
         {
             userRecord.EmailHash = Helpers.CalculateMd5(userRecord.Email);

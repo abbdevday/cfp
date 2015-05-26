@@ -305,6 +305,13 @@ namespace DevDayCFP.Modules
                     user.AccountStatus = AccountStatus.Active;
                     dataStore.SaveUser(user);
 
+                    var newUserVm = new NewUserRegisteredViewModel {User = user};
+                    var admins = dataStore.GetAdmins();
+                    var adminEmails = admins.Select(x => x.Email);
+
+                    var mailBody = this.RenderViewToString("MailTemplates/NewUserRegistered", newUserVm);
+                    _emailService.SendEmail(adminEmails, "New user registered", mailBody);
+
                     return Response.AsRedirect("/activated");
                 }
                 return Response.AsRedirect("/keyfailed");
