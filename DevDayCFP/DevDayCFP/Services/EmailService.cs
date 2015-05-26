@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections;
+using System.Collections.Generic;
 using System.Configuration;
 using System.Net;
 using System.Net.Mail;
@@ -21,7 +23,7 @@ namespace DevDayCFP.Services
             SmtpPass = ConfigurationManager.AppSettings["SMTP_Pass"];
         }
 
-        public void SendEmail(string email, string subject, string content)
+        public void SendEmail(IEnumerable<string> emails, string subject, string content)
         {
             using (var smtpClient = new SmtpClient(SmtpHost, Int32.Parse(SmtpPort)))
             {
@@ -39,7 +41,10 @@ namespace DevDayCFP.Services
                     IsBodyHtml = true
                 };
 
-                message.To.Add(new MailAddress(email));
+                foreach (string email in emails)
+                {
+                    message.To.Add(new MailAddress(email));
+                }
 
                 smtpClient.Send(message);
             }

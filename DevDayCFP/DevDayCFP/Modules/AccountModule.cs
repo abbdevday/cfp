@@ -84,7 +84,7 @@ namespace DevDayCFP.Modules
                 mailViewModel.Hostname = BuildHostname(Context.Request.Url);
                 var registrationMailContent = this.RenderViewToString("MailTemplates/RegisterConfirmation", mailViewModel);
 
-                _emailService.SendEmail(user.Email, "DevDay 2015 CFP - Account Activation", registrationMailContent);
+                _emailService.SendEmail(new[] { user.Email }, "DevDay 2015 CFP - Account Activation", registrationMailContent);
 
                 return new RedirectResponse("/");
             };
@@ -217,7 +217,7 @@ namespace DevDayCFP.Modules
                 mailViewModel.Hostname = BuildHostname(Context.Request.Url);
                 var registrationMailContent = this.RenderViewToString("MailTemplates/RegisterConfirmation", mailViewModel);
 
-                _emailService.SendEmail(userData.Email, "DevDay 2015 CFP - Account Activation", registrationMailContent);
+                _emailService.SendEmail(new[] { userData.Email }, "DevDay 2015 CFP - Account Activation", registrationMailContent);
 
                 DateTime? expiry = DateTime.Now.AddDays(7);
 
@@ -333,7 +333,7 @@ namespace DevDayCFP.Modules
             resetMailViewModel.HostName = BuildHostname(Context.Request.Url);
 
             var mailBody = this.RenderViewToString("MailTemplates/ResetPassword", resetMailViewModel);
-            _emailService.SendEmail(userData.Email, "Reset password", mailBody);
+            _emailService.SendEmail(new[] { userData.Email }, "Reset password", mailBody);
         }
 
         private static void SaveImageFromBase64Data(string avatarData, string filePath)
