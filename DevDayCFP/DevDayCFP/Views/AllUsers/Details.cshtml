@@ -1,0 +1,41 @@
+﻿@using System.Linq
+@using System.Net.Configuration
+@inherits Nancy.ViewEngines.Razor.NancyRazorViewBase<DevDayCFP.Models.User>
+
+<div class="container-fluid">
+    <div class="section-header">
+        <h1>Registered <small class="light">User</small></h1>
+    </div>
+
+    <div class="row-fluid">
+        <div class="span10 offset1">
+            <a class="pull-right" href="/allusers">Back to users list</a>
+        </div>
+    </div>
+
+    <div class="row-fluid">
+        <div class="span6">
+            <h2>@Model.UserName</h2>
+            <p>Name: @Model.Name</p>
+            <p>Location: @Model.Location</p>
+            <p>Email: @Model.Email</p>
+            @{
+                var twitterHandle = Model.TwitterHandle;
+                if (twitterHandle.StartsWith("@"))
+                {
+                    twitterHandle = twitterHandle.Substring(1);
+                }
+
+                var twitterAddress = "https://twitter.com/" + twitterHandle;
+            }
+            <p>Twitter: <a href="@twitterAddress">@Model.TwitterHandle</a></p>
+            <p>Website: <a href="@Model.Website">@Model.Website</a></p>
+        </div>
+        <div class="span6">
+            <p>Bio</p>
+            <p>@Model.Bio</p>
+            <p>Show-off</p>
+            <p>@Model.ShowOff</p>
+        </div>
+    </div>
+</div>

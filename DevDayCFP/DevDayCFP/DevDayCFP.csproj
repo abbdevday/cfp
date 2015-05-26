@@ -228,6 +228,8 @@
     </Content>
     <Content Include="Views\MailTemplates\NewUserRegistered.cshtml" />
     <Content Include="Views\MailTemplates\NewPaperSubmitted.cshtml" />
+    <Content Include="Views\AllUsers\Index.cshtml" />
+    <Content Include="Views\AllUsers\Details.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -259,6 +261,7 @@
     <Compile Include="Models\Paper.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Modules\AccountModule.cs" />
+    <Compile Include="Modules\AllUsers.cs" />
     <Compile Include="Modules\BaseModule.cs" />
     <Compile Include="Modules\ErrorCodes.cs" />
     <Compile Include="Modules\HomeModule.cs" />
