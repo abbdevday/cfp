@@ -20,6 +20,7 @@ namespace DevDayCFP.Services
         Paper GetPaperById(Guid id);
 
         int GetUsersCount();
+        int GetUsersWithoutAdminPriviligesCount();
         int GetPapersCount();
 
         Token GetTokenById(Guid id);

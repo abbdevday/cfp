@@ -28,7 +28,7 @@ namespace DevDayCFP.Modules
         {
             Before += ctx =>
             {
-                int noOfUsers = _dataStore.GetUsersCount();
+                int noOfUsers = _dataStore.GetUsersWithoutAdminPriviligesCount();
                 int noOfPapers = _dataStore.GetPapersCount();
 
                 string avatarPath = String.Empty;

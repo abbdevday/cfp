@@ -67,6 +67,12 @@ namespace DevDayCFP.Services
             return _db.Users.GetCount();
         }
 
+        public int GetUsersWithoutAdminPriviligesCount()
+        {
+            return
+                _db.Users.GetCountByClaimsList("User");
+        }
+
         public int GetPapersCount()
         {
             return _db.Papers.GetCount(_db.Papers.IsActive == true);
