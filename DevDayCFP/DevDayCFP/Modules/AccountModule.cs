@@ -306,8 +306,7 @@ namespace DevDayCFP.Modules
                     dataStore.SaveUser(user);
 
                     var newUserVm = new NewUserRegisteredViewModel {User = user};
-                    var admins = dataStore.GetAdmins();
-                    var adminEmails = admins.Select(x => x.Email);
+                    var adminEmails = dataStore.GetAdmins().Select(x => x.Email);
 
                     var mailBody = this.RenderViewToString("MailTemplates/NewUserRegistered", newUserVm);
                     _emailService.SendEmail(adminEmails, "New user registered", mailBody);

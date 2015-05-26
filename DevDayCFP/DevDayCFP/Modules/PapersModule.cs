@@ -1,8 +1,10 @@
 ﻿using System;
+using System.Linq;
 using DevDayCFP.Common;
 using DevDayCFP.Extensions;
 using DevDayCFP.Models;
 using DevDayCFP.Services;
+using DevDayCFP.ViewModels;
 using Nancy;
 using Nancy.ModelBinding;
 using Nancy.Security;
@@ -12,8 +14,11 @@ namespace DevDayCFP.Modules
 {
     public class PapersModule : BaseModule
     {
-        public PapersModule(IDataStore dataStore) : base("papers", dataStore)
+        private readonly IEmailService _emailService;
+
+        public PapersModule(IDataStore dataStore, IEmailService emailService) : base("papers", dataStore)
         {
+            _emailService = emailService;
             this.RequiresAuthentication();
 
             Get["/"] = _ =>
@@ -40,6 +45,11 @@ namespace DevDayCFP.Modules
                 paper.User = (User)Context.CurrentUser;
                 paper.Id = Guid.NewGuid();
                 dataStore.SavePaper(paper);
+                var newPaperVm = new NewPaperSubmittedViewModel {Paper = paper};
+                var adminEmails = dataStore.GetAdmins().Select(x => x.Email);
+
+                var mailBody = this.RenderViewToString("MailTemplates/NewPaperSubmitted", newPaperVm);
+                _emailService.SendEmail(adminEmails, "New paper submitted", mailBody);
 
                 return Response.AsRedirect("/papers");
             };
