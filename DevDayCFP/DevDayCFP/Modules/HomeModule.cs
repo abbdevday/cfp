@@ -45,6 +45,8 @@ namespace DevDayCFP.Modules
 
                 return View["Inactive"];
             };
+
+            Get["/cfpclosed"] = _ => View["CFPClosed"];
         }
     }
 }

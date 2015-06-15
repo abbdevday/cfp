@@ -1,0 +1,201 @@
+﻿@using System.Linq
+<!DOCTYPE html>
+
+@{
+    Layout = null;
+    
+    const string cfpTitle = "DevDay 2015 Call for Papers";
+    const string cfpDescription = "You can submit your session proposals to DevDay 2015 on this site. We're looking for inspirational and informative talks on software development! You can take a look at previous editions of DevDay to get the feel of what we're searching for.";
+    const string cfpUrl = @"https://cfp.devday.pl/Images/social_header.png";  
+} 
+
+
+<html itemscope itemtype="http://schema.org/Article">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    
+    <meta itemprop="name" content="@cfpTitle">
+    <meta itemprop="description" content="@cfpDescription">
+    <meta itemprop="image" content="@cfpUrl">
+
+    <meta property="og:title" content="@cfpTitle" />
+    <meta property="og:description" content="@cfpDescription" />
+    <meta property="og:image" content="@cfpUrl" />
+    <meta property="og:url" content="https://cfp.devday.pl" />
+    
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@("@abbdevday")">
+    <meta name="twitter:creator" content="@("@biegal")">
+    <meta name="twitter:title" content="@cfpTitle">
+    <meta name="twitter:description" content="@cfpDescription">
+    <meta name="twitter:image" content="@cfpUrl">
+
+    <title>DevDay 2015 Call for Papers</title>
+
+    <link href="~/Content/favicon.ico" rel="shortcut icon">
+
+    <link href="~/Content/bootstrap.css" media="screen" rel="stylesheet" type="text/css" />
+    <link href="~/Content/responsive.css" media="screen" rel="stylesheet" type="text/css" />
+    <link href="~/Content/font-awesome-all.css" media="screen" rel="stylesheet" type="text/css" />
+    <link href="~/Content/fancybox.css" media="screen" rel="stylesheet" type="text/css" />
+    <link href="~/Content/theme.css?v=2" media="screen" rel="stylesheet" type="text/css" />
+    <link href="~/Content/theme-custom.css" media="screen" rel="stylesheet" type="text/css" />
+
+    <link href="~/Content/fonts.css" media="screen" rel="stylesheet" type="text/css" />
+
+    <link href="~/Content/style.css" media="screen" rel="stylesheet" type="text/css" />
+    <link href="~/Content/margins.css" media="screen" rel="stylesheet" type="text/css" />
+    <link href="~/Content/parsley.css" media="screen" rel="stylesheet" type="text/css" />
+</head>
+    <body>
+        <!-- Google Tag Manager -->
+        <noscript>
+            <iframe src="//www.googletagmanager.com/ns.html?id=GTM-K8MKR8"
+                    height="0" width="0" style="display:none;visibility:hidden"></iframe>
+        </noscript>
+        <script>
+            (function (w, d, s, l, i) {
+            w[l] = w[l] || []; w[l].push({
+            'gtm.start':
+            new Date().getTime(), event: 'gtm.js'
+            }); var f = d.getElementsByTagName(s)[0],
+            j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
+            '//www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
+            })(window, document, 'script', 'dataLayer', 'GTM-K8MKR8');
+        </script>
+        <!-- End Google Tag Manager -->
+
+    <div class="wrapper">
+        <header id="masthead">
+            <nav class="navbar navbar-static-top">
+                <div class="navbar-inner">
+                    <div class="container-fluid">
+                        <a class="btn btn-navbar" data-target=".nav-collapse" data-toggle="collapse">
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </a>
+                        <a href="/" class="brand">
+                            <img src="/images/logo_2015.svg" />
+                        </a>
+                    </div>
+                </div>
+            </nav>
+        </header>
+
+        <div id="content" role="main">
+            <section class="section section-alt section-padded">
+                <div class="container-fluid">
+                    @RenderBody()
+                </div>
+            </section>
+
+            <section class="section section-padded">
+                <div class="container-fluid">
+                    <div class="section-header">
+                        @if (ViewBag.Page.Value.IsAuthenticated && Context.CurrentUser.Claims.Contains(DevDayCFP.Common.Consts.Claims.Admin))
+                        {
+                            <h1>
+                                <small class="light">Users</small>
+                                <strong>@ViewBag.Page.Value.NoOfUsers</strong>
+                                <small class="light">&</small>
+                                <strong>@ViewBag.Page.Value.NoOfPapers</strong>
+                                <small class="light">Paper(s)</small>
+                            </h1>
+                        }
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <footer id="footer" role="contextinfo">
+        <div class="wrapper wrapper-transparent">
+            <div class="container-fluid">
+                <div class="row-fluid">
+                    <div class="span6 small-screen-center">
+                        <h3>
+                            DEVDAY
+                        </h3>
+                        <p>
+                            created with passion and ❤
+                            <br>
+                            <a href="mailto:contact@devday.pl">contact@devday.pl</a>
+                        </p>
+                    </div>
+                    <div class="span6">
+                        <ul class="unstyled inline text-right small-screen-center big social-icons">
+                            <li>
+                                <a href="http://twitter.com/abbdevday">
+                                    <i class="icon-twitter"></i>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="http://facebook.com/abbdevday">
+                                    <i class="icon-facebook"></i>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://plus.google.com/b/113103877740934428492/113103877740934428492/posts">
+                                    <i class="icon-google-plus"></i>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="http://youtube.com/abbdevday">
+                                    <i class="icon-youtube"></i>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://www.flickr.com/photos/96896358@N04/">
+                                    <i class="icon-flickr"></i>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script type="text/javascript" src="/Scripts/jquery-2.1.3.js"></script>
+
+    <script type="text/javascript" src="/Scripts/bootstrap.js"></script>
+
+    <script type="text/javascript" src="/Scripts/jquery.flexslider-min.js"></script>
+
+    <script type="text/javascript" src="/Scripts/jquery.tweet.js"></script>
+
+    <script type="text/javascript" src="/Scripts/jquery.fancybox.pack.js"></script>
+
+    <script type="text/javascript" src="/Scripts/jquery.fancybox-media.js"></script>
+
+    <script type="text/javascript" src="/Scripts/script.js"></script>
+
+    <script type="text/javascript" src="/Scripts/parsley.js"></script>
+    
+    <script type="text/javascript" src="/Scripts/enquire.min.js"></script>
+    
+    <script type="text/javascript">
+        $(function() {
+            enquire.register("screen and (max-width:979px)", {
+                setup: function() {
+                    console.log("SETUP");
+                },
+                match: function() {
+                    $("#masthead .nav .navbar-btn").removeClass("btn btn-primary");
+                },
+                unmatch: function() {
+                    $("#masthead .nav .navbar-btn").addClass("btn btn-primary");
+                }
+            });
+        });
+    </script>
+    
+    
+
+    @RenderSection("scripts", false)
+</body>
+</html>

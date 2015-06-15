@@ -230,6 +230,12 @@
     <Content Include="Views\MailTemplates\NewPaperSubmitted.cshtml" />
     <Content Include="Views\AllUsers\Index.cshtml" />
     <Content Include="Views\AllUsers\Details.cshtml" />
+    <Content Include="Views\Home\CFPClosed.cshtml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Views\Shared\_LayoutNoMenu.cshtml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

@@ -3,13 +3,14 @@ using DevDayCFP.Models;
 using DevDayCFP.Services;
 using DevDayCFP.ViewModels;
 using Nancy;
-using Nancy.Security;
 
 namespace DevDayCFP.Modules
 {
     public class BaseModule : NancyModule
     {
         protected readonly IDataStore _dataStore;
+
+        protected readonly DateTime UtcCloseDateTime = new DateTime(2015, 06, 15, 23, 59, 59);
 
         public BaseModule(IDataStore dataStore)
         {
@@ -52,6 +53,14 @@ namespace DevDayCFP.Modules
                 };
 
                 ViewBag.Page = pageViewModel;
+
+                if (DateTime.UtcNow > UtcCloseDateTime)
+                {
+                    if (!ctx.Request.Path.Contains("cfpclosed"))
+                    {
+                        return Response.AsRedirect("/cfpclosed");
+                    }
+                }
 
                 if (ctx.CurrentUser != null)
                 {
