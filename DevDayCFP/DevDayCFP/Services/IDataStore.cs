@@ -28,5 +28,7 @@ namespace DevDayCFP.Services
         Token GetTokenById(Guid id);
         Token FindTokenByContent(Guid id);
         void SaveToken(Token token);
+
+        DateTime GetUtcClosingTime();
     }
 }

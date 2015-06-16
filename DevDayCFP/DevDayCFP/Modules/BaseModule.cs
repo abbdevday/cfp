@@ -10,8 +10,6 @@ namespace DevDayCFP.Modules
     {
         protected readonly IDataStore _dataStore;
 
-        protected readonly DateTime UtcCloseDateTime = new DateTime(2015, 06, 15, 23, 59, 59);
-
         public BaseModule(IDataStore dataStore)
         {
             _dataStore = dataStore;
@@ -36,8 +34,8 @@ namespace DevDayCFP.Modules
                 if (ctx.CurrentUser != null)
                 {
                     var user = ((User)ctx.CurrentUser);
-                    avatarPath = !String.IsNullOrEmpty(user.AvatarPath) 
-                                ? String.Format("/Images/Avatars/{0}/{1}", user.Id, user.AvatarPath )
+                    avatarPath = !String.IsNullOrEmpty(user.AvatarPath)
+                                ? String.Format("/Images/Avatars/{0}/{1}", user.Id, user.AvatarPath)
                                 : String.Format("https://www.gravatar.com/avatar/{0}?s=40&d=mm", user.EmailHash.ToLower());
 
                 }
@@ -54,7 +52,7 @@ namespace DevDayCFP.Modules
 
                 ViewBag.Page = pageViewModel;
 
-                if (DateTime.UtcNow > UtcCloseDateTime)
+                if (DateTime.UtcNow > _dataStore.GetUtcClosingTime())
                 {
                     pageViewModel.IsCfpClosed = true;
 
@@ -74,7 +72,7 @@ namespace DevDayCFP.Modules
 
                 if (ctx.CurrentUser != null)
                 {
-                    var user = (User) ctx.CurrentUser;
+                    var user = (User)ctx.CurrentUser;
 
                     if (user.AccountStatus == AccountStatus.PendingVerification)
                     {

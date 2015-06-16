@@ -114,6 +114,11 @@ namespace DevDayCFP.Services
             _db.Tokens.Upsert(tokenRecord);
         }
 
+        public DateTime GetUtcClosingTime()
+        {
+            return new DateTime(2015, 06, 15, 23, 59, 59);
+        }
+
         public IList<Paper> GetAllPapers()
         {
             IList<Paper> papers = _db.Papers.All().WithUser()

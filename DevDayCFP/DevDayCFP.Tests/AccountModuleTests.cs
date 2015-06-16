@@ -29,6 +29,8 @@ namespace DevDayCFP.Tests
                 with.RootPathProvider(_rootPathProvider);
             });
             _browser = new Browser(bootstrapper);
+
+            A.CallTo(() => _dataStoreMock.GetUtcClosingTime()).Returns(DateTime.MaxValue);
         }
 
         [Fact]
