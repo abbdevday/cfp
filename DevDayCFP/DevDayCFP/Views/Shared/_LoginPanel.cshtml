@@ -6,7 +6,10 @@
 else
 {
     <li class=""><a href="/Account/Login">Login</a></li>
-    <li class="">
-        <a href="/Account/Register" class="btn btn-primary navbar-btn">Register</a>
-    </li>
+    @if (!ViewBag.Page.Value.IsCfpClosed)
+    {
+        <li class="">
+            <a href="/Account/Register" class="btn btn-primary navbar-btn">Register</a>
+        </li>
+    }
 }

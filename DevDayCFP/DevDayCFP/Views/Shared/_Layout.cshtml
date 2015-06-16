@@ -4,8 +4,8 @@
 @{
     const string cfpTitle = "DevDay 2015 Call for Papers";
     const string cfpDescription = "You can submit your session proposals to DevDay 2015 on this site. We're looking for inspirational and informative talks on software development! You can take a look at previous editions of DevDay to get the feel of what we're searching for.";
-    const string cfpUrl = @"https://cfp.devday.pl/Images/social_header.png";  
-} 
+    const string cfpUrl = @"https://cfp.devday.pl/Images/social_header.png";
+}
 
 
 <html itemscope itemtype="http://schema.org/Article">
@@ -14,7 +14,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta content="yes" name="apple-mobile-web-app-capable">
-    
+
     <meta itemprop="name" content="@cfpTitle">
     <meta itemprop="description" content="@cfpDescription">
     <meta itemprop="image" content="@cfpUrl">
@@ -23,7 +23,7 @@
     <meta property="og:description" content="@cfpDescription" />
     <meta property="og:image" content="@cfpUrl" />
     <meta property="og:url" content="https://cfp.devday.pl" />
-    
+
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:site" content="@("@abbdevday")">
     <meta name="twitter:creator" content="@("@biegal")">
@@ -48,23 +48,23 @@
     <link href="~/Content/margins.css" media="screen" rel="stylesheet" type="text/css" />
     <link href="~/Content/parsley.css" media="screen" rel="stylesheet" type="text/css" />
 </head>
-    <body>
-        <!-- Google Tag Manager -->
-        <noscript>
-            <iframe src="//www.googletagmanager.com/ns.html?id=GTM-K8MKR8"
-                    height="0" width="0" style="display:none;visibility:hidden"></iframe>
-        </noscript>
-        <script>
-            (function (w, d, s, l, i) {
+<body>
+    <!-- Google Tag Manager -->
+    <noscript>
+        <iframe src="//www.googletagmanager.com/ns.html?id=GTM-K8MKR8"
+                height="0" width="0" style="display:none;visibility:hidden"></iframe>
+    </noscript>
+    <script>
+        (function (w, d, s, l, i) {
             w[l] = w[l] || []; w[l].push({
-            'gtm.start':
-            new Date().getTime(), event: 'gtm.js'
+                'gtm.start':
+                new Date().getTime(), event: 'gtm.js'
             }); var f = d.getElementsByTagName(s)[0],
             j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
             '//www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
-            })(window, document, 'script', 'dataLayer', 'GTM-K8MKR8');
-        </script>
-        <!-- End Google Tag Manager -->
+        })(window, document, 'script', 'dataLayer', 'GTM-K8MKR8');
+    </script>
+    <!-- End Google Tag Manager -->
 
     <div class="wrapper">
         <header id="masthead">
@@ -85,8 +85,11 @@
                                 <li class=""><a href="/">Home</a></li>
                                 @if (ViewBag.Page.Value.IsAuthenticated)
                                 {
-                                    <li class=""><a href="/papers">Papers</a></li>
-                                    <li class=""><a href="/account/profile">Profile</a></li>
+                                    if (!ViewBag.Page.Value.IsCfpClosed)
+                                    {
+                                        <li class=""><a href="/papers">Papers</a></li>
+                                        <li class=""><a href="/account/profile">Profile</a></li>
+                                    }
 
                                     if (Context.CurrentUser.Claims.Contains(DevDayCFP.Common.Consts.Claims.Admin))
                                     {
@@ -192,26 +195,26 @@
     <script type="text/javascript" src="/Scripts/script.js"></script>
 
     <script type="text/javascript" src="/Scripts/parsley.js"></script>
-    
+
     <script type="text/javascript" src="/Scripts/enquire.min.js"></script>
-    
+
     <script type="text/javascript">
-        $(function() {
+        $(function () {
             enquire.register("screen and (max-width:979px)", {
-                setup: function() {
+                setup: function () {
                     console.log("SETUP");
                 },
-                match: function() {
+                match: function () {
                     $("#masthead .nav .navbar-btn").removeClass("btn btn-primary");
                 },
-                unmatch: function() {
+                unmatch: function () {
                     $("#masthead .nav .navbar-btn").addClass("btn btn-primary");
                 }
             });
         });
     </script>
-    
-    
+
+
 
     @RenderSection("scripts", false)
 </body>

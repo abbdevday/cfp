@@ -12,6 +12,7 @@ namespace DevDayCFP.ViewModels
 
         public int NoOfUsers { get; set; }
         public int NoOfPapers { get; set; }
+        public bool IsCfpClosed { get; set; }
 
         public PageViewModel()
         {
