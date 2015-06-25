@@ -60,7 +60,7 @@ namespace DevDayCFP.Modules
                         && String.Compare(ctx.Request.Path, "/account/logout", StringComparison.InvariantCultureIgnoreCase) != 0
                         && String.Compare(ctx.Request.Path, "/account/login", StringComparison.InvariantCultureIgnoreCase) != 0
                         && !ctx.Request.Path.Contains("/account/remindpassword")
-                        && String.Compare(ctx.Request.Path, "/account/resetpassword", StringComparison.InvariantCultureIgnoreCase) != 0
+                        && !ctx.Request.Path.Contains("/account/resetpassword")
                         && String.Compare(ctx.Request.Path, "/allusers", StringComparison.InvariantCultureIgnoreCase) != 0
                         && !ctx.Request.Path.Contains("/allusers/details")
                         && String.Compare(ctx.Request.Path, "/allpapers", StringComparison.InvariantCultureIgnoreCase) != 0
